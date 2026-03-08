@@ -8,6 +8,6 @@ def run_command(cmd):
         capture_output=True,
         text=True
     )
-    print("Result: ",result.stdout)
+    # print("Result: ",result.stdout)
     print("Error: ",result.stderr)
-    return result.stdout
+    return result

@@ -1,0 +1,40 @@
+// Theme 10: Midnight Blue (dark blue keys, cyan values, bright blocks)
+{
+  "display": {
+    "separator": " < ",
+    "color": { "keys": "blue", "title": "blue", "output": "cyan" },
+    "brightColor": true,
+    "key": { "width": 13, "type": "string" },
+    "bar": {
+      "width": 12,
+      "char": { "elapsed": "█", "total": "░" }
+    },
+    "percent": { "type": 3, "color": { "green": 40, "yellow": 90 } }
+  },
+  "logo": {
+    "type": "auto",
+    "source": ".config/fastfetch/logo.txt",
+    "color": { "1": "blue", "2": "blue" },
+    "padding": {
+      "top": 2
+    }
+  },
+  "modules": [
+    "break",
+    "break",
+    "title",
+    "separator",
+    { "type": "os",     "key": "Operating System" },
+    { "type": "kernel", "key": "Kernel" },
+    { "type": "uptime", "key": "UpTime" },
+    { "type": "host",   "key": "HostName" },
+    "separator",
+    { "type": "cpu",    "key": "CPU",    "percent": { "type": 3, "green": 30, "yellow": 80 } },
+    { "type": "memory", "key": "Memory", "percent": { "type": 3, "green": 50, "yellow": 90 } },
+    "separator",
+    { "type": "disk",   "key": "Disk" },
+    { "type": "ip",     "key": "IP Address" },
+    "break",
+    "break"
+  ]
+}

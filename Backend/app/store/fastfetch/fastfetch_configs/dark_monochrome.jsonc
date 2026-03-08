@@ -1,0 +1,39 @@
+// Theme 2: Dark Monochrome (white on black, no key labels)
+{
+  "display": {
+    "separator": " = ",
+    "color": "white",
+    "brightColor": false,
+    "key": { "type": "none" },    // hide key labels
+    "bar": { 
+      "width": 10, 
+      "char": { "elapsed": "=", "total": "-" }  // retro style bar
+    },
+    "percent": { "type": 9, "color": { "green": 40, "yellow": 70 } }
+  },
+  "logo": {
+    "type": "builtin",
+    "source": ".config/fastfetch/logo.txt",
+    "padding": {
+      "top": 2
+    }
+  },
+
+  "modules": [
+    "break",
+    "break",
+    "title",
+    "separator",
+    { "type": "os" },
+    { "type": "kernel" },
+    { "type": "uptime" },
+    "separator",
+    { "type": "cpu",    "percent": { "type": 3, "green": 50, "yellow": 80 } },
+    { "type": "memory", "percent": { "type": 3, "green": 50, "yellow": 80 } },
+    "separator",
+    { "type": "disk" },
+    { "type": "ip" },
+    "break",
+    "break"
+  ]
+}

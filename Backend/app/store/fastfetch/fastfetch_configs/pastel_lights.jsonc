@@ -1,0 +1,36 @@
+// Theme 3: Pastel Lights (custom image logo, soft colors)
+{
+  "display": {
+    "separator": " - ",
+    "color": { "keys": "light_magenta", "title": "light_cyan" },
+    "brightColor": false,
+    "key": { "width": 12, "type": "string" },
+    "bar": { "width": 0, "char": { "elapsed": "", "total": "" } },
+    "percent": { "type": 1, "color": { "green": 33, "yellow": 66 } }
+  },
+  "logo": {
+    "type": "file",
+    "source": ".config/fastfetch/logo.txt",  // replace with your image file
+    "padding": {
+      "top": 2
+    }
+  },
+  "modules": [
+    "break",
+    "break",
+    "title",
+    "separator",
+    { "type": "os",     "key": "OS" },
+    { "type": "kernel", "key": "Kernel" },
+    { "type": "uptime", "key": "Uptime" },
+    { "type": "host",   "key": "Host" },
+    "separator",
+    { "type": "cpu",    "key": "CPU" },
+    { "type": "memory", "key": "Memory" },
+    "separator",
+    { "type": "disk",   "key": "Disk" },
+    { "type": "ip",     "key": "IP" },
+    "break",
+    "break"
+  ]
+}

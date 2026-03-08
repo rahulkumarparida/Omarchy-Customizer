@@ -1,0 +1,36 @@
+// Theme 9: Jungle (green keys, brown output, custom bar chars)
+{
+  "display": {
+    "separator": " : ",
+    "color": { "keys": "green", "output": "light_magenta" },
+    "brightColor": false,
+    "key": { "width": 11, "type": "string" },
+    "bar": { "width": 10, "char": { "elapsed": "#", "total": "." } },
+    "percent": { "type": 3, "color": { "green": 25, "yellow": 75 } }
+  },
+  "logo": {
+    "type": "auto",
+    "source": ".config/fastfetch/logo.txt",
+    "color": { "1": "green", "2": "green" },
+    "padding": {
+      "top": 2
+    }
+  },
+  "modules": [
+    "break",
+    "break",
+    "title",
+    "separator",
+    { "type": "os",   "key": "OS" },
+    { "type": "host", "key": "Host" },
+    { "type": "kernel", "key": "Kernel" },
+    "separator",
+    { "type": "cpu",    "key": "CPU",    "percent": { "type": 3, "green": 20, "yellow": 70 } },
+    { "type": "memory", "key": "Memory", "percent": { "type": 3, "green": 30, "yellow": 80 } },
+    "separator",
+    { "type": "disk",  "key": "Disk" },
+    { "type": "ip",    "key": "IP" },
+    "break",
+    "break"
+  ]
+}
