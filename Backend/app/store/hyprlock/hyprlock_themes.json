@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Style-1",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-1",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/50826322-b565-4a5a-af0b-70dda399fd1a"
+  },
+  {
+    "id": 2,
+    "name": "Style-2",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-2",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/71ee9ae6-f57f-4762-abe1-f5456f13c534"
+  },
+  {
+    "id": 3,
+    "name": "Style-3",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-3",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/d770c87c-dd9a-4bd4-8736-7f9855c23155"
+  },
+  {
+    "id": 4,
+    "name": "Style-4",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-4",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/9224e019-39cd-48d2-95f1-a239346f68f6"
+  },
+  {
+    "id": 5,
+    "name": "Style-5",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-5",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/5399df92-bea7-47de-8f75-b890ead7e55f"
+  },
+  {
+    "id": 6,
+    "name": "Style-6",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-6",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/c56bc90a-cf07-4535-ba2f-fc556ea9a804"
+  },
+  {
+    "id": 7,
+    "name": "Style-7",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-7",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/291fbf79-0678-4b62-b454-613589911a17"
+  },
+  {
+    "id": 8,
+    "name": "Style-8",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-8",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/67521c55-3223-4b07-9722-6a0f5b2f6326"
+  },
+  {
+    "id": 9,
+    "name": "Style-9",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-9",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/e77f7ba1-400a-4abf-b817-d9d7a24ad1ae"
+  },
+  {
+    "id": 10,
+    "name": "Style-10",
+    "github_repo": "https://github.com/MrVivekRajan/Hyprlock-Styles",
+    "folder": "Style-10",
+    "background_path": true,
+    "image_path": true,
+    "preview_image": "https://github.com/user-attachments/assets/acc07fd5-7362-4bfa-9245-b1599ddf6ea0"
+  }
+]

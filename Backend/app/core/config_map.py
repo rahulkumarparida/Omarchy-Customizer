@@ -9,7 +9,7 @@ from app.config import CONFIG_DIR, BASE_DIR , HOME_DIR
 theme_script_file = os.path.abspath((os.path.join(BASE_DIR,"scripts","theme_change.sh")))
 
 #  Gets the file path of the JSON containing the theme details scraped.
-filepath = os.path.abspath((os.path.join(BASE_DIR,"scraper","omarchy-theme-scraper","omarchy_dumps","omarchy_themes.json")))
+filepath = os.path.abspath((os.path.join(BASE_DIR,"store","omarchy-themes","omarchy_themes.json")))
 
 if filepath and os.path.exists(filepath):
     with open(filepath, 'r') as f:
@@ -19,12 +19,21 @@ else:
 
 # Gets the file containf the JSON for waybar theme data
 waybar_filepath = BASE_DIR / "store" / "waybar" / "waybar_theme.json"
-
 if waybar_filepath and os.path.exists(waybar_filepath):
     with open(waybar_filepath,'r') as f:
         WAYBAR_THEMES = json.load(f)
 else:
     WAYBAR_THEMES = []
+
+
+# Gets the hyprlock file containg the JSON of the hyprlock theme
+hyprlock_filepath = BASE_DIR / "store" / "hyprlock" / "hyprlock_themes.json"
+if hyprlock_filepath and os.path.exists(hyprlock_filepath):
+    with open(hyprlock_filepath, 'r') as f:
+        HYPRLOCK_THEMES = json.load(f)
+else:
+    HYPRLOCK_THEMES = []
+
 
 FOLDER_PATHS = {
     "api" : Path(BASE_DIR / "api"),
@@ -36,6 +45,10 @@ FOLDER_PATHS = {
     "utils": Path(BASE_DIR / "utils")
 }
 
+CUSTOMIZER_LOCALS = HOME_DIR / ".customizer"
+CUSTOMIZER_LOCALS.mkdir(parents=True, exist_ok=True)
+USER_ASSET_STORE = CUSTOMIZER_LOCALS / "assets"
+USER_ASSET_STORE.mkdir(parents=True,exist_ok=True)
 
 SETTINGS={
     "waybar_theme":{
@@ -56,9 +69,17 @@ SETTINGS={
     },
     "waybar":{
         "dir" : CONFIG_DIR / "waybar" ,
-        "temp_repo" : HOME_DIR / "temp_repo",
+        "temp_repo" : HOME_DIR / "temp_waybar_repo",
         "waybar_themes":WAYBAR_THEMES,
         "github_repo": "https://github.com/HANCORE-linux/waybar-themes.git",
+    },
+    "hyprlock":{
+        "file":CONFIG_DIR / "hypr" / "hyprlock.conf",
+        "asset_dir":USER_ASSET_STORE / "hyprlock",
+        "default_img_file":CONFIG_DIR / "omarchy" / "current" / "background",
+        "temp_repo":USER_ASSET_STORE / "temp_hyprlock_dir" ,
+        "hyprlock_themes":HYPRLOCK_THEMES,
+        "github_repo":"https://github.com/MrVivekRajan/Hyprlock-Styles"
     }
 }
 

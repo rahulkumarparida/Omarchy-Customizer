@@ -24,7 +24,15 @@ file = os.path.join(os.getcwd(), "omarchy_dumps", filename)
 with open(file, "r") as f:
     data = json.load(f)
 
-updated_data_list = extract_github_repo(data)
+# updated_data_list = extract_github_repo(data)
+updated_data_list = data
+id = 0
+
+for theme in data:
+    id+=1
+    theme["id"]=id
+    
+
 
 store_data(updated_data_list, filename)
 print(f"Updated data with GitHub repos stored in {os.path.join(os.getcwd(), 'omarchy_dumps', filename)}")

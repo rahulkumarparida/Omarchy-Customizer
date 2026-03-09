@@ -8,10 +8,10 @@ class WaybarColorConfigRequest(BaseModel):
     background: str
 
 class WaybarThemeConfigRequest(BaseModel):
-    theme_name : str
+    theme_name : int
 
 class ThemeConfigRequest(BaseModel):
-    theme_name: str
+    theme_name: int
 
 
 class FastFetchConfigRequest(BaseModel):
@@ -19,3 +19,9 @@ class FastFetchConfigRequest(BaseModel):
     config_file: Optional[UploadFile] = File(None)
     logo_name: Optional[str] = None
     logo_file: Optional[UploadFile] = File(None)
+
+
+class HyprLockConfigRequest(BaseModel):
+    theme_id:int
+    background_img: Optional[UploadFile] = File(None)
+    user_img: Optional[UploadFile] = File(None)
