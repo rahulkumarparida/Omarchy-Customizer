@@ -7,6 +7,9 @@ class WaybarColorConfigRequest(BaseModel):
     foreground: str
     background: str
 
+class WaybarThemeConfigRequest(BaseModel):
+    theme_name : str
+
 class ThemeConfigRequest(BaseModel):
     theme_name: str
 

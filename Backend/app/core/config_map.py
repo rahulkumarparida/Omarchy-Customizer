@@ -17,6 +17,14 @@ if filepath and os.path.exists(filepath):
 else:
     THEMES = []
 
+# Gets the file containf the JSON for waybar theme data
+waybar_filepath = BASE_DIR / "store" / "waybar" / "waybar_theme.json"
+
+if waybar_filepath and os.path.exists(waybar_filepath):
+    with open(waybar_filepath,'r') as f:
+        WAYBAR_THEMES = json.load(f)
+else:
+    WAYBAR_THEMES = []
 
 FOLDER_PATHS = {
     "api" : Path(BASE_DIR / "api"),
@@ -45,6 +53,12 @@ SETTINGS={
         "fastfetch_logo_dir": BASE_DIR / "store" / "fastfetch" / "fastfetch_logos",
         "fastfetch_dir_maintainer": BASE_DIR / "store" / "fastfetch" / "fastfetch_data.json",
         "fastfetch_logo_dir_maintainer": BASE_DIR / "store" / "fastfetch" / "fastfetch_logo_data.json",
+    },
+    "waybar":{
+        "dir" : CONFIG_DIR / "waybar" ,
+        "temp_repo" : HOME_DIR / "temp_repo",
+        "waybar_themes":WAYBAR_THEMES,
+        "github_repo": "https://github.com/HANCORE-linux/waybar-themes.git",
     }
 }
 

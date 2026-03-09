@@ -4,7 +4,7 @@ from fastapi.responses import Response
 from app.services.file_services import replace_line
 from app.core.config_map import SETTINGS ,THEMES
 from app.services.command_services import run_command
-from app.core.validator import WaybarColorConfigRequest , ThemeConfigRequest
+from app.core.validator import WaybarColorConfigRequest , ThemeConfigRequest , WaybarThemeConfigRequest
 from app.config import BACKUP_CONFIG_DIR
 from fastapi import status
 
@@ -24,7 +24,7 @@ def backup_file(file_path):
         backup_file.write(content)
 
 
-# Change navbar background color and foreground color   
+# Change waybar background color and foreground color   
 def change_waybar_colors(config: WaybarColorConfigRequest):
     file = os.path.expanduser(SETTINGS['waybar_theme']['file'])
     print(f"file found at {file}, Starting backup")
@@ -38,6 +38,30 @@ def change_waybar_colors(config: WaybarColorConfigRequest):
         return Response(content=json.dumps({"message":"color theme updated successfully"}),status_code=200)
     
     return Response(content=json.dumps({"message":"failed to update theme"}),status_code=404)
+
+# Change waybar theme
+def change_waybar_theme(data: WaybarThemeConfigRequest):
+    config_folder = SETTINGS["waybar"]["dir"]
+    temp_dir = SETTINGS["waybar"]["temp_repo"]
+    waybar_themes = SETTINGS["waybar"]["waybar_themes"]
+    github_repo = SETTINGS["waybar"]["github_repo"]
+    requested_theme_name = data.theme_name
+    theme_data = None
+    
+    for theme in waybar_themes:
+        if theme["theme_name"].lower() == requested_theme_name.lower():
+            theme_data = theme
+            break
+    
+    if theme_data is None:
+        return {"error":"requested theme not found"}
+    
+    result = run_command(f"git clone {github_repo} {temp_dir} && cp -rf {temp_dir}/config/{theme_data["theme_name"]}/. {config_folder} && rm -rf {temp_dir} && omarchy-restart-waybar")
+
+    if result.returncode != 0:
+        return {"error":"some error occured while executing the command"}
+    
+    return {"message":"Waybar theme changed sucessfully."}
 
 
 
