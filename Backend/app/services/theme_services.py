@@ -42,6 +42,15 @@ def change_waybar_colors(config: WaybarColorConfigRequest):
 
 
 # Change waybar theme
+def get_waybar_theme_details(request):
+    waybar_themes = SETTINGS["waybar"]["waybar_themes"]
+    return {
+        "message":"sucessfully fetched waybar themes",
+        "requested_source":request.client,
+        "waybar_themes": waybar_themes
+    }
+
+
 def change_waybar_theme(data: WaybarThemeConfigRequest):
     config_folder = SETTINGS["waybar"]["dir"]
     temp_dir = SETTINGS["waybar"]["temp_repo"]
@@ -81,6 +90,14 @@ def find_theme_file_details(num):
              }
             break        
     return theme_data
+
+def get_omarchy_theme_details(request):
+    omarchy_themes = THEMES
+    return {
+        "message":"successfully fetched omarchy themes",
+        "requested_source":request.client,
+        "omarchy_themes":omarchy_themes
+    }
 
 def change_theme(theme_config: ThemeConfigRequest):
     theme_name = theme_config.theme_name
@@ -143,6 +160,16 @@ def search_replace_images_path(conf_path, new_wallpaper, new_image):
         f.writelines(lines)
         
     return 200
+
+
+def get_hyprlock_theme_details(request):
+    hyprlock_themes = SETTINGS["hyprlock"]["hyprlock_themes"]
+    return {
+        "message":"successfully fetched omarchy themes",
+        "requested_source":request.client,
+        "omarchy_themes":hyprlock_themes
+    }
+
 
 def change_hyprlock_theme(data:HyprLockConfigRequest):
     file = SETTINGS["hyprlock"]["file"]

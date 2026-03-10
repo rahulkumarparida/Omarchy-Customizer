@@ -1,13 +1,16 @@
-from fastapi import FastAPI
+from fastapi import FastAPI 
+from fastapi.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routers import api_routers
+import json
 
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-
-]   
+# origins = [
+#     "http://localhost:5173",
+#     "http://127.0.0.1:5173",
+# ]  
+origins=["*"] 
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,4 +25,4 @@ app.include_router(router=api_routers)
 
 @app.get("/")
 def read_root():
-    return {"status": "up and running"}
+    return Response(content=json.dumps({"status": "up and running"}), status_code=200)
