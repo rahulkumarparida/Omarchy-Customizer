@@ -1,0 +1,43 @@
+html {
+  background: #000;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass-panel {
+  backdrop-filter: blur(18px);
+}
+
+.grain-overlay {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.02)),
+    radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.08), transparent 24%),
+    radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.04), transparent 18%);
+}
+
+.accent-line {
+  display: block;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0), #22d3ee 42%, rgba(34, 211, 238, 0));
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.5);
+}
+
+.hero-wordmark {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.06em;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.script-mark {
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  line-height: 1;
+}

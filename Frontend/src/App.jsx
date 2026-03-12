@@ -1,23 +1,19 @@
-import api from "./api/api.js"
-import { useEffect } from "react"
+import { Route, Routes } from "react-router-dom";
+import Homepage from "./pages/Homepage.jsx";
+import ThemeCollection from "./pages/ThemeCollection.jsx";
+import WaybarThemeCollection from "./components/WaybarCollection.jsx";
+import "./App.css";
 
 function App() {
-  
-    async function fetchTest() {
-        let res =await api.get("/")
-        console.log(res)
-      }
-      
-  useEffect(()=>{
-    fetchTest()
-    
-  },[])
-
   return (
-   <div className='bg-black text-yellow-500'>
-    Hello
-   </div>
-  )
+    <div className="min-h-screen bg-black text-white">
+      <Routes>
+        <Route path="/" element={<Homepage />} /> 
+        <Route path="/collection" element={<ThemeCollection />} /> 
+        <Route path="/collection/waybar" element={<WaybarThemeCollection />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
