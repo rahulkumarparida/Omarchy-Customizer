@@ -42,11 +42,12 @@ def change_waybar_colors(config: WaybarColorConfigRequest):
 
 
 # Change waybar theme
-def get_waybar_theme_details(request):
+def get_waybar_theme_details():
     waybar_themes = SETTINGS["waybar"]["waybar_themes"]
     return {
         "message":"sucessfully fetched waybar themes",
-        "requested_source":request.client,
+        "credits_to":"HANCORE-linux",
+        "collection_name":"Waybar themes",
         "waybar_themes": waybar_themes
     }
 
@@ -91,11 +92,12 @@ def find_theme_file_details(num):
             break        
     return theme_data
 
-def get_omarchy_theme_details(request):
+def get_omarchy_theme_details():
     omarchy_themes = THEMES
     return {
         "message":"successfully fetched omarchy themes",
-        "requested_source":request.client,
+        "credits_to":"omarchythemes.com and the devlopers",
+        "collection_name":"Omarchy Hyprland Themes",
         "omarchy_themes":omarchy_themes
     }
 
@@ -162,11 +164,12 @@ def search_replace_images_path(conf_path, new_wallpaper, new_image):
     return 200
 
 
-def get_hyprlock_theme_details(request):
+def get_hyprlock_theme_details():
     hyprlock_themes = SETTINGS["hyprlock"]["hyprlock_themes"]
     return {
         "message":"successfully fetched omarchy themes",
-        "requested_source":request.client,
+        "credits_to":"MrVivekRajan",
+        "collection_name":"Hyprlock Themes",
         "omarchy_themes":hyprlock_themes
     }
 

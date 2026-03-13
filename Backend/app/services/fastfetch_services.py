@@ -6,6 +6,29 @@ from app.core.config_map import SETTINGS , FOLDER_PATHS , CONFIG_DIR
 from app.core.validator import FastFetchConfigRequest
 from app.services.command_services import run_command
 
+def filetoJson(filepath):
+    print("This is the filepath",filepath)
+    if not filepath or not os.path.exists(filepath):
+        return
+    with open(filepath,'r') as f:
+        data = json.load(f)
+    return data
+
+
+def get_fastfetch_theme_details():
+    
+    fastfetch_data_json = filetoJson(SETTINGS["fast_fetch"]["fastfetch_dir_maintainer"])
+    fastfetch_logodata_json = filetoJson(SETTINGS["fast_fetch"]["fastfetch_logo_dir_maintainer"])
+    
+    data = {
+        "collection_name":"fastfetch collection",
+        "fastfetch_data":fastfetch_data_json,
+        "fastfetch_logo_data":fastfetch_logodata_json,
+        "credits_to":"rahulkumarparida"
+    }
+
+    return data
+
 def change_fastfetch_config(data: FastFetchConfigRequest):
     
     config_name = data.config_name 
@@ -95,7 +118,7 @@ def change_fastfetch_config(data: FastFetchConfigRequest):
 
         with open(user_logo_file , 'wb') as f:
             shutil.copyfileobj(logo_file.file , f)
-        fastfetch_logo_file = CONFIG_DIR / "fastfetch" / "logo.txt"
+        fastfetch_logo_file = CONFIG_DIR / "fastfetch" / "fastfetch_logos" / logo_file.filename
 
         result = run_command(f"cp -f {user_logo_file} {fastfetch_logo_file}")
 

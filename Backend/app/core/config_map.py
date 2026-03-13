@@ -35,6 +35,15 @@ else:
     HYPRLOCK_THEMES = []
 
 
+# Gets the walker file containing the JSON for walker
+walker_filepath = BASE_DIR / "store" / "walker" / "walker_theme.json"
+if walker_filepath and os.path.exists(walker_filepath):
+    with open(walker_filepath , 'r') as f:
+        WALKER_THEMES = json.load(f)
+else:
+    WALKER_THEMES = {}
+
+
 FOLDER_PATHS = {
     "api" : Path(BASE_DIR / "api"),
     "core": Path(BASE_DIR / "core"),
@@ -80,6 +89,13 @@ SETTINGS={
         "temp_repo":USER_ASSET_STORE / "temp_hyprlock_dir" ,
         "hyprlock_themes":HYPRLOCK_THEMES,
         "github_repo":"https://github.com/MrVivekRajan/Hyprlock-Styles"
+    },
+    "walker":{
+        "file":"",
+        "temp_repo":"",
+        "walker_css":"",
+        "walker_themes":WALKER_THEMES,
+        "github_repo":"https://github.com/rahulkumarparida/Walker-themes.git"
     }
 }
 
