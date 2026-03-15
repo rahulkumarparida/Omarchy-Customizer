@@ -75,6 +75,7 @@ SETTINGS={
         "fastfetch_logo_dir": BASE_DIR / "store" / "fastfetch" / "fastfetch_logos",
         "fastfetch_dir_maintainer": BASE_DIR / "store" / "fastfetch" / "fastfetch_data.json",
         "fastfetch_logo_dir_maintainer": BASE_DIR / "store" / "fastfetch" / "fastfetch_logo_data.json",
+        "fastfetch_preview": "https://github.com/rahulkumarparida/Omarchy-Customizer/blob/main/Backend/app/store/assets/fastfetch_preview.png"
     },
     "waybar":{
         "dir" : CONFIG_DIR / "waybar" ,

@@ -4,7 +4,7 @@ from fastapi import APIRouter
 from fastapi.responses import Response
 from app.services.fastfetch_services import get_fastfetch_theme_details
 from app.services.theme_services import get_hyprlock_theme_details , get_omarchy_theme_details , get_waybar_theme_details
-
+from app.core.config_map import SETTINGS
 meta_router = APIRouter()
 
 
@@ -14,14 +14,44 @@ def themecollection_meta():
     hyprlock = get_hyprlock_theme_details()
     omarchy_themes= get_omarchy_theme_details()
     waybar = get_waybar_theme_details()
-
+    
     response = [
-        {"fastfetch":fastfetch},
-        {"hyprlock":hyprlock},
-        {"omarchy_themes":omarchy_themes},
-        {"waybar":waybar}
+        {
+            "id":1,
+            "follow":"https://github.com/rahulkumarparida", 
+            "collection_name":"fastfetch collection","credits_to":"rahulkumarparida",
+            "themes":fastfetch,
+            "goto":"/fastfetch",
+            "preiew_image":SETTINGS["fast_fetch"]["fastfetch_preview"]
+         },
+        {
+            "id":2,
+            "follow":"https://github.com/MrVivekRajan", 
+            "collection_name":"Hyprlock Themes",    
+            "credits_to":"MrVivekRajan",
+            "themes":hyprlock,
+            "goto":"/hyprlock",
+            "preiew_image":"https://github.com/user-attachments/assets/50826322-b565-4a5a-af0b-70dda399fd1a"
+        },
+        {
+            "id":3,
+            "follow":"https://github.com/mubashariqbal",
+            "collection_name":"Omarchy Hyprland Themes", 
+            "credits_to":"omarchythemes.com and the devlopers", 
+            "themes":omarchy_themes,
+            "goto":"/omarchy-themes",
+            "preiew_image":"https://omarchythemes.com/storage/42/conversions/01K2GEE94WCYJGT27GA9FWBXFP-thumb.jpg"
+        },
+        {
+            "id":5,
+            "follow":"https://github.com/HANCORE-linux",
+            "collection_name":"Waybar themes","credits_to":"HANCORE-linux",
+            "themes":waybar,
+            "goto":"/waybar",
+            "preiew_image":"https://github.com/user-attachments/assets/9e5f77ec-ba1f-42c0-810d-46f5327ed3f4"
+        }
     ]
     
-# Response(content=json.dumps({"message": f"Theme {theme_name} not found"}), status_code=404)
+
 
     return Response(content=json.dumps(response), status_code=200)

@@ -2,6 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage.jsx";
 import ThemeCollection from "./pages/ThemeCollection.jsx";
 import WaybarThemeCollection from "./components/WaybarCollection.jsx";
+import FastfetchCollection from "./components/FastfetchCollection.jsx";
+import HyprlockCollection from "./components/HyprlockCollection.jsx";
+import OmarchyThemeCollection from "./components/OmarchyThemeCollection.jsx";
+
 import "./App.css";
 
 function App() {
@@ -10,7 +14,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} /> 
         <Route path="/collection" element={<ThemeCollection />} /> 
-        <Route path="/collection/waybar" element={<WaybarThemeCollection />} />
+        <Route path="/collection/waybar" element={<WaybarThemeCollection />} /> 
+        <Route path="/collection/fastfetch" element={<FastfetchCollection />} /> 
+        <Route path="/collection/omarchy-themes" element={<OmarchyThemeCollection />} /> 
+        <Route path="/collection/hyprlock" element={<HyprlockCollection />} /> 
       </Routes>
     </div>
   );

@@ -23,14 +23,16 @@ const Homepage = () => {
   const dockRef = useRef(null);
   const titleRef = useRef(null);
 
-  useEffect(() => {
+
+
+    useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     // Initialize Smooth Scroll
     const lenis = new Lenis();
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
+      lenis.raf(time * 800);
     });
 
     const ctx = gsap.context(() => {
@@ -39,6 +41,21 @@ const Homepage = () => {
         { y: -100, opacity: 0 },
         { y: 0, opacity: 1, duration: 1.2, ease: "expo.out", delay: 0.5 }
       );
+      // Hides the side logo and control button upon scrolling down
+      let hideThese = ".hidethese"
+      ScrollTrigger.create({
+        start:0,
+        end:"max",
+        onUpdate:(self)=>{
+          self.direction == 1?
+          gsap.to(hideThese,{
+            y:-100,opacity:0.2,duration:0.1
+          }):
+          self.direction== -1?
+            gsap.to(hideThese,{y:0,opacity:1,duration:0.1}):
+          gsap.to(hideThese,{y:0,opacity:1,duration:0.1})
+        }
+      })
 
       // Content reveal animations
       gsap.fromTo(titleRef.current,
@@ -46,7 +63,7 @@ const Homepage = () => {
         {
           y: 0,
           opacity: 1,
-          duration: 1,
+          duration: 0.8,
           scrollTrigger: {
             trigger: titleRef.current,
             start: "top 85%",
@@ -67,8 +84,9 @@ const Homepage = () => {
       );
 
       // Parallax effect on the preview image
-      gsap.to(previewRef.current, {
-        yPercent: -15,
+      gsap.to(previewRef.current , {
+        xPercent:2,
+        yPercent: -10,
         ease: "none",
         scrollTrigger: {
           trigger: previewRef.current,
@@ -96,20 +114,20 @@ const Homepage = () => {
           videoFinished ? "opacity-100" : "opacity-0"
         }`}
       >
-        <img src={logo} alt="Logo" className="h-10 w-10 object-contain" />
+        <img src={logo} alt="Logo" className="hidethese h-10 w-10 object-contain" />
         
         {/* Transparent Nav Container */}
         <nav className="hidden md:block rounded-full border border-white/10 bg-black/60 px-10 py-4">
           <ul className="flex gap-12 font-mono text-[11px] uppercase tracking-[0.3em] text-white">
             {navItems.map((item) => (
               <Link key={item} className="hover:text-cyan-400 transition-colors cursor-pointer" to={"/collection"}>
-                <a href={`#${item.toLowerCase()}`}>{item}</a>
+                {item}
               </Link>
             ))}
           </ul>
         </nav>
 
-        <button className="rounded-full bg-white/5 border border-white/10 px-6 py-2.5 font-mono text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all">
+        <button className="hidethese rounded-full bg-white/5 border border-white/10 px-6 py-2.5 font-mono text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all">
           Control Room
         </button>
       </header>

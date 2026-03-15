@@ -1,10 +1,15 @@
 from fastapi import FastAPI 
+from fastapi.staticfiles import  StaticFiles
 from fastapi.responses import Response
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routers import api_routers
 import json
+from pathlib import Path
 
 app = FastAPI()
+print(Path("__main__").parent)
+static_dir = Path("__main__").parent / "app" / "store" / "assets" 
+app.mount("/assets", StaticFiles(directory=str(static_dir)), name="assets")
 
 # origins = [
 #     "http://localhost:5173",

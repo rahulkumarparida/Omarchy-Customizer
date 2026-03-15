@@ -21,10 +21,8 @@ def get_fastfetch_theme_details():
     fastfetch_logodata_json = filetoJson(SETTINGS["fast_fetch"]["fastfetch_logo_dir_maintainer"])
     
     data = {
-        "collection_name":"fastfetch collection",
         "fastfetch_data":fastfetch_data_json,
         "fastfetch_logo_data":fastfetch_logodata_json,
-        "credits_to":"rahulkumarparida"
     }
 
     return data

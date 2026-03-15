@@ -44,12 +44,7 @@ def change_waybar_colors(config: WaybarColorConfigRequest):
 # Change waybar theme
 def get_waybar_theme_details():
     waybar_themes = SETTINGS["waybar"]["waybar_themes"]
-    return {
-        "message":"sucessfully fetched waybar themes",
-        "credits_to":"HANCORE-linux",
-        "collection_name":"Waybar themes",
-        "waybar_themes": waybar_themes
-    }
+    return waybar_themes
 
 
 def change_waybar_theme(data: WaybarThemeConfigRequest):
@@ -57,13 +52,13 @@ def change_waybar_theme(data: WaybarThemeConfigRequest):
     temp_dir = SETTINGS["waybar"]["temp_repo"]
     waybar_themes = SETTINGS["waybar"]["waybar_themes"]
     github_repo = SETTINGS["waybar"]["github_repo"]
-    requested_theme_name = data.theme_name
+    requested_theme= data.theme_id
     theme_data = None
-    if data.theme_name > len(waybar_themes):
+    if data.theme_id > len(waybar_themes):
         return {"error":"requested theme not found"}
     
     for theme in waybar_themes:
-        if theme["id"] == requested_theme_name:
+        if theme["id"] == requested_theme:
             theme_data = theme
             break
     
@@ -94,12 +89,8 @@ def find_theme_file_details(num):
 
 def get_omarchy_theme_details():
     omarchy_themes = THEMES
-    return {
-        "message":"successfully fetched omarchy themes",
-        "credits_to":"omarchythemes.com and the devlopers",
-        "collection_name":"Omarchy Hyprland Themes",
-        "omarchy_themes":omarchy_themes
-    }
+    return omarchy_themes
+    
 
 def change_theme(theme_config: ThemeConfigRequest):
     theme_name = theme_config.theme_name
@@ -166,12 +157,8 @@ def search_replace_images_path(conf_path, new_wallpaper, new_image):
 
 def get_hyprlock_theme_details():
     hyprlock_themes = SETTINGS["hyprlock"]["hyprlock_themes"]
-    return {
-        "message":"successfully fetched omarchy themes",
-        "credits_to":"MrVivekRajan",
-        "collection_name":"Hyprlock Themes",
-        "omarchy_themes":hyprlock_themes
-    }
+    return hyprlock_themes
+   
 
 
 def change_hyprlock_theme(data:HyprLockConfigRequest):

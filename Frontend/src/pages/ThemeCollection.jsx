@@ -3,17 +3,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import api from "../api/api.js"
-// Adjust these imports based on your actual file structure
-import bgimg2 from "../assets/bgimg2.png"; // The background watermark/image
-import exmp from "../assets/examp.png"; // The theme preview image
+import { Link } from "react-router-dom";
 
-// Mock data for the cards
-const themeCards = [
-  { id: 1, title: "Waybar themes", description: "This is the collection of waybar themes available." },
-  { id: 2, title: "Waybar themes", description: "This is the collection of waybar themes available." },
-  { id: 3, title: "Waybar themes", description: "This is the collection of waybar themes available." },
-  { id: 4, title: "Waybar themes", description: "This is the collection of waybar themes available." },
-];
+import bgimg2 from "../assets/bgimg2.png";
+import exmp from "../assets/examp.png"; 
+
+import { ThemeProvider } from "../context/ThemeContext.jsx";
 
 const SidebarLink = ({ children }) => (
   <a href="#" className="text-white/70 hover:text-white transition-colors cursor-pointer text-[15px]">
@@ -28,14 +23,13 @@ const ThemeCollection = () => {
   const titleRef = useRef(null);
   const cardsRef = useRef([]);
   const [themeCollectionData,setThemeCollection] = useState(null)
-
   async function fetchCollection() {
-
+    
     try {
       let res = await api.get("/api/meta/collection")
-    
+    console.log(res.data)
     if (res.data) {
-      setThemeCollection(await res.data)
+      setThemeCollection(res.data)
     }
     } catch (error) {
      return error 
@@ -43,11 +37,14 @@ const ThemeCollection = () => {
 
   }
 
+useEffect(() => {
+  fetchCollection()   
 
+  }, [])
+  
   useEffect(() => {
-    fetchCollection()
     if (!themeCollectionData) return;
-
+    
     gsap.registerPlugin(ScrollTrigger);
 
     // 1. Initialize Smooth Scroll (Lenis)
@@ -73,7 +70,7 @@ const ThemeCollection = () => {
         { x: -30, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.8, stagger: 0.05, ease: "power3.out" }
       );
-
+      
       // --- Main Title Fade-in ---
       gsap.fromTo(
         titleRef.current,
@@ -84,17 +81,18 @@ const ThemeCollection = () => {
       // --- Theme Cards Staggered Reveal ---
       gsap.fromTo(
         cardsRef.current,
-        { y: 50, opacity: 0 },
+        { y: -50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "back.out(1.2)",
-          scrollTrigger: {
-            trigger: mainContentRef.current,
-            start: "top 75%",
-          },
+          stagger:0.15,
+          duration: 1,
+          ease: "power3.out",
+           scrollTrigger: {
+      trigger: cardsRef.current,
+      start: "top 80%",
+      toggleActions: "play none none none",
+    },
         }
       );
 
@@ -111,63 +109,62 @@ const ThemeCollection = () => {
       });
     }, containerRef);
 
+
     return () => {
       ctx.revert();
       lenis.destroy();
     };
-  }, []);
+  }, [themeCollectionData]);
+  
+  cardsRef.current = [];  
 
   // Helper to add refs to the array
   const addToCardsRef = (el) => {
-    if (el && !cardsRef.current.includes(el)) {
+ 
+    if (el) {
       cardsRef.current.push(el);
     }
+    
   };
 
 
 
 const ThemeCard = ({card}) =>{
   
-  let body=Object.values(card)[0]
+  
+
   return <div
                 key={card.id}
-                ref={addToCardsRef}
+                
                 className="bg-[#121212]/80 backdrop-blur-md rounded-3xl p-6 border border-white/5 flex flex-col gap-6 hover:border-white/20 transition-all duration-300 group"
               >
                 {/* Card Image Area */}
                 <div className="w-full aspect-[16/10] overflow-hidden rounded-xl bg-black flex items-center justify-center p-2 border border-white/5 relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <img 
-                    src={exmp} 
-                    alt={body.title} 
+                    src={card.preiew_image} 
+                    alt={card.title} 
                     className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                 </div>
 
-                {/* Card Text Area */}
-                <div className="flex flex-col gap-2">
-                  <h3 className="text-lg font-bold text-white tracking-wide">
-                    {body.title}
-                  </h3>
-                  <p className="text-[11px] text-white/50 leading-relaxed max-w-[80%]">
-                    {body.description}
-                  </p>
-                </div>
-
                 
-                <div className="flex flex-col gap-1 text-[10px] text-white tracking-wide">
+                <div className="flex flex-col gap-1 text-[12px] text-white tracking-wide">
                   <span>
-                    <span className="text-white/60">Collection:</span> {body.collection_name}
+                    <span className="text-white/60">Collection:</span> {card.collection_name}
                   </span>
                   <span>
-                    <span className="text-white/60">Credits:</span> {body.credits_to}
+                    <span className="text-white/60">Credits:</span> {card.credits_to}
+                  </span>
+                  <span>
+                    <span className="text-white/60">Github:</span> <a href={card.follow} target="_blank">{card.follow}</a>
                   </span>
                 </div>
+            
 
-                {/* Explore Button */}
-                <button className="mt-auto w-full bg-black hover:bg-white hover:text-black border border-white/10 text-white font-semibold py-3 rounded-xl transition-all duration-300">
+                <Link className="mt-auto w-full bg-black text-center hover:bg-white hover:text-black border border-white/10 text-white font-semibold py-3 rounded-xl transition-all duration-300" to={`/collection/${card.goto}`} >
                   Explore
-                </button>
+                </Link>
               </div>
 }
 
@@ -236,8 +233,8 @@ const ThemeCard = ({card}) =>{
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {themeCollectionData && themeCollectionData.map((card,idx) => (
-              <div key={idx}>
-              <ThemeCard  card={card} />
+              <div ref={addToCardsRef} key={idx}>
+              <ThemeCard   card={card} />
               </div>
             ))}
           </div>
