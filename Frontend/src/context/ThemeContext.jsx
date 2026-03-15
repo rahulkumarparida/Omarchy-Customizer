@@ -9,8 +9,10 @@ export const ThemeProvider =({children}) => {
     const [isWorking, setIsWorking] = useState(false)
 
   return (
-   <ThemeContext.Provider value={ isWorking , setIsWorking }>
+   <ThemeContext.Provider value={ { isWorking, setIsWorking } }>
     {children}
    </ThemeContext.Provider>
   )
 }
+
+export const useTheme =() => useContext(ThemeContext)

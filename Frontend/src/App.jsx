@@ -5,20 +5,27 @@ import WaybarThemeCollection from "./components/WaybarCollection.jsx";
 import FastfetchCollection from "./components/FastfetchCollection.jsx";
 import HyprlockCollection from "./components/HyprlockCollection.jsx";
 import OmarchyThemeCollection from "./components/OmarchyThemeCollection.jsx";
-
+import { ThemeProvider } from "./context/ThemeContext.jsx";
+import CollectionLayout from "./layouts/CollectionLayout.jsx";
 import "./App.css";
 
 function App() {
   return (
     <div className="min-h-screen bg-black text-white">
+    
       <Routes>
         <Route path="/" element={<Homepage />} /> 
         <Route path="/collection" element={<ThemeCollection />} /> 
-        <Route path="/collection/waybar" element={<WaybarThemeCollection />} /> 
-        <Route path="/collection/fastfetch" element={<FastfetchCollection />} /> 
-        <Route path="/collection/omarchy-themes" element={<OmarchyThemeCollection />} /> 
-        <Route path="/collection/hyprlock" element={<HyprlockCollection />} /> 
-      </Routes>
+   
+        <Route element={<CollectionLayout />}>
+          <Route path="/collection/waybar" element={<WaybarThemeCollection />} /> 
+          <Route path="/collection/fastfetch" element={<FastfetchCollection />} /> 
+          <Route path="/collection/omarchy-themes" element={<OmarchyThemeCollection />} /> 
+          <Route path="/collection/hyprlock" element={<HyprlockCollection />} /> 
+        </Route>
+      </Routes>        
+
+
     </div>
   );
 }

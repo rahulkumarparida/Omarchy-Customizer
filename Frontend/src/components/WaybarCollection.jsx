@@ -5,8 +5,8 @@ import Lenis from "lenis";
 // import exampleThemeImage from "../assets/examp.png"
 import bgimg2 from "../assets/bgimg2.png";
 import api from "../api/api.js";
-
-
+import { useTheme } from "../context/ThemeContext.jsx";
+import LoadingScreen from "./ui/loadingscreen.jsx";
 
 const sidebarItems = [
   "Waybar",
@@ -24,23 +24,7 @@ const SidebarItem = ({ children }) => (
   </div>
 );
 
- async function changeWaybar(id) {
-    console.log("process started")
-  if (!Number.isInteger(id) && id < 0) {
-    return {"error":"errro id should be an integer"}
-  }
-    
-   try {
-     const response = await api.post("/api/theme/waybar/change",{
-      theme_id : id
-    })
-    console.log(response)
 
-    return response.data
-   } catch (error) {
-    console.error("Error:",error)
-   }
-  }
   
   const ActionButton = ({ children }) => (
   <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto">
@@ -51,8 +35,27 @@ const SidebarItem = ({ children }) => (
 
 
 const ThemeCard = ({ data, cardRef }) => {
+  const { isWorking , setIsWorking } = useTheme()
 
- 
+  async function changeWaybar(id) {
+    console.log("process started")
+  if (!Number.isInteger(id) && id < 0) {
+    return {"error":"errro id should be an integer"}
+  }
+    
+   try {
+     const response = await api.post("/api/theme/waybar/change",{
+      theme_id : id
+    })
+    console.log(response)
+    if (response.status == 200) {
+      setIsWorking(false)
+    }
+    return response.data
+   } catch (error) {
+    console.error("Error:",error)
+   }
+  }
 
   return (
   <article
@@ -78,7 +81,7 @@ const ThemeCard = ({ data, cardRef }) => {
 
     <div className="flex w-full flex-col justify-center gap-3 sm:flex-row sm:gap-4">
       <ActionButton >Details</ActionButton>
-      <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto"  onClick={()=>{changeWaybar(data.id)}}>
+      <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto"  onClick={()=>{changeWaybar(data.id),setIsWorking(true)}}>
     Apply
   </button>
       <ActionButton>Add to Bucket</ActionButton>
@@ -88,6 +91,7 @@ const ThemeCard = ({ data, cardRef }) => {
 }
 
 const WaybarThemeCollection = () => {
+  const { isWorking , setIsWorking } = useTheme()
   const pageRef = useRef(null);
   const sidebarRef = useRef(null);
   const headerRef = useRef(null);
@@ -114,6 +118,7 @@ const WaybarThemeCollection = () => {
 
   useEffect(() => {
     if (!themesData) return;
+    if(isWorking) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -212,7 +217,7 @@ const WaybarThemeCollection = () => {
   }, [themesData]);
 
 
-  return themesData && (
+  return !isWorking ? themesData && (
     <div
       ref={pageRef}
       className="min-h-screen bg-black text-white font-sans antialiased"
@@ -295,7 +300,10 @@ const WaybarThemeCollection = () => {
         </main>
       </div>
     </div>
-  );
+  ):
+  <div className="text-3xl text-white ">
+   <LoadingScreen />
+  </div>
 };
 
 export default WaybarThemeCollection;

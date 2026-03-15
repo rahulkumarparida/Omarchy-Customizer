@@ -2,7 +2,7 @@
 import json
 import os
 from pathlib import Path
-from app.config import CONFIG_DIR, BASE_DIR , HOME_DIR
+from app.config import CONFIG_DIR, BASE_DIR , HOME_DIR , URL , ASSETS_LINK
 
 
 # Gets the file path of the theme change script
@@ -75,7 +75,7 @@ SETTINGS={
         "fastfetch_logo_dir": BASE_DIR / "store" / "fastfetch" / "fastfetch_logos",
         "fastfetch_dir_maintainer": BASE_DIR / "store" / "fastfetch" / "fastfetch_data.json",
         "fastfetch_logo_dir_maintainer": BASE_DIR / "store" / "fastfetch" / "fastfetch_logo_data.json",
-        "fastfetch_preview": "https://github.com/rahulkumarparida/Omarchy-Customizer/blob/main/Backend/app/store/assets/fastfetch_preview.png"
+        "fastfetch_preview": f"{ASSETS_LINK}/assets/fastfetch_preview.png"
     },
     "waybar":{
         "dir" : CONFIG_DIR / "waybar" ,
@@ -92,9 +92,8 @@ SETTINGS={
         "github_repo":"https://github.com/MrVivekRajan/Hyprlock-Styles"
     },
     "walker":{
-        "file":"",
-        "temp_repo":"",
-        "walker_css":"",
+        "file":FOLDER_PATHS['store']/ "walker" / "walker_theme.json",
+        "temp_repo":HOME_DIR / "tmp" / "walker-repo",
         "walker_themes":WALKER_THEMES,
         "github_repo":"https://github.com/rahulkumarparida/Walker-themes.git"
     }

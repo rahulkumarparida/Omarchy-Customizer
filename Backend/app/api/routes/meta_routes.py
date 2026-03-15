@@ -22,7 +22,7 @@ def themecollection_meta():
             "collection_name":"fastfetch collection","credits_to":"rahulkumarparida",
             "themes":fastfetch,
             "goto":"/fastfetch",
-            "preiew_image":SETTINGS["fast_fetch"]["fastfetch_preview"]
+            "preview_image":SETTINGS["fast_fetch"]["fastfetch_preview"]
          },
         {
             "id":2,
@@ -31,7 +31,7 @@ def themecollection_meta():
             "credits_to":"MrVivekRajan",
             "themes":hyprlock,
             "goto":"/hyprlock",
-            "preiew_image":"https://github.com/user-attachments/assets/50826322-b565-4a5a-af0b-70dda399fd1a"
+            "preview_image":"https://github.com/user-attachments/assets/50826322-b565-4a5a-af0b-70dda399fd1a"
         },
         {
             "id":3,
@@ -40,7 +40,7 @@ def themecollection_meta():
             "credits_to":"omarchythemes.com and the devlopers", 
             "themes":omarchy_themes,
             "goto":"/omarchy-themes",
-            "preiew_image":"https://omarchythemes.com/storage/42/conversions/01K2GEE94WCYJGT27GA9FWBXFP-thumb.jpg"
+            "preview_image":"https://omarchythemes.com/storage/42/conversions/01K2GEE94WCYJGT27GA9FWBXFP-thumb.jpg"
         },
         {
             "id":5,
@@ -48,7 +48,7 @@ def themecollection_meta():
             "collection_name":"Waybar themes","credits_to":"HANCORE-linux",
             "themes":waybar,
             "goto":"/waybar",
-            "preiew_image":"https://github.com/user-attachments/assets/9e5f77ec-ba1f-42c0-810d-46f5327ed3f4"
+            "preview_image":"https://github.com/user-attachments/assets/9e5f77ec-ba1f-42c0-810d-46f5327ed3f4"
         }
     ]
     

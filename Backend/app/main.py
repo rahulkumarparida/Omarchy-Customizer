@@ -5,11 +5,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.routers import api_routers
 import json
 from pathlib import Path
-
+from app.config import URL , ASSETS_LINK
 app = FastAPI()
 print(Path("__main__").parent)
-static_dir = Path("__main__").parent / "app" / "store" / "assets" 
-app.mount("/assets", StaticFiles(directory=str(static_dir)), name="assets")
+# static_dir = Path("__main__").parent / "app" / "store" / "assets" 
+
+app.mount("/store", StaticFiles(directory="app/store"), name="store")
 
 # origins = [
 #     "http://localhost:5173",
@@ -30,4 +31,5 @@ app.include_router(router=api_routers)
 
 @app.get("/")
 def read_root():
-    return Response(content=json.dumps({"status": "up and running"}), status_code=200)
+    print(Path("__main__").parent)
+    return Response(content=json.dumps({"status": f"up and running at: {URL} and static files at: {ASSETS_LINK}"}), status_code=200)

@@ -6,7 +6,7 @@ import api from "../api/api.js"
 import { Link } from "react-router-dom";
 
 import bgimg2 from "../assets/bgimg2.png";
-import exmp from "../assets/examp.png"; 
+import preview from "../assets/fastfetch_preview.png"; 
 
 import { ThemeProvider } from "../context/ThemeContext.jsx";
 
@@ -131,7 +131,7 @@ useEffect(() => {
 
 const ThemeCard = ({card}) =>{
   
-  
+  console.log(card.preview_image)
 
   return <div
                 key={card.id}
@@ -142,7 +142,7 @@ const ThemeCard = ({card}) =>{
                 <div className="w-full aspect-[16/10] overflow-hidden rounded-xl bg-black flex items-center justify-center p-2 border border-white/5 relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <img 
-                    src={card.preiew_image} 
+                    src={card.preview_image} 
                     alt={card.title} 
                     className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
