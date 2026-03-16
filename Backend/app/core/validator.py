@@ -13,7 +13,6 @@ class WaybarThemeConfigRequest(BaseModel):
 class ThemeConfigRequest(BaseModel):
     theme_id: int
 
-
 class FastFetchConfigRequest(BaseModel):
     config_name: Optional[str] = None
     config_file: Optional[UploadFile] = File(None)
@@ -25,3 +24,7 @@ class HyprLockConfigRequest(BaseModel):
     theme_id:int
     background_img: Optional[UploadFile] = File(None)
     user_img: Optional[UploadFile] = File(None)
+
+
+class WalkerConfigRequest(BaseModel):
+    theme_id:int

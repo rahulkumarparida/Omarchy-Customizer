@@ -1,6 +1,6 @@
 from fastapi import APIRouter , Request
-from app.services.theme_services import change_waybar_colors , change_theme , change_waybar_theme , change_hyprlock_theme , get_waybar_theme_details , get_hyprlock_theme_details , get_omarchy_theme_details
-from app.core.validator import WaybarColorConfigRequest , ThemeConfigRequest , WaybarThemeConfigRequest , HyprLockConfigRequest
+from app.services.theme_services import change_waybar_colors , change_theme , change_waybar_theme , change_hyprlock_theme , get_waybar_theme_details , get_hyprlock_theme_details , get_omarchy_theme_details, get_walker_theme_details,change_walker_theme
+from app.core.validator import WaybarColorConfigRequest , ThemeConfigRequest , WaybarThemeConfigRequest , HyprLockConfigRequest , WalkerConfigRequest
 
 theme_router = APIRouter()
 
@@ -40,3 +40,16 @@ def get_hyprlock_theme(request:Request):
 def changes_hyprlock_themes(data: HyprLockConfigRequest):
     print("Processing for changing hyprlock started")
     return change_hyprlock_theme(data)
+
+
+# Changes the Walker theme
+@theme_router.get("/walker")
+def get_walker_themes():
+    
+    return get_walker_theme_details()
+
+@theme_router.post("/walker/change")
+def change_walker_themes(data:WalkerConfigRequest):
+    print("Processing Walker themes")
+    return change_walker_theme(data)
+    

@@ -5,7 +5,7 @@ from fastapi.responses import Response
 from app.services.file_services import replace_line
 from app.core.config_map import SETTINGS ,THEMES , CONFIG_DIR , HOME_DIR
 from app.services.command_services import run_command
-from app.core.validator import WaybarColorConfigRequest , ThemeConfigRequest , WaybarThemeConfigRequest , HyprLockConfigRequest
+from app.core.validator import WaybarColorConfigRequest , ThemeConfigRequest , WaybarThemeConfigRequest , HyprLockConfigRequest , WalkerConfigRequest
 from app.config import BACKUP_CONFIG_DIR
 from fastapi import status
 
@@ -235,3 +235,44 @@ def change_hyprlock_theme(data:HyprLockConfigRequest):
     
     return {"message":"successfully changed hyprlock theme"}
     
+
+
+
+
+def get_walker_theme_details():
+    walker_themes = SETTINGS['walker']['walker_themes']
+    github_repo = SETTINGS['walker']['github_repo']
+    data = {
+        "credits_to":"rahulkumarparida",
+        "follow":github_repo,
+        "collection_name":"Walker Themes",
+        "walker_themes":walker_themes
+    }
+    return data
+
+
+def change_walker_theme(data: WalkerConfigRequest):
+    theme_id = data.theme_id
+    walker_themes = SETTINGS['walker']['walker_themes']['themes']
+    theme_data = None
+    if theme_id > len(walker_themes):
+        return Response(content=json.dumps({"error":"theme does not exist"}) , status_code=404)
+    
+    for theme in walker_themes:
+        
+        if theme['id'] == theme_id:
+            theme_data = theme
+            break
+    
+    if not theme_data:
+        return Response(content=json.dumps({"error":"theme does not exist"}) , status_code=404)
+    
+    cmd = run_command(theme_data['command'])
+    
+    if cmd.returncode != 0:
+        return Response(content=json.dumps({"error":"Some error occured while changing the theme"}) , status_code=404)
+    
+    return Response(content=json.dumps({"message":f"Successfully changed the walker theme to {theme_data['name']}."}))
+        
+        
+        
