@@ -75,7 +75,7 @@ SETTINGS={
         "fastfetch_logo_dir": BASE_DIR / "store" / "fastfetch" / "fastfetch_logos",
         "fastfetch_dir_maintainer": BASE_DIR / "store" / "fastfetch" / "fastfetch_data.json",
         "fastfetch_logo_dir_maintainer": BASE_DIR / "store" / "fastfetch" / "fastfetch_logo_data.json",
-        "fastfetch_preview": f"{ASSETS_LINK}/assets/fastfetch_preview.png"
+        "fastfetch_preview": f"{ASSETS_LINK}/fastfetch_preview.png"
     },
     "waybar":{
         "dir" : CONFIG_DIR / "waybar" ,

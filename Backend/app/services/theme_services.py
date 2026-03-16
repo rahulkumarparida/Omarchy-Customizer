@@ -44,7 +44,13 @@ def change_waybar_colors(config: WaybarColorConfigRequest):
 # Change waybar theme
 def get_waybar_theme_details():
     waybar_themes = SETTINGS["waybar"]["waybar_themes"]
-    return waybar_themes
+    data = {
+        "credits_to":"HANCORE-linux",
+        "follow":"https://github.com/HANCORE-linux",
+        "collection_name":"Waybar themes",
+        "waybar_themes":waybar_themes
+    }
+    return data
 
 
 def change_waybar_theme(data: WaybarThemeConfigRequest):
@@ -89,22 +95,28 @@ def find_theme_file_details(num):
 
 def get_omarchy_theme_details():
     omarchy_themes = THEMES
-    return omarchy_themes
+    data = {
+        "credits_to":"omarchythemes.com and the devlopers",
+        "follow":"https://github.com/mubashariqbal",
+        "collection_name":"Omarchy Hyprland Themes",
+        "omarchy_themes":omarchy_themes
+    }
+    return data
     
 
 def change_theme(theme_config: ThemeConfigRequest):
-    theme_name = theme_config.theme_name
-    if theme_name > len(THEMES):
-        return Response(content=json.dumps({"message": f"Theme {theme_name} not found"}), status_code=404)
+    theme_id = theme_config.theme_id
+    if theme_id > len(THEMES):
+        return Response(content=json.dumps({"message": f"Theme {theme_id} not found"}), status_code=404)
     
-    theme_detail = find_theme_file_details(theme_name)  
+    theme_detail = find_theme_file_details(theme_id)  
     print(theme_detail)
     if not theme_detail or theme_detail["github_repo"] is None:
-        return Response(content=json.dumps({"message": f"Theme {theme_name} not found"}), status_code=404)
+        return Response(content=json.dumps({"message": f"Theme {theme_id} not found"}), status_code=404)
 
     run_command(f'bash {SETTINGS["theme_change_script"]["file"]} "{theme_detail["title"]}" "{theme_detail["github_repo"]}"')
 
-    return Response(content=json.dumps({"message": f"Theme changed to {theme_name} successfully"}), status_code=202)
+    return Response(content=json.dumps({"message": f"Theme changed to {theme_id} successfully"}), status_code=202)
 
 
 
@@ -157,7 +169,13 @@ def search_replace_images_path(conf_path, new_wallpaper, new_image):
 
 def get_hyprlock_theme_details():
     hyprlock_themes = SETTINGS["hyprlock"]["hyprlock_themes"]
-    return hyprlock_themes
+    data = {
+        "credits_to":"MrVivekRajan",
+        "follow":"https://github.com/MrVivekRajan",
+        "collection_name":"Hyprlock Themes",
+        "hyprlock_themes":hyprlock_themes
+    }
+    return data
    
 
 

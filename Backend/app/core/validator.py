@@ -11,7 +11,7 @@ class WaybarThemeConfigRequest(BaseModel):
     theme_id : int
 
 class ThemeConfigRequest(BaseModel):
-    theme_name: int
+    theme_id: int
 
 
 class FastFetchConfigRequest(BaseModel):

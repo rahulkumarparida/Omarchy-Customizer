@@ -20,7 +20,6 @@ def themecollection_meta():
             "id":1,
             "follow":"https://github.com/rahulkumarparida", 
             "collection_name":"fastfetch collection","credits_to":"rahulkumarparida",
-            "themes":fastfetch,
             "goto":"/fastfetch",
             "preview_image":SETTINGS["fast_fetch"]["fastfetch_preview"]
          },
@@ -29,7 +28,6 @@ def themecollection_meta():
             "follow":"https://github.com/MrVivekRajan", 
             "collection_name":"Hyprlock Themes",    
             "credits_to":"MrVivekRajan",
-            "themes":hyprlock,
             "goto":"/hyprlock",
             "preview_image":"https://github.com/user-attachments/assets/50826322-b565-4a5a-af0b-70dda399fd1a"
         },
@@ -38,17 +36,23 @@ def themecollection_meta():
             "follow":"https://github.com/mubashariqbal",
             "collection_name":"Omarchy Hyprland Themes", 
             "credits_to":"omarchythemes.com and the devlopers", 
-            "themes":omarchy_themes,
             "goto":"/omarchy-themes",
             "preview_image":"https://omarchythemes.com/storage/42/conversions/01K2GEE94WCYJGT27GA9FWBXFP-thumb.jpg"
         },
         {
-            "id":5,
+            "id":4,
             "follow":"https://github.com/HANCORE-linux",
             "collection_name":"Waybar themes","credits_to":"HANCORE-linux",
-            "themes":waybar,
             "goto":"/waybar",
             "preview_image":"https://github.com/user-attachments/assets/9e5f77ec-ba1f-42c0-810d-46f5327ed3f4"
+        },
+        {
+            "id":5,
+            "follow":"https://github.com/rahulkumarparida",
+            "collection_name":"Walker themes","credits_to":"rahulkumarparida",
+            "goto":"/walker",
+            "preview_image":"http://0.0.0.0:8000/store/assets/walker_images/22_catppuchino/image-copy.png"
+            
         }
     ]
     

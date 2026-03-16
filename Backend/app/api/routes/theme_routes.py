@@ -14,14 +14,7 @@ def update_waybar_colors(config: WaybarColorConfigRequest):
 @theme_router.get("/waybar")
 def get_waybar_theme(request: Request):
     waybar = get_waybar_theme_details()
-    data = {
-        "credits_to":"HANCORE-linux",
-        "follow":"https://github.com/HANCORE-linux",
-        "collection_name":"Waybar themes",
-        "waybar":waybar,
-    }
-    
-    return data
+    return waybar
 
 
 @theme_router.post("/waybar/change")
@@ -35,7 +28,7 @@ def get_omarchy_themes(request:Request):
     return get_omarchy_theme_details()
 @theme_router.post("/change")
 def changes_theme(theme_config: ThemeConfigRequest):
-    print(f"Changing theme to {theme_config.theme_name}")
+    print(f"Changing theme to {theme_config.theme_id}")
     return change_theme(theme_config)
 
 # Changes the hyprlock theme
