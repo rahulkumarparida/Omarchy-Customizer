@@ -82,6 +82,7 @@ SETTINGS={
         "temp_repo" : HOME_DIR / "temp_waybar_repo",
         "waybar_themes":WAYBAR_THEMES,
         "github_repo": "https://github.com/HANCORE-linux/waybar-themes.git",
+        "waybar_file_path": waybar_filepath
     },
     "hyprlock":{
         "file":CONFIG_DIR / "hypr" / "hyprlock.conf",
