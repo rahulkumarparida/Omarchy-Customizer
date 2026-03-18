@@ -21,15 +21,19 @@ const WaybarThemeCollection = () => {
     try {
     const response =await api.get("/api/theme/waybar") 
     
-    setThemesData(response.data)
-   
-      setWaybarCardData(response.data.waybar_themes)
+      return response
     } catch (error) {
       console.error("Error:",error)
     }
   }
   useEffect(() => {
-    fetchWaybarCollection()
+    fetchWaybarCollection().then((response) => {
+      setThemesData(response.data)
+  
+      setWaybarCardData(response.data.waybar_themes)
+    }).catch((err) => {
+      console.error("Error:",err)
+    });
   }, [])
   
 

@@ -109,7 +109,7 @@ export const WaybarCollectionCard = ({ data }) => {
      const response = await api.post("/api/theme/waybar/change",{
       theme_id : id
     })
-    console.log(response)
+   
     if (response.status == 200) {
       setIsWorking(false)
     }
@@ -126,7 +126,7 @@ export const WaybarCollectionCard = ({ data }) => {
   >
     <div className="w-full aspect-[4/3] rounded-3xl border border-neutral-700 bg-neutral-900 p-2">
       <img
-        src={data.theme_image}
+        src={data.image_link}
         alt={`Theme created by ${data.theme_name}`}
         loading="lazy"
         className="h-full w-full rounded-xl object-cover"
@@ -151,4 +151,74 @@ export const WaybarCollectionCard = ({ data }) => {
 );
 }
 
+// walker Collection Card
+export const WalkerCollectionCard =({ data }) =>{
+  const { setIsWorking } = useTheme()
 
+  async function changeWalker(id) {
+    console.log("process started")
+  if (!Number.isInteger(id) && id < 0) {
+    return {"error":"errro id should be an integer"}
+  }
+
+   try {
+     const response = await api.post("/api/theme/walker/change",{
+      theme_id : id
+    })
+    console.log(response)
+    if (response.status == 200) {
+      setIsWorking(false)
+    }
+    return response.data
+   } catch (error) {
+    console.error("Error:",error)
+   }
+  }
+
+  return data && data.images ? <div className="w-[340px] bg-[#323235] rounded-[2rem] p-4 font-sans shadow-2xl">
+      
+      {/* Inner Image Container with Light Gray Background */}
+      <div className="bg-[#cfcfd1] p-1.5 rounded-[1.25rem] flex gap-1.5 h-[220px]">
+        
+        {/* Image 1 (Active State with Blue Border) */}
+        <div className="relative flex-1 bg-[#3a3a3d] rounded-xl flex items-center justify-center border-[1.5px] border-[#4fa1e0] overflow-hidden">
+          {data.images[0] && (
+            <img src={data.images[0]} alt="Theme 1" className="absolute inset-0 w-full h-full object-cover " />
+          )}
+        </div>
+
+        {/* Image 2 (Inactive State) */}
+        <div className="relative flex-1 bg-[#3a3a3d] rounded-xl flex items-center justify-center overflow-hidden">
+          {data.images[1] && (
+            <img src={data.images[1]} alt="Theme 2" className="absolute inset-0 w-full h-full object-cover " />
+          )}
+        </div>
+      </div>
+
+      {/* Theme Title */}
+      <div className="mt-3 px-2">
+        <h3 className="text-[#e2e2e2] text-[15px] font-bold tracking-wide">
+          {data.name}
+        </h3>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="mt-5 mb-1 px-1 flex justify-between gap-3">
+        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal" onClick={()=>{changeWalker(data.id);setIsWorking(true)}}>
+          Apply
+        </button>
+        
+        <button className="flex-1 bg-[#09090b] hover:bg-[#1a1a1c] transition-colors py-3 rounded-[14px] text-[12px] font-normal tracking-wide">
+          Details
+        </button>
+        
+        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal tracking-wide">
+          Add to Bucket
+        </button>
+      </div>
+      
+    </div>:
+    <div>
+      Loading ...
+    </div>
+}

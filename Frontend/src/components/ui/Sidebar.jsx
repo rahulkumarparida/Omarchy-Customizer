@@ -44,6 +44,7 @@ const Sidebar = ()=>{
           <div className="my-10 border-t border-neutral-800" />
 
           <nav className="flex flex-col gap-5 text-lg font-medium">
+            Currently on Work
             {sidebarUtilities.map((item) => (
               <SidebarItem key={item}>{item}</SidebarItem>
             ))}

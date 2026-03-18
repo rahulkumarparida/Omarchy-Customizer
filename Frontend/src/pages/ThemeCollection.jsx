@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import bgimg2 from "../assets/bgimg2.png";
 
-import { ThemeProvider } from "../context/ThemeContext.jsx";
 
 const SidebarLink = ({ children }) => (
   <a href="#" className="text-white/70 hover:text-white transition-colors cursor-pointer text-[15px]">
@@ -20,10 +19,7 @@ const ThemeCollection = () => {
     
     try {
       let res = await api.get("/api/meta/collection")
-    console.log(res.data)
-    if (res.data) {
-      setThemeCollection(res.data)
-    }
+    return res
     } catch (error) {
      return error 
     }
@@ -31,7 +27,14 @@ const ThemeCollection = () => {
   }
 
 useEffect(() => {
-  fetchCollection()   
+  fetchCollection().then((res) => {
+    console.log(res.data)
+    if (res.data) {
+      setThemeCollection(res.data)
+    }
+  }).catch((err) => {
+    console.error("Error:",err)
+  });
 
   }, [])
   
@@ -113,6 +116,7 @@ const ThemeCard = ({card}) =>{
 
         {/* Bottom Links */}
         <nav className="flex flex-col gap-5">
+          Currently on Work
           <SidebarLink>Backup Configs</SidebarLink>
           <SidebarLink>Get the file</SidebarLink>
           <SidebarLink>My Bucket</SidebarLink>

@@ -5,6 +5,7 @@ import WaybarThemeCollection from "./components/WaybarCollection.jsx";
 import FastfetchCollection from "./components/FastfetchCollection.jsx";
 import HyprlockCollection from "./components/HyprlockCollection.jsx";
 import OmarchyThemeCollection from "./components/OmarchyThemeCollection.jsx";
+import WalkerCollection from "./components/WalkerCollection.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
 import CollectionLayout from "./layouts/CollectionLayout.jsx";
 import "./App.css";
@@ -18,7 +19,8 @@ function App() {
         <Route path="/collection" element={<ThemeCollection />} /> 
    
         <Route element={<CollectionLayout />}>
-          <Route path="/collection/waybar" element={<WaybarThemeCollection />} /> 
+          <Route path="/collection/waybar" element={<WaybarThemeCollection />} />   
+          <Route path="/collection/walker" element={<WalkerCollection />} /> 
           <Route path="/collection/fastfetch" element={<FastfetchCollection />} /> 
           <Route path="/collection/omarchy-themes" element={<OmarchyThemeCollection />} /> 
           <Route path="/collection/hyprlock" element={<HyprlockCollection />} /> 

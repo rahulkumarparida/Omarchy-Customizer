@@ -22,6 +22,6 @@ for file in logo_dir_path.glob("*"):
         json_file.append(data)
     
     with open(logo_maintainer, 'w') as f:
-        json.dump(json_file , f)
+        json.dump(json_file , f , indent=4)
 
 print("Process Done.")

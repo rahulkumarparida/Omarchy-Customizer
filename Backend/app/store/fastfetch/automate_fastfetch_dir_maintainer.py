@@ -27,6 +27,6 @@ for file in configs_directory_path.glob("*.jsonc"):
         json_data = json.load(f)
         json_data.append(data)
     with open(maintainer_json, 'w') as f:
-        json.dump(json_data, f)
+        json.dump(json_data, f,indent=4)
 
 #  only for the config file maintainenece
