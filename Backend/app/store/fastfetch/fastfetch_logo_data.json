@@ -1,2 +1,195 @@
-[
-    {"id": 1, "name": "big_money", "path": "fastfetch_logos/big_money.txt"}, {"id": 2, "name": "bloody", "path": "fastfetch_logos/bloody.txt"}, {"id": 3, "name": "monalisa", "path": "fastfetch_logos/monalisa.txt"}, {"id": 4, "name": "omarchian", "path": "fastfetch_logos/omarchian.txt"}, {"id": 5, "name": "yin_yang", "path": "fastfetch_logos/yin_yang.txt"}]
+{
+    "themes_for": "logo",
+    "gihublink": "https://github.com/rahulkumarparida/Omarchy-fastfetch.git",
+    "theme_data": [
+        {
+            "id": 1,
+            "name": "aom",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/aom/aom.png",
+            "type": "logo"
+        },
+        {
+            "id": 2,
+            "name": "archre",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/archre/archre.png",
+            "type": "logo"
+        },
+        {
+            "id": 3,
+            "name": "blockstyle",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/blockstyle/blockstyle.png",
+            "type": "logo"
+        },
+        {
+            "id": 4,
+            "name": "bloody",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/bloody/bloody.png",
+            "type": "logo"
+        },
+        {
+            "id": 5,
+            "name": "clean_style",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/clean_style/clean_style.png",
+            "type": "logo"
+        },
+        {
+            "id": 6,
+            "name": "dev_stack",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/dev_stack/dev_stack.png",
+            "type": "logo"
+        },
+        {
+            "id": 7,
+            "name": "dev_stack2",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/dev_stack2/dev_stack2.png",
+            "type": "logo"
+        },
+        {
+            "id": 8,
+            "name": "euste",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/euste/euste.png",
+            "type": "logo"
+        },
+        {
+            "id": 9,
+            "name": "happy_eye",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/happy_eye/happy_eye.png",
+            "type": "logo"
+        },
+        {
+            "id": 10,
+            "name": "linux",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/linux/linux.png",
+            "type": "logo"
+        },
+        {
+            "id": 11,
+            "name": "linux2",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/linux2/linux2.png",
+            "type": "logo"
+        },
+        {
+            "id": 12,
+            "name": "linux3",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/linux3/linux3.png",
+            "type": "logo"
+        },
+        {
+            "id": 13,
+            "name": "linux_core",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/linux_core/linux_core.png",
+            "type": "logo"
+        },
+        {
+            "id": 14,
+            "name": "marx",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/marx/marx.png",
+            "type": "logo"
+        },
+        {
+            "id": 15,
+            "name": "matrix",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/matrix/matrix.png",
+            "type": "logo"
+        },
+        {
+            "id": 16,
+            "name": "minimal_terminal",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/minimal_terminal/minimal_terminal.png",
+            "type": "logo"
+        },
+        {
+            "id": 17,
+            "name": "miscieve_eye",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/miscieve_eye/miscieve_eye.png",
+            "type": "logo"
+        },
+        {
+            "id": 18,
+            "name": "omarchian",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/omarchian/omarchian.png",
+            "type": "logo"
+        },
+        {
+            "id": 19,
+            "name": "omarchy",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/omarchy/omarchy.png",
+            "type": "logo"
+        },
+        {
+            "id": 20,
+            "name": "pattern",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/pattern/pattern.png",
+            "type": "logo"
+        },
+        {
+            "id": 21,
+            "name": "prompt_style",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/prompt_style/prompt_style.png",
+            "type": "logo"
+        },
+        {
+            "id": 22,
+            "name": "root",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/root/root.png",
+            "type": "logo"
+        },
+        {
+            "id": 23,
+            "name": "roxxy",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/roxxy/roxxy.png",
+            "type": "logo"
+        },
+        {
+            "id": 24,
+            "name": "roxxy2",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/roxxy2/roxxy2.png",
+            "type": "logo"
+        },
+        {
+            "id": 25,
+            "name": "shocked_eye",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/shocked_eye/shocked_eye.png",
+            "type": "logo"
+        },
+        {
+            "id": 26,
+            "name": "system",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/system/system.png",
+            "type": "logo"
+        },
+        {
+            "id": 27,
+            "name": "tux",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/logo/tux/tux.png",
+            "type": "logo"
+        }
+    ]
+}

@@ -1,2 +1,111 @@
-[
-    {"id": 1, "name": "bold_blue", "path": "fastfetch_configs/bold_blue.jsonc", "txt": "arch"}, {"id": 2, "name": "classic_light", "path": "fastfetch_configs/classic_light.jsonc", "txt": "arch"}, {"id": 3, "name": "dark_monochrome", "path": "fastfetch_configs/dark_monochrome.jsonc", "txt": "arch"}, {"id": 4, "name": "high_contrast_yellow", "path": "fastfetch_configs/high_contrast_yellow.jsonc", "txt": "arch"}, {"id": 5, "name": "icy", "path": "fastfetch_configs/icy.jsonc", "txt": "arch"}, {"id": 6, "name": "jungle", "path": "fastfetch_configs/jungle.jsonc", "txt": "arch"}, {"id": 7, "name": "midnight_blue", "path": "fastfetch_configs/midnight_blue.jsonc", "txt": "arch"}, {"id": 8, "name": "neon_pink", "path": "fastfetch_configs/neon_pink.jsonc", "txt": "arch"}, {"id": 9, "name": "nordi", "path": "fastfetch_configs/nordic.jsonc", "txt": "arch"}, {"id": 10, "name": "pastel_light", "path": "fastfetch_configs/pastel_lights.jsonc", "txt": "arch"}, {"id": 11, "name": "rainbow", "path": "fastfetch_configs/rainbow.jsonc", "txt": "arch"}, {"id": 12, "name": "retro_gree", "path": "fastfetch_configs/retro_green.jsonc", "txt": "arch"}, {"id": 13, "name": "solarized", "path": "fastfetch_configs/solarized.jsonc", "txt": "arch"}, {"id": 14, "name": "sunset", "path": "fastfetch_configs/sunset.jsonc", "txt": "arch"}, {"id": 15, "name": "volca", "path": "fastfetch_configs/volcano.jsonc", "txt": "arch"}]
+{
+    "themes_for": "config",
+    "gihublink": "https://github.com/rahulkumarparida/Omarchy-fastfetch.git",
+    "theme_data": [
+        {
+            "id": 1,
+            "name": "bold_blue",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/bold_blue/bold_blue.png",
+            "type": "config"
+        },
+        {
+            "id": 2,
+            "name": "classic_light",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/classic_light/classic_light.png",
+            "type": "config"
+        },
+        {
+            "id": 3,
+            "name": "dark_monochrome",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/dark_monochrome/dark_monochrome.png",
+            "type": "config"
+        },
+        {
+            "id": 4,
+            "name": "high_contrast_yellow",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/high_contrast_yellow/high_contrast_yellow.png",
+            "type": "config"
+        },
+        {
+            "id": 5,
+            "name": "icy",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/icy/icy.png",
+            "type": "config"
+        },
+        {
+            "id": 6,
+            "name": "jungle",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/jungle/jungle.png",
+            "type": "config"
+        },
+        {
+            "id": 7,
+            "name": "midnight_blue",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/midnight_blue/midnight_blue.png",
+            "type": "config"
+        },
+        {
+            "id": 8,
+            "name": "neon_pink",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/neon_pink/neon_pink.png",
+            "type": "config"
+        },
+        {
+            "id": 9,
+            "name": "nordic",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/nordic/nordic.png",
+            "type": "config"
+        },
+        {
+            "id": 10,
+            "name": "pastel_lights",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/pastel_lights/pastel_lights.png",
+            "type": "config"
+        },
+        {
+            "id": 11,
+            "name": "rainbow",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/rainbow/rainbow.png",
+            "type": "config"
+        },
+        {
+            "id": 12,
+            "name": "retro_green",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/retro_green/retro_green.png",
+            "type": "config"
+        },
+        {
+            "id": 13,
+            "name": "solarized",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/solarized/solarized.png",
+            "type": "config"
+        },
+        {
+            "id": 14,
+            "name": "sunset",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/sunset/sunset.png",
+            "type": "config"
+        },
+        {
+            "id": 15,
+            "name": "volcano",
+            "txt": "arch",
+            "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/volcano/volcano.png",
+            "type": "config"
+        }
+    ]
+}
