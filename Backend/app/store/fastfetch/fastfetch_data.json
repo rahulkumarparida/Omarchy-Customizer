@@ -8,104 +8,119 @@
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/bold_blue/bold_blue.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/bold_blue/bold_blue.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 2,
             "name": "classic_light",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/classic_light/classic_light.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/classic_light/classic_light.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 3,
             "name": "dark_monochrome",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/dark_monochrome/dark_monochrome.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/dark_monochrome/dark_monochrome.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 4,
             "name": "high_contrast_yellow",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/high_contrast_yellow/high_contrast_yellow.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/high_contrast_yellow/high_contrast_yellow.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 5,
             "name": "icy",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/icy/icy.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/icy/icy.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 6,
             "name": "jungle",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/jungle/jungle.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/jungle/jungle.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 7,
             "name": "midnight_blue",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/midnight_blue/midnight_blue.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/midnight_blue/midnight_blue.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 8,
             "name": "neon_pink",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/neon_pink/neon_pink.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/neon_pink/neon_pink.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 9,
             "name": "nordic",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/nordic/nordic.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/nordic/nordic.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 10,
             "name": "pastel_lights",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/pastel_lights/pastel_lights.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/pastel_lights/pastel_lights.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 11,
             "name": "rainbow",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/rainbow/rainbow.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/rainbow/rainbow.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 12,
             "name": "retro_green",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/retro_green/retro_green.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/retro_green/retro_green.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 13,
             "name": "solarized",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/solarized/solarized.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/solarized/solarized.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 14,
             "name": "sunset",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/sunset/sunset.png",
             "type": "config"
-        },
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/sunset/sunset.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+},
         {
             "id": 15,
             "name": "volcano",
             "txt": "arch",
             "image_link": "http://0.0.0.0:8000/store/assets/fast_fetch_images/config/volcano/volcano.png",
             "type": "config"
-        }
+        ,"command":"git clone https://github.com/rahulkumarparida/Omarchy-fastfetch.git ~/tmp/fastfetch_repo && cp  ~/tmp/fastfetch_repo/config/volcano/volcano.jsonc ~/.config/fastfetch/config.jsonc && rm -rf ~/tmp/fastfetch_repo "
+}
     ]
 }

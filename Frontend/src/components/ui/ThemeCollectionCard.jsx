@@ -92,9 +92,6 @@ async function applyTheme(id) {
   );
 };
 
-
-
-
 // Waybar theme collection cards
 export const WaybarCollectionCard = ({ data }) => {
   const { setIsWorking } = useTheme()
@@ -220,5 +217,82 @@ export const WalkerCollectionCard =({ data }) =>{
     </div>:
     <div>
       Loading ...
+    </div>
+}
+
+// Fasfetch theme collection card
+export const FastfetchCollectionCard=({data ,type}) =>{
+const { setIsWorking } = useTheme()
+  async function changeFastfetch(name , type) {
+    console.log("process started")
+  // logo_name
+  // config_name
+  let payload = type == "config" ? {
+    config_name : name
+  }  : type == "logo"?{
+    logo_name : name
+  }:null
+  console.log(payload)
+    if (payload !== null){
+     
+
+      try {
+        const response = await api.post("/api/fastfetch/change",payload)
+        console.log(response)
+        if (response.status == 200) {
+          setIsWorking(false)
+        }
+        return response.data
+      } catch (error) {
+        console.error("Error:",error)
+      }
+
+    }else{
+      setIsWorking(false)
+      return {"error":"error while sending request"}
+    }
+  }
+
+
+
+  return <div className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-2xl p-5 md:p-6 shadow-2xl font-sans">
+      {/* Header */}
+      <h2 className="text-neutral-400 text-lg md:text-xl font-medium tracking-wide mb-5">
+        Theme : <span className="text-neutral-100">{data.name}</span>
+      </h2>
+
+      {/* Main Content Area */}
+      <div className="flex flex-col md:flex-row gap-5 md:gap-6">
+        
+        {/* Image Container */}
+        <div className="flex-1 relative aspect-video md:aspect-auto md:min-h-[260px] bg-[#2a2a2a] rounded-xl border border-neutral-700/50 flex items-center justify-center overflow-hidden group">
+          {data.image_link ? (
+            <img 
+              src={data.image_link} 
+              alt={data.name} 
+              className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+            />
+          ) : (
+            <span className="text-neutral-300 text-lg tracking-wider font-light">Image here</span>
+          )}
+          
+          {/* Subtle inner shadow for depth */}
+          <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] pointer-events-none rounded-xl"></div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-row md:flex-col gap-3 md:gap-4 justify-center md:w-32 shrink-0">
+          <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95" onClick={()=>{changeFastfetch(data.name,type);setIsWorking(true)}}>
+            Apply
+          </button>
+          <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95">
+            Details
+          </button>
+          <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95">
+            Add to Bucket
+          </button>
+        </div>
+
+      </div>
     </div>
 }
