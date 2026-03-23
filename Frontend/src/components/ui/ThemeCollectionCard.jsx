@@ -220,6 +220,71 @@ export const WalkerCollectionCard =({ data }) =>{
     </div>
 }
 
+// Hyprlock Collection Card
+export const HyprlockCollectionCard = ({ data }) =>{
+
+  const { setIsWorking } = useTheme()
+
+  async function changeHyprlock(id) {
+    console.log("process started")
+  if (!Number.isInteger(id) && id < 0) {
+    return {"error":"errro id should be an integer"}
+  }
+
+   try {
+     const response = await api.post("/api/theme/hyprlock/change",{
+      theme_id : id
+    })
+    console.log(response)
+    if (response.status == 200) {
+      setIsWorking(false)
+    }
+    return response.data
+   } catch (error) {
+    console.error("Error:",error)
+   }
+  }
+
+
+  return data && data.preview_image ? <div className="w-[340px] bg-[#323235] rounded-[2rem] p-4 font-sans shadow-2xl">
+      
+      {/* Inner Image Container with Light Gray Background */}
+      <div className="bg-[#cfcfd1] p-1 rounded-[1.25rem] flex gap-1.5 h-[220px]">
+
+        <div className="relative flex-1 bg-[#3a3a3d] rounded-xl flex items-center justify-center overflow-hidden">
+          {data.preview_image && (
+            <img src={data.preview_image} alt="Theme 2" className="absolute inset-0 w-full h-full object-contain " />
+          )}
+        </div>
+      </div>
+
+      {/* Theme Title */}
+      <div className="mt-3 px-2">
+        <h3 className="text-[#e2e2e2] text-[15px] font-bold tracking-wide">
+          {data.name}
+        </h3>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="mt-5 mb-1 px-1 flex justify-between gap-3">
+        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal" onClick={()=>{changeHyprlock(data.id);setIsWorking(true)}}>
+          Apply
+        </button>
+        
+        <button className="flex-1 bg-[#09090b] hover:bg-[#1a1a1c] transition-colors py-3 rounded-[14px] text-[12px] font-normal tracking-wide">
+          Details
+        </button>
+        
+        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal tracking-wide">
+          Add to Bucket
+        </button>
+      </div>
+      
+    </div>:
+    <div>
+      Loading..
+    </div>
+}
 // Fasfetch theme collection card
 export const FastfetchCollectionCard=({data ,type}) =>{
 const { setIsWorking } = useTheme()

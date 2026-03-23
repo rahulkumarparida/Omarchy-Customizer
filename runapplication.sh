@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "🚀 Starting both Python backend and React frontend..."
 
+echo "🚀 Starting both Python backend and React frontend..."
 # ==========================================
 # 1. Start Python Backend
 # ==========================================

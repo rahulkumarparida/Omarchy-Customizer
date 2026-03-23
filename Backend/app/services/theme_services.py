@@ -3,10 +3,11 @@ import json
 import shutil
 from fastapi.responses import Response
 from app.services.file_services import replace_line
-from app.core.config_map import SETTINGS ,THEMES , CONFIG_DIR , HOME_DIR
+from app.core.config_map import SETTINGS ,THEMES , CONFIG_DIR , HOME_DIR , FOLDER_PATHS
 from app.services.command_services import run_command
 from app.core.validator import WaybarColorConfigRequest , ThemeConfigRequest , WaybarThemeConfigRequest , HyprLockConfigRequest , WalkerConfigRequest
 from app.config import BACKUP_CONFIG_DIR
+from pathlib import Path
 from fastapi import status
 
 
@@ -232,6 +233,14 @@ def change_hyprlock_theme(data:HyprLockConfigRequest):
     run_command(f'rm -rf {temp_repo}')
     if result.returncode != 0:
         return {"error":"error while copying the file to the hyprlock"}
+    
+    
+    replace_name=Path(FOLDER_PATHS["scripts"] / "name_replace_hyprlock.sh")
+    print(replace_name)
+    replace = run_command(f'bash "{replace_name}"')
+    
+    if replace.returncode != 0:
+        return {"error":"some error occured while copying names"}
     
     return {"message":"successfully changed hyprlock theme"}
     
