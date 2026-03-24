@@ -28,3 +28,11 @@ class HyprLockConfigRequest(BaseModel):
 
 class WalkerConfigRequest(BaseModel):
     theme_id:int
+    
+    
+class BucketSaveRequest(BaseModel):
+    filename:str
+    data:dict
+    
+class ApplyBucketRequest(BaseModel):
+    id:int

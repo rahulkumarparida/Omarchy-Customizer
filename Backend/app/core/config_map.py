@@ -54,7 +54,7 @@ FOLDER_PATHS = {
     "utils": Path(BASE_DIR / "utils")
 }
 
-CUSTOMIZER_LOCALS = HOME_DIR / ".customizer"
+CUSTOMIZER_LOCALS = CONFIG_DIR / ".customizer"
 CUSTOMIZER_LOCALS.mkdir(parents=True, exist_ok=True)
 USER_ASSET_STORE = CUSTOMIZER_LOCALS / "assets"
 USER_ASSET_STORE.mkdir(parents=True,exist_ok=True)
@@ -97,6 +97,9 @@ SETTINGS={
         "temp_repo":HOME_DIR / "tmp" / "walker-repo",
         "walker_themes":WALKER_THEMES,
         "github_repo":"https://github.com/rahulkumarparida/Walker-themes.git"
+    },
+    "buckets":{
+        'store_path':CUSTOMIZER_LOCALS / "buckets"
     }
 }
 
