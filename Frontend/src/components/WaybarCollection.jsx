@@ -20,6 +20,7 @@ const WaybarThemeCollection = () => {
   async function fetchWaybarCollection() {
     try {
     const response =await api.get("/api/theme/waybar") 
+    console.log(response);
     
       return response
     } catch (error) {

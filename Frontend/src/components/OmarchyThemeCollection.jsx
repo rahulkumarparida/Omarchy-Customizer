@@ -16,7 +16,7 @@ const OmarchyThemeCollection = () => {
 
   async function fetchOmarchyCollection() {
     try {
-      const response = await api.get("/api/theme")
+      const response = await api.get("/api/theme/hypr")
     
 
     return response

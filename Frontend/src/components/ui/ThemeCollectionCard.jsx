@@ -1,6 +1,7 @@
 
 import api from "../../api/api"
 import { useTheme } from "../../context/ThemeContext.jsx"
+import {useNavigate} from "react-router-dom"
 
 export const ActionButton = ({ children }) => (
   <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto">
@@ -24,7 +25,7 @@ const effectiveImageUrl = card.theme_image || defaultImageUrl;
 async function applyTheme(id) {
   try {
     console.log("process started")
-    const res =await api.post("/api/theme/change",{
+    const res =await api.post("/api/theme/hypr/change",{
       "theme_id": id
     })
     console.log(res.status == 202)
@@ -94,8 +95,8 @@ async function applyTheme(id) {
 
 // Waybar theme collection cards
 export const WaybarCollectionCard = ({ data }) => {
-  const { setIsWorking } = useTheme()
-
+  const { setIsWorking ,setDetailsPage} = useTheme()
+  const navigate = useNavigate()
   async function changeWaybar(id) {
     console.log("process started")
   if (!Number.isInteger(id) && id < 0) {
@@ -115,6 +116,18 @@ export const WaybarCollectionCard = ({ data }) => {
     console.error("Error:",error)
    }
   }
+
+  function getToDetailsPage(){
+    setDetailsPage(data)
+    setTimeout(() => {
+      console.log('Wait we are redierecting')
+    }, 1000);
+
+    navigate(`/collection/waybar/${data.id}`)
+
+
+  }
+
 
   return (
   <article
@@ -138,7 +151,8 @@ export const WaybarCollectionCard = ({ data }) => {
     </div>
 
     <div className="flex w-full flex-col justify-center gap-3 sm:flex-row sm:gap-4">
-      <ActionButton >Details</ActionButton>
+     <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto" onClick={()=>{getToDetailsPage();}}>Details</button>
+
       <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto"  onClick={()=>{changeWaybar(data.id),setIsWorking(true)}}>
     Apply
   </button>

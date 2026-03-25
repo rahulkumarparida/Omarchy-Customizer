@@ -53,7 +53,17 @@ def get_waybar_theme_details():
     }
     return data
 
-
+def get_waybar_details_by_id(id:int):
+    waybar_themes = SETTINGS["waybar"]["waybar_themes"]
+    data = None
+    for theme in waybar_themes:
+        if id == theme['id']:
+            data = theme
+            break
+        
+    return {"data":data}
+    
+    
 def change_waybar_theme(data: WaybarThemeConfigRequest):
     config_folder = SETTINGS["waybar"]["dir"]
     temp_dir = SETTINGS["waybar"]["temp_repo"]
@@ -103,6 +113,15 @@ def get_omarchy_theme_details():
         "omarchy_themes":omarchy_themes
     }
     return data
+
+def get_omarchy_theme_details_by_id(id:int):
+    omarchy_themes = THEMES
+    data = None
+    for theme in omarchy_themes:
+        if id == theme['id']:
+            data = theme
+            break
+    return {"data":data}
     
 
 def change_theme(theme_config: ThemeConfigRequest):
@@ -178,7 +197,16 @@ def get_hyprlock_theme_details():
     }
     return data
    
-
+def get_hyprlock_details_by_id(id:int):
+    hyprlock_themes = SETTINGS["hyprlock"]["hyprlock_themes"]
+    print(hyprlock_themes)
+    detail_data = None
+    for theme in hyprlock_themes:
+        if id == theme['id']:
+            detail_data = theme
+            break
+    
+    return {"data":detail_data}
 
 def change_hyprlock_theme(data:HyprLockConfigRequest):
     file = SETTINGS["hyprlock"]["file"]
@@ -258,6 +286,17 @@ def get_walker_theme_details():
         "walker_themes":walker_themes
     }
     return data
+
+
+def get_walker_details_by_id(id:int):
+    walker_themes = SETTINGS['walker']['walker_themes']
+    data = None
+    for theme in walker_themes['themes']:
+        if id == theme['id']:
+            data = theme
+            break
+    return {"data":data}
+    
 
 
 def change_walker_theme(data: WalkerConfigRequest):

@@ -20,7 +20,6 @@ def get_fastfetch_theme_details():
     
     fastfetch_data_json = filetoJson(SETTINGS["fast_fetch"]["fastfetch_dir_maintainer"])
     fastfetch_logodata_json = filetoJson(SETTINGS["fast_fetch"]["fastfetch_logo_dir_maintainer"])
-    
     data = {
         "credits_to":"rahulkumarparida",
         "follow":"https://github.com/rahulkumarparida",
@@ -28,8 +27,9 @@ def get_fastfetch_theme_details():
         "fastfetch_data":fastfetch_data_json,
         "fastfetch_logo_data":fastfetch_logodata_json,
     }
-
     return data
+
+
 
 
 def strip_jsonc_comments(text):

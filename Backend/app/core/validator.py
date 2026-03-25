@@ -36,3 +36,7 @@ class BucketSaveRequest(BaseModel):
     
 class ApplyBucketRequest(BaseModel):
     id:int
+    
+    
+class DetailsIdRequest(BaseModel):
+    id:int
