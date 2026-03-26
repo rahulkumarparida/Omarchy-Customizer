@@ -3,9 +3,13 @@ import bgimg2 from "../../assets/bgimg2.png";
 import { useParams } from "react-router-dom";
 import api from '../../api/api.js'
 import { useEffect , useState } from "react";
+import { changeWaybarTheme } from "../../utils/themeUpdateCalls.js";
+import {useTheme} from "../../context/ThemeContext.jsx"
+import LoadingScreen from "./Loadingscreen.jsx"
 const WaybarDetailsPage = () => {
   // const { detailsPage} = useTheme()
    const { id } = useParams();
+   const {isWorking,setIsWorking} = useTheme()
    const [fetchDetail, setFetchDetail] = useState(null)
    const [copied, setCopied] = useState(false);
 
@@ -35,9 +39,21 @@ const WaybarDetailsPage = () => {
       return err
     });
   }, [])
+
+  function handleClick(id){
+  changeWaybarTheme(id).then((result) => {
+    if (result){
+      setIsWorking(false)
+      
+    }
+  }).catch((err) => {
+    
+    console.error(err)
+  });
+}
   
 
-  return fetchDetail ? (
+  return fetchDetail && !isWorking ? (
     <div 
       className="min-h-screen flex items-center justify-center p-6 sm:p-12 bg-black bg-center bg-cover bg-no-repeat relative font-sans text-gray-100"
       style={{ backgroundImage: `url(${bgimg2})` }}
@@ -76,7 +92,7 @@ const WaybarDetailsPage = () => {
         </div>
 
         <div className="flex w-full mt-5 bg-black p-2 rounded-2xl gap-2 border border-white/5 shadow-lg backdrop-blur-md">
-            <button className="flex-1 bg-[#0a0a0a] hover:bg-[#1a1a1a] text-gray-200 hover:text-white py-3 sm:py-4 px-4 rounded-xl transition-all duration-200 text-base sm:text-lg font-medium shadow-sm border border-black/50">
+            <button className="flex-1 bg-[#0a0a0a] hover:bg-[#1a1a1a] text-gray-200 hover:text-white py-3 sm:py-4 px-4 rounded-xl transition-all duration-200 text-base sm:text-lg font-medium shadow-sm border border-black/50" onClick={()=>{handleClick(id);setIsWorking(true)}}>
               Apply
             </button>
             <button className="flex-1 bg-[#0a0a0a] hover:bg-[#1a1a1a] text-gray-200 hover:text-white py-3 sm:py-4 px-4 rounded-xl transition-all duration-200 text-base sm:text-lg font-medium shadow-sm border border-black/50">
@@ -88,7 +104,7 @@ const WaybarDetailsPage = () => {
     </div>
   ) :
   <div>
-    Wait while the page is loading
+    <LoadingScreen />
   </div>
 }
 

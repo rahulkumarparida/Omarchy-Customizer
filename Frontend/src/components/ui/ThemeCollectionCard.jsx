@@ -1,7 +1,9 @@
 
-import api from "../../api/api"
+
 import { useTheme } from "../../context/ThemeContext.jsx"
 import {useNavigate} from "react-router-dom"
+import { applyOmarchyTheme , changeWaybarTheme , changeWalkerTheme , changeHyprlockTheme ,changeFastfetchTheme} from "../../utils/themeUpdateCalls.js";
+
 
 export const ActionButton = ({ children }) => (
   <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto">
@@ -22,23 +24,20 @@ const defaultImageUrl = 'https://images.unsplash.com/photo-1549497538-303791108f
 const effectiveImageUrl = card.theme_image || defaultImageUrl;
 
 
-async function applyTheme(id) {
-  try {
-    console.log("process started")
-    const res =await api.post("/api/theme/hypr/change",{
-      "theme_id": id
-    })
-    console.log(res.status == 202)
-    if (res.status == 202) {
+
+
+function handleClick(id){
+  applyOmarchyTheme(id).then((result) => {
+    if (result){
       setIsWorking(false)
+      
     }
-  } catch (error) {
+  }).catch((err) => {
     
-    console.error(error)
-  }
-
-
+    console.error(err)
+  });
 }
+
 
 
   return (
@@ -76,7 +75,7 @@ async function applyTheme(id) {
 
           <div className="grid grid-cols-3 gap-x-2.5">
    
-            <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-sm font-medium" onClick={()=>{applyTheme(card.id); setIsWorking(true) }}>
+            <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-sm font-medium" onClick={()=>{handleClick(card.id); setIsWorking(true) }}>
               Apply
             </button>
             <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-sm font-medium">
@@ -95,37 +94,24 @@ async function applyTheme(id) {
 
 // Waybar theme collection cards
 export const WaybarCollectionCard = ({ data }) => {
-  const { setIsWorking ,setDetailsPage} = useTheme()
+  const { setIsWorking } = useTheme()
   const navigate = useNavigate()
-  async function changeWaybar(id) {
-    console.log("process started")
-  if (!Number.isInteger(id) && id < 0) {
-    return {"error":"errro id should be an integer"}
-  }
 
-   try {
-     const response = await api.post("/api/theme/waybar/change",{
-      theme_id : id
-    })
-   
-    if (response.status == 200) {
+
+function handleClick(id){
+  changeWaybarTheme(id).then((result) => {
+    if (result){
       setIsWorking(false)
+      
     }
-    return response.data
-   } catch (error) {
-    console.error("Error:",error)
-   }
-  }
+  }).catch((err) => {
+    
+    console.error(err)
+  });
+}
 
   function getToDetailsPage(){
-    setDetailsPage(data)
-    setTimeout(() => {
-      console.log('Wait we are redierecting')
-    }, 1000);
-
     navigate(`/collection/waybar/${data.id}`)
-
-
   }
 
 
@@ -143,7 +129,7 @@ export const WaybarCollectionCard = ({ data }) => {
       />
     </div>
 
-    <div className="w-full text-left" onClick={()=>{changeWaybar(data.id)}}>
+    <div className="w-full text-left" onClick={()=>{handleClick(data.id)}}>
       <p className="font-mono text-xs uppercase tracking-[0.3em] text-cyan-300/80">
         Name
       </p>
@@ -153,7 +139,7 @@ export const WaybarCollectionCard = ({ data }) => {
     <div className="flex w-full flex-col justify-center gap-3 sm:flex-row sm:gap-4">
      <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto" onClick={()=>{getToDetailsPage();}}>Details</button>
 
-      <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto"  onClick={()=>{changeWaybar(data.id),setIsWorking(true)}}>
+      <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto"  onClick={()=>{handleClick(data.id),setIsWorking(true)}}>
     Apply
   </button>
       <ActionButton>Add to Bucket</ActionButton>
@@ -166,25 +152,19 @@ export const WaybarCollectionCard = ({ data }) => {
 export const WalkerCollectionCard =({ data }) =>{
   const { setIsWorking } = useTheme()
 
-  async function changeWalker(id) {
-    console.log("process started")
-  if (!Number.isInteger(id) && id < 0) {
-    return {"error":"errro id should be an integer"}
-  }
+ 
 
-   try {
-     const response = await api.post("/api/theme/walker/change",{
-      theme_id : id
-    })
-    console.log(response)
-    if (response.status == 200) {
+  function handleClick(id){
+  changeWalkerTheme(id).then((result) => {
+    if (result){
       setIsWorking(false)
+      
     }
-    return response.data
-   } catch (error) {
-    console.error("Error:",error)
-   }
-  }
+  }).catch((err) => {
+    
+    console.error(err)
+  });
+}
 
   return data && data.images ? <div className="w-[340px] bg-[#323235] rounded-[2rem] p-4 font-sans shadow-2xl">
       
@@ -215,7 +195,7 @@ export const WalkerCollectionCard =({ data }) =>{
 
       {/* Action Buttons */}
       <div className="mt-5 mb-1 px-1 flex justify-between gap-3">
-        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal" onClick={()=>{changeWalker(data.id);setIsWorking(true)}}>
+        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal" onClick={()=>{handleClick(data.id);setIsWorking(true)}}>
           Apply
         </button>
         
@@ -239,26 +219,20 @@ export const HyprlockCollectionCard = ({ data }) =>{
 
   const { setIsWorking } = useTheme()
 
-  async function changeHyprlock(id) {
-    console.log("process started")
-  if (!Number.isInteger(id) && id < 0) {
-    return {"error":"errro id should be an integer"}
-  }
 
-   try {
-     const response = await api.post("/api/theme/hyprlock/change",{
-      theme_id : id
-    })
-    console.log(response)
-    if (response.status == 200) {
+
+
+  function handleClick(id){
+  changeHyprlockTheme(id).then((result) => {
+    if (result){
       setIsWorking(false)
+      
     }
-    return response.data
-   } catch (error) {
-    console.error("Error:",error)
-   }
-  }
-
+  }).catch((err) => {
+    
+    console.error(err)
+  });
+}
 
   return data && data.preview_image ? <div className="w-[340px] bg-[#323235] rounded-[2rem] p-4 font-sans shadow-2xl">
       
@@ -281,7 +255,7 @@ export const HyprlockCollectionCard = ({ data }) =>{
 
       {/* Action Buttons */}
       <div className="mt-5 mb-1 px-1 flex justify-between gap-3">
-        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal" onClick={()=>{changeHyprlock(data.id);setIsWorking(true)}}>
+        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal" onClick={()=>{handleClick(data.id);setIsWorking(true)}}>
           Apply
         </button>
         
@@ -302,37 +276,19 @@ export const HyprlockCollectionCard = ({ data }) =>{
 // Fasfetch theme collection card
 export const FastfetchCollectionCard=({data ,type}) =>{
 const { setIsWorking } = useTheme()
-  async function changeFastfetch(name , type) {
-    console.log("process started")
-  // logo_name
-  // config_name
-  let payload = type == "config" ? {
-    config_name : name
-  }  : type == "logo"?{
-    logo_name : name
-  }:null
-  console.log(payload)
-    if (payload !== null){
-     
 
-      try {
-        const response = await api.post("/api/fastfetch/change",payload)
-        console.log(response)
-        if (response.status == 200) {
-          setIsWorking(false)
-        }
-        return response.data
-      } catch (error) {
-        console.error("Error:",error)
-      }
 
-    }else{
+function handleClick(name , type){
+  changeFastfetchTheme(name , type).then((result) => {
+    if (result){
       setIsWorking(false)
-      return {"error":"error while sending request"}
+      
     }
-  }
-
-
+  }).catch((err) => {
+    
+    console.error(err)
+  });
+}
 
   return <div className="w-full bg-[#0a0a0a] border border-neutral-800 rounded-2xl p-5 md:p-6 shadow-2xl font-sans">
       {/* Header */}
@@ -361,7 +317,7 @@ const { setIsWorking } = useTheme()
 
         {/* Action Buttons */}
         <div className="flex flex-row md:flex-col gap-3 md:gap-4 justify-center md:w-32 shrink-0">
-          <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95" onClick={()=>{changeFastfetch(data.name,type);setIsWorking(true)}}>
+          <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95" onClick={()=>{handleClick(data.name,type);setIsWorking(true)}}>
             Apply
           </button>
           <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95">
