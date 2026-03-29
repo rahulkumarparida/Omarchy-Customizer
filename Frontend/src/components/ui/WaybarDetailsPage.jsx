@@ -1,13 +1,14 @@
 
-import bgimg2 from "../../assets/bgimg2.png";
 import { useParams } from "react-router-dom";
 import api from '../../api/api.js'
 import { useEffect , useState } from "react";
 import { changeWaybarTheme } from "../../utils/themeUpdateCalls.js";
 import {useTheme} from "../../context/ThemeContext.jsx"
+import bgimg2 from "../../assets/bgimg2.png"; 
 import LoadingScreen from "./Loadingscreen.jsx"
+
 const WaybarDetailsPage = () => {
-  // const { detailsPage} = useTheme()
+  
    const { id } = useParams();
    const {isWorking,setIsWorking} = useTheme()
    const [fetchDetail, setFetchDetail] = useState(null)
@@ -19,6 +20,8 @@ const WaybarDetailsPage = () => {
       setCopied(true);
       // Reset the "Copied!" state back to "Copy" after 2 seconds
       setTimeout(() => setCopied(false), 2000);
+      console.log(copied);
+      
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }

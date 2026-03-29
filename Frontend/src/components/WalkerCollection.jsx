@@ -22,8 +22,7 @@ const WalkerCollection = () => {
 
   useEffect(() => {
     fetchWalkerCollection().then((response) => {
-      setThemesData(response.data)
-   
+      setThemesData(response.data);
       setWalkerCardData(response.data.walker_themes.themes)
       
     }).catch((err) => {

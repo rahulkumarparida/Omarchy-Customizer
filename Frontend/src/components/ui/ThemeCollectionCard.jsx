@@ -22,8 +22,13 @@ const user_profile = splirArr[0]+"//"+splirArr[2]+"/"+splirArr[3]
 const username = url ? url.split('/')[3] : url
 const defaultImageUrl = 'https://images.unsplash.com/photo-1549497538-303791108f94?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxMTkyMXwwfDF8c2VhcmNofDExfHx0ZXJtaW5hbHxlbnwwfHx8fDE2MTE5NTMyMjE&ixlib=rb-1.2.1&q=80&w=400';
 const effectiveImageUrl = card.theme_image || defaultImageUrl;
+const navigate = useNavigate()
 
 
+  function goToDetailsPage(id) {
+    navigate(`/collection/omarchy-themes/${id}`)
+  }
+  
 
 
 function handleClick(id){
@@ -78,7 +83,7 @@ function handleClick(id){
             <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-sm font-medium" onClick={()=>{handleClick(card.id); setIsWorking(true) }}>
               Apply
             </button>
-            <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-sm font-medium">
+            <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-sm font-medium" onClick={()=>{goToDetailsPage(card.id)}}>
               Details
             </button>
             <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-[10px] font-medium whitespace-nowrap">
@@ -98,17 +103,17 @@ export const WaybarCollectionCard = ({ data }) => {
   const navigate = useNavigate()
 
 
-function handleClick(id){
-  changeWaybarTheme(id).then((result) => {
-    if (result){
-      setIsWorking(false)
+  function handleClick(id){
+    changeWaybarTheme(id).then((result) => {
+      if (result){
+        setIsWorking(false)
+        
+      }
+    }).catch((err) => {
       
-    }
-  }).catch((err) => {
-    
-    console.error(err)
-  });
-}
+      console.error(err)
+    });
+  }
 
   function getToDetailsPage(){
     navigate(`/collection/waybar/${data.id}`)
@@ -150,7 +155,9 @@ function handleClick(id){
 
 // walker Collection Card
 export const WalkerCollectionCard =({ data }) =>{
+
   const { setIsWorking } = useTheme()
+  const navigate = useNavigate()
 
  
 
@@ -164,7 +171,11 @@ export const WalkerCollectionCard =({ data }) =>{
     
     console.error(err)
   });
-}
+ }
+
+  function goToDetailsPage(id){
+    navigate(`/collection/walker/${id}`);
+  }
 
   return data && data.images ? <div className="w-[340px] bg-[#323235] rounded-[2rem] p-4 font-sans shadow-2xl">
       
@@ -199,7 +210,7 @@ export const WalkerCollectionCard =({ data }) =>{
           Apply
         </button>
         
-        <button className="flex-1 bg-[#09090b] hover:bg-[#1a1a1c] transition-colors py-3 rounded-[14px] text-[12px] font-normal tracking-wide">
+        <button className="flex-1 bg-[#09090b] hover:bg-[#1a1a1c] transition-colors py-3 rounded-[14px] text-[12px] font-normal tracking-wide" onClick={()=>{goToDetailsPage(data.id)}} >
           Details
         </button>
         
@@ -214,12 +225,16 @@ export const WalkerCollectionCard =({ data }) =>{
     </div>
 }
 
+
 // Hyprlock Collection Card
 export const HyprlockCollectionCard = ({ data }) =>{
 
   const { setIsWorking } = useTheme()
+   const navigate = useNavigate()
 
-
+function goToDetailsPage(id){
+    navigate(`/collection/hyprlock/${id}`);
+  }
 
 
   function handleClick(id){
@@ -259,7 +274,7 @@ export const HyprlockCollectionCard = ({ data }) =>{
           Apply
         </button>
         
-        <button className="flex-1 bg-[#09090b] hover:bg-[#1a1a1c] transition-colors py-3 rounded-[14px] text-[12px] font-normal tracking-wide">
+        <button className="flex-1 bg-[#09090b] hover:bg-[#1a1a1c] transition-colors py-3 rounded-[14px] text-[12px] font-normal tracking-wide" onClick={()=>{goToDetailsPage(data.id)}}>
           Details
         </button>
         
@@ -319,9 +334,6 @@ function handleClick(name , type){
         <div className="flex flex-row md:flex-col gap-3 md:gap-4 justify-center md:w-32 shrink-0">
           <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95" onClick={()=>{handleClick(data.name,type);setIsWorking(true)}}>
             Apply
-          </button>
-          <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95">
-            Details
           </button>
           <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95">
             Add to Bucket
