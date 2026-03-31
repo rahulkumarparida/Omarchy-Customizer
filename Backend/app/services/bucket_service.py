@@ -4,7 +4,7 @@ from pathlib import Path
 from app.services.theme_services import change_hyprlock_theme , change_theme , change_walker_theme , change_waybar_theme
 from app.services.fastfetch_services import change_fastfetch_config 
 from app.core.config_map import SETTINGS , CUSTOMIZER_LOCALS
-from app.core.validator import BucketSaveRequest , ApplyBucketRequest , ThemeConfigRequest , HyprLockConfigRequest , WalkerConfigRequest, WaybarThemeConfigRequest , FastFetchConfigRequest
+from app.core.validator import BucketSaveRequest , ApplyBucketRequest , ThemeConfigRequest , HyprLockConfigRequest , WalkerConfigRequest, WaybarThemeConfigRequest , FastFetchConfigRequest , DetailsIdRequest
 
 features = {
     'hyprlock':{"function":change_hyprlock_theme,"model":HyprLockConfigRequest},
@@ -33,6 +33,29 @@ def get_all_bucket_theme():
         bucket_names.append(data)
     return {"message":"fetched all the buckets","buckets":bucket_names}
 
+def get_bucket_data(data:DetailsIdRequest):
+    buckets = get_all_bucket_theme()
+    filename = None
+    for bucket in buckets['buckets']:
+        print(bucket)
+        if bucket['id'] == data:
+            filename = bucket['name']
+            break
+    
+    if filename == None:
+        return {'error':"no such file was found."}
+    
+    bucket_dir = Path(store_path)
+    bucket_data = None
+    bucket_name = None
+    for files in bucket_dir.iterdir():
+        if files.name == filename:
+            bucket_name = files.stem
+            with open(files,"r") as f:
+                bucket_data = json.load(f)
+            break
+    
+    return {"message":"sucessfully fetched the data","filename":bucket_name, "data": bucket_data}    
 
 
 def save_bucket_theme(bucket: BucketSaveRequest):

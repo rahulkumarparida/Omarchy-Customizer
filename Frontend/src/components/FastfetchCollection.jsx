@@ -5,11 +5,22 @@ import LoadingScreen from "./ui/Loadingscreen.jsx";
 import Sidebar from "./ui/Sidebar.jsx";
 import {FastfetchCollectionCard } from "./ui/ThemeCollectionCard.jsx"
 
+import { CreateModal } from './ui/CreateModal.jsx'
+import AddToBucket from './ui/AddToBucket.jsx'
+import { getBuckets  } from '../utils/bucket.utils.js'
+
+
 const FastfetchCollection = () => {
     const { isWorking} = useTheme()
     const [themesData, setThemesData] = useState(null)
     const [fastfetchConfigData,setFastfetchConfigData] = useState([])
     const [fastfetchLogoData,setFastfetchLogoData] = useState([])
+
+
+      const [open, setOpen] = useState(false);
+  const [bucket , setBuckets] = useState()
+const [payload , setPayload ] = useState(null)
+
     
       async function fetchWalkerCollection() {
     try {
@@ -18,6 +29,28 @@ const FastfetchCollection = () => {
     } catch (error) {
       console.error("Error:",error)
     }
+  }
+
+
+
+    function handleAddToBuckets(name , type) {
+
+      getBuckets().then((result) => {
+        setBuckets(result.data.buckets)
+        setOpen(true)
+        
+      }).catch((err) => {
+        return err
+      });
+
+      
+        let req = {
+                  config_name :type == "config" ? name : null,
+                  logo_name :type == "logo"? name : null
+                }
+
+      setPayload(req)
+
   }
 
   useEffect(() => {
@@ -79,7 +112,7 @@ const FastfetchCollection = () => {
           >
             {themesData && fastfetchConfigData.map((theme) => (
               <FastfetchCollectionCard key={theme.id}
-                data={theme} type={themesData.fastfetch_data.themes_for} />
+                data={theme} type={themesData.fastfetch_data.themes_for} addToBucket={handleAddToBuckets} />
             ))}
           </div>
 
@@ -95,11 +128,20 @@ const FastfetchCollection = () => {
           >
             {themesData && fastfetchLogoData.map((theme) => (
               <FastfetchCollectionCard key={theme.id}
-                data={theme} type={themesData.fastfetch_logo_data.themes_for} />
+                data={theme} type={themesData.fastfetch_logo_data.themes_for} addToBucket={handleAddToBuckets} />
             ))}
           </div>
 
         </main>
+
+          <CreateModal isOpen={open} onClose={() => setOpen(false)}>
+            <div >
+                    <AddToBucket payload={payload} featureName={"fastfetch"} data={bucket} onClose={() => setOpen(false)}   />
+            </div>
+
+          </CreateModal>
+
+
       </div>
     </div>
   ):

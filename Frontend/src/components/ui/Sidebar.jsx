@@ -7,9 +7,10 @@ const sidebarItems = [
   { id: 3, name: "Hyprlock", location: "/collection/hyprlock" },
   { id: 4, name: "Omarchy themes", location: "/collection/omarchy-themes" },
   { id: 5, name: "Fastfetch", location: "/collection/fastfetch" },
+  { id: 6, name: "My Bucket", location: "/buckets"}
 ];
 
-const sidebarUtilities = ["Backup Configs", "Get the file", "My Bucket"];
+const sidebarUtilities = ["Backup Configs", "Get the file"];
 
 const SidebarItem = ({ children }) => (
   <div className="cursor-pointer text-neutral-400 transition-colors duration-300 hover:text-white">

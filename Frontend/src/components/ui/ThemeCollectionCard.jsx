@@ -13,7 +13,7 @@ export const ActionButton = ({ children }) => (
 
 
 // Omarchy theme collection cards
-export const OmarchyCollectionCard = ({card}) => {
+export const OmarchyCollectionCard = ({card , addToBucket}) => {
 const { setIsWorking} = useTheme()
 
 const url = card.github_repo ? card.github_repo :""
@@ -86,7 +86,7 @@ function handleClick(id){
             <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-sm font-medium" onClick={()=>{goToDetailsPage(card.id)}}>
               Details
             </button>
-            <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-[10px] font-medium whitespace-nowrap">
+            <button className="rounded-full p-2.5 text-zinc-50 bg-[#212121] hover:bg-[#2e2e2e] transition duration-150 text-[10px] font-medium whitespace-nowrap" onClick={()=>{addToBucket(card.id);}} >
               Add to Bucket
             </button>
           </div>
@@ -98,7 +98,7 @@ function handleClick(id){
 };
 
 // Waybar theme collection cards
-export const WaybarCollectionCard = ({ data }) => {
+export const WaybarCollectionCard = ({ data ,addToBucket}) => {
   const { setIsWorking } = useTheme()
   const navigate = useNavigate()
 
@@ -147,14 +147,16 @@ export const WaybarCollectionCard = ({ data }) => {
       <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto"  onClick={()=>{handleClick(data.id),setIsWorking(true)}}>
     Apply
   </button>
-      <ActionButton>Add to Bucket</ActionButton>
+  <button className="w-full rounded-md bg-black px-5 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-neutral-800 sm:w-auto"  onClick={()=>{addToBucket(data.id);}}>
+      Add to Bucket
+  </button>
     </div>
   </article>
 );
 }
 
 // walker Collection Card
-export const WalkerCollectionCard =({ data }) =>{
+export const WalkerCollectionCard =({ data ,addToBucket}) =>{
 
   const { setIsWorking } = useTheme()
   const navigate = useNavigate()
@@ -214,7 +216,7 @@ export const WalkerCollectionCard =({ data }) =>{
           Details
         </button>
         
-        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal tracking-wide">
+        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal tracking-wide" onClick={()=>{addToBucket(data.id)}} >
           Add to Bucket
         </button>
       </div>
@@ -227,7 +229,7 @@ export const WalkerCollectionCard =({ data }) =>{
 
 
 // Hyprlock Collection Card
-export const HyprlockCollectionCard = ({ data }) =>{
+export const HyprlockCollectionCard = ({ data , addToBucket }) =>{
 
   const { setIsWorking } = useTheme()
    const navigate = useNavigate()
@@ -278,7 +280,7 @@ function goToDetailsPage(id){
           Details
         </button>
         
-        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal tracking-wide">
+        <button className="flex-[1.2] bg-[#09090b] hover:bg-[#1a1a1c] transition-colors  py-3 rounded-[14px] text-[12px] font-normal tracking-wide"  onClick={()=>{addToBucket(data.id)}} >
           Add to Bucket
         </button>
       </div>
@@ -289,7 +291,7 @@ function goToDetailsPage(id){
     </div>
 }
 // Fasfetch theme collection card
-export const FastfetchCollectionCard=({data ,type}) =>{
+export const FastfetchCollectionCard=({data ,type ,addToBucket}) =>{
 const { setIsWorking } = useTheme()
 
 
@@ -335,7 +337,7 @@ function handleClick(name , type){
           <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95" onClick={()=>{handleClick(data.name,type);setIsWorking(true)}}>
             Apply
           </button>
-          <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95">
+          <button className="flex-1 md:flex-none py-2.5 px-4 bg-[#d1d1d1] hover:bg-white text-black font-medium text-sm rounded-lg transition-colors duration-200 active:scale-95" onClick={()=>{addToBucket(data.name , type)}}>
             Add to Bucket
           </button>
         </div>

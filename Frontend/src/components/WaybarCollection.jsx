@@ -6,27 +6,46 @@ import { useTheme } from "../context/ThemeContext.jsx";
 import LoadingScreen from "./ui/Loadingscreen.jsx";
 import Sidebar from "./ui/Sidebar.jsx";
 import {WaybarCollectionCard} from "./ui/ThemeCollectionCard.jsx"
-
-
-
+import { CreateModal } from "./ui/CreateModal.jsx";
+import { getBuckets  } from "../utils/bucket.utils.js";
+import AddToBucket from "./ui/AddToBucket.jsx";
 
 
   
 const WaybarThemeCollection = () => {
-  const { isWorking} = useTheme()
-
+  const { isWorking} = useTheme();
+  const [open, setOpen] = useState(false);
+  const [bucket , setBuckets] = useState()
+const [payload , setPayload ] = useState(null)
   const [themesData,setThemesData] = useState(null)
   const [waybarCardData,setWaybarCardData] = useState([])
+
   async function fetchWaybarCollection() {
     try {
     const response =await api.get("/api/theme/waybar") 
-    console.log(response);
+    
     
       return response
     } catch (error) {
       console.error("Error:",error)
     }
   }
+
+  function handleAddToBuckets(id) {
+      getBuckets().then((result) => {
+        console.log(result.data.buckets)
+        setBuckets(result.data.buckets)
+        setOpen(true)
+        
+      }).catch((err) => {
+        return err
+      });
+      let req = {
+        theme_id:id
+      }
+      setPayload(req)
+  }
+
   useEffect(() => {
     fetchWaybarCollection().then((response) => {
       setThemesData(response.data)
@@ -77,9 +96,16 @@ const WaybarThemeCollection = () => {
           >
             {themesData && waybarCardData.map((theme) => (
               <WaybarCollectionCard key={theme.id}
-                data={theme} />
+                data={theme} addToBucket={handleAddToBuckets} />
             ))}
           </div>
+          
+          <CreateModal isOpen={open} onClose={() => setOpen(false)}>
+            <div >
+                    <AddToBucket payload={payload} featureName={"waybar"} data={bucket} onClose={() => setOpen(false)}   />
+            </div>
+
+          </CreateModal>
         </main>
       </div>
     </div>

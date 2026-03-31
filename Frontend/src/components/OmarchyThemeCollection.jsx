@@ -5,13 +5,19 @@ import LoadingScreen from "./ui/Loadingscreen.jsx";
 import Sidebar from "./ui/Sidebar.jsx";
 import { OmarchyCollectionCard } from "./ui/ThemeCollectionCard.jsx";
 
-
+import { CreateModal } from './ui/CreateModal.jsx'
+import AddToBucket from './ui/AddToBucket.jsx'
+import { getBuckets } from '../utils/bucket.utils.js'
 
 
 const OmarchyThemeCollection = () => {
   const { isWorking} = useTheme()
   const [themesData,setThemesData] = useState(null)
   const [fetchData,setFetchData] = useState(null)
+
+        const [open, setOpen] = useState(false);
+  const [bucket , setBuckets] = useState()
+const [payload , setPayload ] = useState(null)
 
 
   async function fetchOmarchyCollection() {
@@ -24,6 +30,24 @@ const OmarchyThemeCollection = () => {
       return error
     }
   }
+
+
+
+    function handleAddToBuckets(id) {
+      getBuckets().then((result) => {
+        console.log(result.data.buckets)
+        setBuckets(result.data.buckets)
+        setOpen(true)
+        
+      }).catch((err) => {
+        return err
+      });
+      let req = {
+        theme_id:id
+      }
+      setPayload(req)
+  }
+
 
   useEffect(() => {
 
@@ -75,10 +99,19 @@ const OmarchyThemeCollection = () => {
           >
             {fetchData && themesData.map((theme) => (
               <OmarchyCollectionCard key={theme.id}
-                card={theme} />
+                card={theme} addToBucket={handleAddToBuckets} />
             ))}
           </div>
         </main>
+
+           
+          <CreateModal isOpen={open} onClose={() => setOpen(false)}>
+            <div >
+                    <AddToBucket payload={payload} featureName={"omarchy-theme"} data={bucket} onClose={() => setOpen(false)}   />
+            </div>
+
+          </CreateModal> 
+
       </div>
     </div>
   :

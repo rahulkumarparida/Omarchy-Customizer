@@ -1,15 +1,15 @@
 import React, { useState , useEffect } from 'react';
 import Sidebar from '../components/ui/Sidebar';
 import bgimg2 from "../assets/bgimg2.png";
-import {  getBuckets , applyBucket} from '../utils/bucket.utils';
+import {  getBuckets, addBucket , applyBucket} from '../utils/bucket.utils';
 import { useBucket } from '../context/BucketContext.jsx';
 import LoadingScreen from "../components/ui/Loadingscreen.jsx"
-
-
+import { CreateModal } from '../components/ui/CreateModal.jsx';
 
 
 // --- Sub-component for individual bucket cards ---
 const BucketCard = ({ name, onApply }) => {
+
 
 
   
@@ -19,12 +19,12 @@ const BucketCard = ({ name, onApply }) => {
     <div className="bg-[#0e1112]/90 m-10 w-[600px] lg:w-[400px] backdrop-blur-sm border border-[#1b1e1f] rounded-2xl p-6 shadow-xl flex flex-col  transition-all duration-300 hover:border-[#38bdf8]/50 hover:shadow-[#38bdf8]/5">
   
 
-      {/* 2. Text Details */}
       <div className="flex-grow mb-6 space-y-2">
         <h3 className="text-2xl font-semibold text-gray-100 tracking-tight font-mono">{name}</h3>
       </div>
 
-      {/* 3. Apply Button */}
+     
+      
       <button 
         onClick={onApply}
         className="w-full bg-[#1c1f20] hover:bg-[#38bdf8] text-gray-200 hover:text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 shadow-inner group flex items-center justify-center space-x-2 border border-transparent hover:border-[#38bdf8]/50"
@@ -40,6 +40,8 @@ const BucketCard = ({ name, onApply }) => {
 const BucketCollectionPage = () => {
   const {applyingBucket,setApplyingBucket} = useBucket()
   const [fetchData, setfetchData] = useState()
+  const [bucketName, setBucketName] = useState()
+  const [open, setOpen] = useState(false);
     
   useEffect(() => {
     getBuckets().then((result) => {
@@ -58,8 +60,6 @@ const BucketCollectionPage = () => {
     // Implement your 'Apply' logic here (e.g., API call, state update)
     console.log(`Applying bucket theme ID: ${id}`);
     applyBucket(id).then((res) => {
-     
-    
     if (res) {
       setApplyingBucket(false)
       
@@ -72,7 +72,18 @@ const BucketCollectionPage = () => {
     
   };
 
+const addBucketName = ()=>{
+console.log("Process started");
 
+  addBucket(bucketName).then((result) => {
+    setOpen(false)
+    console.log(result)
+
+  }).catch((err) => {
+    return err
+  });
+
+}
 
   return fetchData && !applyingBucket ?
   (
@@ -100,10 +111,10 @@ const BucketCollectionPage = () => {
               </p>
             </div>
             
-            {/* 
-            <button className="text-gray-400 hover:text-[#38bdf8] transition font-medium">
+            
+            <button className="text-gray-400 hover:text-[#38bdf8] transition font-medium" onClick={() => setOpen(true)} >
               + New Bucket
-            </button> */}
+            </button>
           </div>
         </header>
 
@@ -119,6 +130,19 @@ const BucketCollectionPage = () => {
             ))}
           </div>
         </main>
+
+
+        <CreateModal isOpen={open} onClose={() => setOpen(false)}>
+          <div className='flex justify-between'>
+            <h2>Edit Options</h2>
+          <button onClick={() => setOpen(false)}>Close</button>
+          </div>
+
+          <div className='m-4'>
+            <input type="text" placeholder='Enter the Bucket Name' className='p-3' onChange={(e)=>{setBucketName(e.target.value)}} />
+            <button type="button" className='m-2 p-2 border border-gray-200 rounded-xl' onClick={addBucketName}>Add Bucket</button>
+          </div>
+      </CreateModal>
 
     
       </div>

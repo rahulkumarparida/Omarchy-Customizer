@@ -5,11 +5,18 @@ import api from '../api/api.js'
 import Sidebar from './ui/Sidebar.jsx'
 import { WalkerCollectionCard } from './ui/ThemeCollectionCard'
 import LoadingScreen from "./ui/Loadingscreen.jsx"
+import { CreateModal } from './ui/CreateModal.jsx'
+import AddToBucket from './ui/AddToBucket.jsx'
+import { getBuckets } from '../utils/bucket.utils.js'
 
 const WalkerCollection = () => {
     const { isWorking} = useTheme()
     const [themesData, setThemesData] = useState(null)
     const [walkerCardData,setWalkerCardData] = useState([])
+
+        const [open, setOpen] = useState(false);
+    const [bucket , setBuckets] = useState()
+  const [payload , setPayload ] = useState(null)
     
       async function fetchWalkerCollection() {
     try {
@@ -18,6 +25,21 @@ const WalkerCollection = () => {
     } catch (error) {
       console.error("Error:",error)
     }
+  }
+
+    function handleAddToBuckets(id) {
+      getBuckets().then((result) => {
+        console.log(result.data.buckets)
+        setBuckets(result.data.buckets)
+        setOpen(true)
+        
+      }).catch((err) => {
+        return err
+      });
+      let req = {
+        theme_id:id
+      }
+      setPayload(req)
   }
 
   useEffect(() => {
@@ -69,10 +91,18 @@ const WalkerCollection = () => {
           >
             {themesData && walkerCardData.map((theme) => (
               <WalkerCollectionCard key={theme.id}
-                data={theme} />
+                data={theme} addToBucket={handleAddToBuckets} />
             ))}
           </div>
         </main>
+
+
+          <CreateModal isOpen={open} onClose={() => setOpen(false)}>
+            <div >
+                    <AddToBucket payload={payload} featureName={"walker"} data={bucket} onClose={() => setOpen(false)}   />
+            </div>
+
+          </CreateModal>
       </div>
     </div>
   ):

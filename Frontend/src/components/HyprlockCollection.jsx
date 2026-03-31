@@ -7,11 +7,21 @@ import LoadingScreen from "./ui/Loadingscreen.jsx";
 import Sidebar from "./ui/Sidebar.jsx";
 import { HyprlockCollectionCard } from "./ui/ThemeCollectionCard.jsx";
 
+import { CreateModal } from './ui/CreateModal.jsx'
+import AddToBucket from './ui/AddToBucket.jsx'
+import { getBuckets } from '../utils/bucket.utils.js'
+
+
 const HyprlockCollection = () => {
   const { isWorking} = useTheme()
 
   const [themesData,setThemesData] = useState(null)
   const [hyprlockCardData,setHyprlockCardData] = useState([])
+
+
+      const [open, setOpen] = useState(false);
+  const [bucket , setBuckets] = useState()
+const [payload , setPayload ] = useState(null)
 
   async function fetchHyprlockCollection() {
     try {
@@ -22,6 +32,23 @@ const HyprlockCollection = () => {
       console.error("Error:",error)
     }
   }
+
+
+    function handleAddToBuckets(id) {
+      getBuckets().then((result) => {
+        console.log(result.data.buckets)
+        setBuckets(result.data.buckets)
+        setOpen(true)
+        
+      }).catch((err) => {
+        return err
+      });
+      let req = {
+        theme_id:id
+      }
+      setPayload(req)
+  }
+
   useEffect(() => {
     fetchHyprlockCollection().then((response) => {
       setThemesData(response.data)
@@ -72,10 +99,18 @@ const HyprlockCollection = () => {
           >
             {themesData && hyprlockCardData.map((theme) => (
               <HyprlockCollectionCard key={theme.id}
-                data={theme} />
+                data={theme} addToBucket={handleAddToBuckets} />
             ))}
           </div>
         </main>
+
+          <CreateModal isOpen={open} onClose={() => setOpen(false)}>
+            <div >
+                    <AddToBucket payload={payload} featureName={"hyprlock"} data={bucket} onClose={() => setOpen(false)}   />
+            </div>
+
+          </CreateModal>
+
       </div>
     </div>
   ):
