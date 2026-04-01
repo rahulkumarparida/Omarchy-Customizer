@@ -17,7 +17,7 @@ const CreateModal = ({isOpen, onClose, children}) =>{
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 9999,
+    zIndex: 9990,
   },
   modal: {
     background: "black",

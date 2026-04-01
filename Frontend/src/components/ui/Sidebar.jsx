@@ -13,12 +13,14 @@ const sidebarItems = [
 const sidebarUtilities = ["Backup Configs", "Get the file"];
 
 const SidebarItem = ({ children }) => (
-  <div className="cursor-pointer text-neutral-400 transition-colors duration-300 hover:text-white">
+  <div className="cursor-pointer transition-colors duration-300 hover:text-white">
     {children}
   </div>
 );
 
 const Sidebar = () => {
+const path = window.location.pathname
+
   return (
     <aside className="lg:w-1/4 xl:w-1/5 border-b border-white/6 bg-black p-8 sm:p-10 lg:sticky lg:top-0 lg:h-screen lg:border-b-0 lg:border-r lg:border-white/6 lg:overflow-y-auto">
       
@@ -40,8 +42,8 @@ const Sidebar = () => {
 
       <nav className="mt-12 flex flex-col gap-5 text-lg font-medium">
         {sidebarItems.map((item) => (
-          <Link key={item.id} to={item.location}>
-            <SidebarItem>{item.name}</SidebarItem>
+          <Link key={item.id} to={item.location}  >
+            <SidebarItem className={`${path == item.location ?"text-white":"text-neutral-500"}`}>{item.name}</SidebarItem>
           </Link>
         ))}
       </nav>

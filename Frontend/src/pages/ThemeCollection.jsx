@@ -4,7 +4,7 @@ import api from "../api/api.js"
 import { Link } from "react-router-dom";
 
 import bgimg2 from "../assets/bgimg2.png";
-
+import Sidebar from "../components/ui/Sidebar.jsx";
 
 const SidebarLink = ({ children }) => (
   <a href="#" className="text-white/70 hover:text-white transition-colors cursor-pointer text-[15px]">
@@ -88,43 +88,10 @@ const ThemeCard = ({card}) =>{
     <div className="flex min-h-screen bg-[#0A0A0A] text-white font-mono selection:bg-cyan-500/30">
       
       {/* --- SIDEBAR --- */}
-      <aside 
-        
-        className="hidden lg:flex flex-col w-[320px] fixed h-screen top-0 left-0 p-8 z-40 bg-[#0A0A0A]"
-      >
-        {/* Search Bar */}
-        <div className="mb-6">
-          <input
-            type="text"
-            placeholder="Search what you want to customize"
-            className="w-full bg-white text-black placeholder:text-black/60 px-4 py-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-white/50 transition-all"
-          />
-        </div>
-
-        <div className="w-full h-px bg-white/20 mb-6" />
-
-        {/* Top Links */}
-        <nav className="flex flex-col gap-5 mb-8">
-          <SidebarLink>Waybar</SidebarLink>
-          <SidebarLink>Walker</SidebarLink>
-          <SidebarLink>Hyprlock</SidebarLink>
-          <SidebarLink>Omarchy themes</SidebarLink>
-          <SidebarLink>Fastfetch</SidebarLink>
-        </nav>
-
-        <div className="w-full h-px bg-white/20 mb-6" />
-
-        {/* Bottom Links */}
-        <nav className="flex flex-col gap-5">
-          Currently on Work
-          <SidebarLink>Backup Configs</SidebarLink>
-          <SidebarLink>Get the file</SidebarLink>
-          <SidebarLink>My Bucket</SidebarLink>
-        </nav>
-      </aside>
+      <Sidebar />
 
       {/* --- MAIN CONTENT AREA --- */}
-      <main  className="flex-1 lg:ml-[320px] relative min-h-screen p-8 lg:p-16 overflow-hidden">
+      <main  className="flex-1   min-h-screen p-8 lg:p-16 overflow-hidden">
         
         {/* Background Graphic (bgimg2) */}
         <div className="absolute inset-0 z-0 opacity-40 pointer-events-none flex items-center justify-center overflow-hidden">
@@ -136,7 +103,7 @@ const ThemeCard = ({card}) =>{
         </div>
 
         {/* Content Wrapper (z-10 ensures it sits above the background) */}
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className=" z-10 max-w-5xl mx-auto">
           
           {/* Header section */}
           <div  className="mb-12">

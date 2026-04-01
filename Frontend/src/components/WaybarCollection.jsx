@@ -9,7 +9,7 @@ import {WaybarCollectionCard} from "./ui/ThemeCollectionCard.jsx"
 import { CreateModal } from "./ui/CreateModal.jsx";
 import { getBuckets  } from "../utils/bucket.utils.js";
 import AddToBucket from "./ui/AddToBucket.jsx";
-
+// import { useTheme } from "../context/ThemeContext.jsx";
 
   
 const WaybarThemeCollection = () => {

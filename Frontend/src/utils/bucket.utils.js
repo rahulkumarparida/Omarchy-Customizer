@@ -1,17 +1,18 @@
 
 import api from "../api/api.js";
+function bucketPayloadCreate(obj, feature, payload) {
+    const newPayload = { ...payload };
 
-function bucketPayloadCreate(obj,feature,payload){
-    if (feature == "fastfetch") {
-        obj[feature]['config_name'] = payload['config_name'] !== null ? payload['config_name'] : obj[feature]['config_name']
-        obj[feature]['logo_name'] = payload['logo_name'] !== null ? payload['logo_name'] : obj[feature]['logo_name']
+    if (feature === "fastfetch") {
         
-        return obj
+        newPayload.config_name = payload.config_name ?? obj[feature]?.config_name;
+        newPayload.logo_name = payload.logo_name ?? obj[feature]?.logo_name;
     }
- obj[feature] = payload 
-return obj
 
-
+    return {
+        ...obj,
+        [feature]: newPayload
+    };
 }
 
 async function getBuckets(){
@@ -69,4 +70,17 @@ async function applyBucket(id) {
     }
 }
 
-export {getBuckets , addBucket ,getBucketObj, bucketPayloadCreate, applyBucket}
+async function removeBucket(id) {
+
+    try {
+        let response =await api.delete(`/api/bucket/${id}`)
+        location.reload()
+        return response
+    } catch (error) {
+        return error
+    }
+}
+    
+
+
+export {getBuckets , addBucket ,getBucketObj, bucketPayloadCreate, applyBucket ,removeBucket}

@@ -4,13 +4,13 @@ import {useState,createContext, useContext } from "react";
 const BucketContext = createContext()
 
 export const BucketProvider = ({children}) => {
-const [addBucket,setAddBucket] = useState()
+const [open,setOpen] = useState(false)
 const [applyingBucket , setApplyingBucket] = useState(false)
 
 
 
     return (
-    <BucketContext.Provider value={{addBucket,setAddBucket,applyingBucket,setApplyingBucket}}>
+    <BucketContext.Provider value={{open,setOpen,applyingBucket,setApplyingBucket}}>
         {children}
     </BucketContext.Provider>
   )

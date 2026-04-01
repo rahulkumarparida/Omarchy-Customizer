@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+
 import Homepage from "./pages/Homepage.jsx";
 import ThemeCollection from "./pages/ThemeCollection.jsx";
 import WaybarThemeCollection from "./components/WaybarCollection.jsx";
@@ -20,7 +22,7 @@ import "./App.css";
 function App() {
   return (
     <div className="min-h-screen bg-black text-white">
-    
+    <ToastContainer />
       <Routes>
         <Route path="/" element={<Homepage />} /> 
         <Route path="/collection" element={<ThemeCollection />} /> 

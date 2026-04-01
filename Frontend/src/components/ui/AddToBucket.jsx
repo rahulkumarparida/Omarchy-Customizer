@@ -1,23 +1,26 @@
+import { toast } from 'react-toastify';
 
 import { getBucketObj, bucketPayloadCreate, addBucket } from '../../utils/bucket.utils.js';
 
 const AddToBucket = ({ data ,  onClose , payload  , featureName}) => {
-console.log(payload);
 
+const notify = (msg) => toast(msg);
 
 function addDataToBucket(id){
   getBucketObj(id).then((result) => {
-   
-
-
+  
         let newData = bucketPayloadCreate(result.data.data , featureName , payload) 
-        console.log(newData);
-        
+
         addBucket(result.data.filename , newData)
         
+        notify("Theme Added to bucket!!")  
+        setTimeout(() => {
+          location.replace(window.location.pathname)    
+          
+        }, 1000);
     }).catch((err) => {
         return err
-    });
+    })
     
 }
 
@@ -56,8 +59,8 @@ function addDataToBucket(id){
               </span>
               
               {/* Action Button */}
-              <button 
-                className="w-[85%] mx-auto bg-[#09090b] text-gray-300 py-3 rounded-full hover:bg-black hover:text-white transition-all duration-200 text-sm font-medium"
+              <button  id={bucket.id}
+                className="w-[85%] bucketChoosen mx-auto bg-[#09090b] text-gray-300 py-3 rounded-full hover:bg-black hover:text-white transition-all duration-200 text-sm font-medium" 
                 onClick={()=>{addDataToBucket(bucket.id);} }
               >
                 Add to this

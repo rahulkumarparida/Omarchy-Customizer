@@ -9,6 +9,7 @@ import { CreateModal } from './ui/CreateModal.jsx'
 import AddToBucket from './ui/AddToBucket.jsx'
 import { getBuckets } from '../utils/bucket.utils.js'
 
+
 const WalkerCollection = () => {
     const { isWorking} = useTheme()
     const [themesData, setThemesData] = useState(null)

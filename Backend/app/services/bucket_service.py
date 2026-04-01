@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from app.services.theme_services import change_hyprlock_theme , change_theme , change_walker_theme , change_waybar_theme
 from app.services.fastfetch_services import change_fastfetch_config 
+from app.services.command_services import run_command
 from app.core.config_map import SETTINGS , CUSTOMIZER_LOCALS
 from app.core.validator import BucketSaveRequest , ApplyBucketRequest , ThemeConfigRequest , HyprLockConfigRequest , WalkerConfigRequest, WaybarThemeConfigRequest , FastFetchConfigRequest , DetailsIdRequest
 
@@ -129,4 +130,29 @@ def apply_bucket_theme(data:ApplyBucketRequest):
     response = orchestrate_themes_changes(bucket_data)
     
     return response
-        
+
+
+def delete_bucket_theme(id):
+    buckets = get_all_bucket_theme()
+    filename = None
+    for bucket in buckets['buckets']:
+        print(bucket)
+        if bucket['id'] == id:
+            filename = bucket['name']
+            break
+    
+    if filename == None:
+        return {'error':"no such file was found."}
+    
+    get_file = Path(store_path) / filename
+    
+    print("Removing the filepath: ", get_file)
+    
+    res = run_command(f"rm {get_file}")    
+    
+    if res.returncode != 0:
+        return {"error":"Some error occured while deleting the file."}
+    
+    return {"message": f"sucessfuly deleted the bucket {Path(get_file).name}"}
+    
+    
