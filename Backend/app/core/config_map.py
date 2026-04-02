@@ -100,6 +100,10 @@ SETTINGS={
     },
     "buckets":{
         'store_path':CUSTOMIZER_LOCALS / "buckets"
+    },
+    "backups":{
+        'store_path': CUSTOMIZER_LOCALS / 'backups',
+        'selected_items_files': CUSTOMIZER_LOCALS / 'backups' / 'selected_items.jsonc'
     }
 }
 

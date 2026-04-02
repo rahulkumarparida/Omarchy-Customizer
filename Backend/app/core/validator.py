@@ -40,3 +40,7 @@ class ApplyBucketRequest(BaseModel):
     
 class DetailsIdRequest(BaseModel):
     id:int
+    
+    
+class SelectedBackupFilesRequest(BaseModel):
+    selected_items_list:list
