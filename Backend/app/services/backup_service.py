@@ -1,5 +1,6 @@
 import os
 import json
+import random
 from pathlib import Path
 from app.core.config_map import SETTINGS , BASE_DIR , HOME_DIR , CONFIG_DIR
 from app.core.validator import SelectedBackupFilesRequest
@@ -25,7 +26,7 @@ def get_dir_and_files_from_config():
         }
         items_list.append(data)
         
-    return {'message':'successfull fetched files and dirs','data':items_list}
+    return {'message':'successfully fetched files and dirs','data':items_list}
 
 def selected_files(data:SelectedBackupFilesRequest):
     
@@ -40,8 +41,9 @@ def copy_files(item , store_path):
     run_command(f'cp -r "{item_path}" "{store_path}" ')
 
 def create_filename():
-    num = len(items_in_backup)
+    num = random.randint(1, 50)
     file = f"config_backup_{num}"
+    print(file)
     return file
 
 def backup_files(data: SelectedBackupFilesRequest):
@@ -56,9 +58,41 @@ def backup_files(data: SelectedBackupFilesRequest):
         copy_files(i , backup_file_name)
     print(files)
     print("done")
-    return 
+    return {'message':"successfully created the backup of the current configs"}
 
 
+def saved_backups():
+    list_name = []
+    if os.path.exists(backup_store):
+        for i in backup_store.iterdir():
+            list_name.append(i.name)
+    
+        return {'backups':list_name}
+    return {'msg':'directory not found'}
 
 
-# backup_files()
+def apply_the_config(filename:str):
+    config_path = Path(CONFIG_DIR)
+    if os.path.exists(backup_store):
+        file = None
+        for i in backup_store.iterdir():
+            if i.name == filename:
+                file = i
+                break
+        
+        if not file:
+            return {'msg':'the backup file not found'}
+            
+        res = run_command(f'cp -r {file}/*  {config_path}/')
+        
+        if res.returncode != 0:
+            return {'error':'error while copying the file'}
+
+        return {'mesage':'successfully copied the backed up files.'}
+            
+    
+    
+        return 
+    return {'msg':'directory not found'}
+    
+    
