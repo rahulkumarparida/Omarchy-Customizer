@@ -12,6 +12,7 @@ import BucketCollectionPage from "./pages/BucketCollectionPage.jsx";
 
 import CollectionLayout from "./layouts/CollectionLayout.jsx";
 import BucketCollectionLayout from "./layouts/BucketLayout.jsx";  
+import BackupPage from "./pages/BackupPage.jsx";
 
 import WaybarDetailsPage from "./components/ui/WaybarDetailsPage.jsx";
 import WalkerDetailsPage from "./components/ui/WalkerDetailsPage.jsx";
@@ -29,21 +30,21 @@ function App() {
 
 
       <Route element={<BucketCollectionLayout/>}>
-      <Route path="/buckets" element={<BucketCollectionPage />} />   
+        <Route path="/buckets" element={<BucketCollectionPage />} />   
+        <Route path="/backups" element={<BackupPage />}  />
 
-        <Route element={<CollectionLayout />}>
-          <Route path="/collection/waybar" element={<WaybarThemeCollection />} />   
-          <Route path="/collection/waybar/:id" element={<WaybarDetailsPage/>} />  
-          <Route path="/collection/walker" element={<WalkerCollection />} /> 
-          <Route path="/collection/walker/:id" element={<WalkerDetailsPage/>} />  
-          <Route path="/collection/hyprlock" element={<HyprlockCollection />} /> 
-          <Route path="/collection/hyprlock/:id" element={<HyprlockDetailsPage />} /> 
-          <Route path="/collection/omarchy-themes" element={<OmarchyThemeCollection />} />  
-          <Route path="/collection/omarchy-themes/:id" element={<OmarchyThemeDetailsPage/>}  />
-          <Route path="/collection/fastfetch" element={<FastfetchCollection />} />   
-          
-          
-        </Route>
+            <Route element={<CollectionLayout />}>
+              <Route path="/collection/waybar" element={<WaybarThemeCollection />} />   
+              <Route path="/collection/waybar/:id" element={<WaybarDetailsPage/>} />  
+              <Route path="/collection/walker" element={<WalkerCollection />} /> 
+              <Route path="/collection/walker/:id" element={<WalkerDetailsPage/>} />  
+              <Route path="/collection/hyprlock" element={<HyprlockCollection />} /> 
+              <Route path="/collection/hyprlock/:id" element={<HyprlockDetailsPage />} /> 
+              <Route path="/collection/omarchy-themes" element={<OmarchyThemeCollection />} />  
+              <Route path="/collection/omarchy-themes/:id" element={<OmarchyThemeDetailsPage/>}  />
+              <Route path="/collection/fastfetch" element={<FastfetchCollection />} />   
+            </Route>
+            
       </Route>  
 
       </Routes>        

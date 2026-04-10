@@ -21,7 +21,7 @@ const CreateModal = ({isOpen, onClose, children}) =>{
   },
   modal: {
     background: "black",
-    padding: "20px",
+    padding: "10px",
     borderRadius: "12px",
     minWidth: "300px",
   },

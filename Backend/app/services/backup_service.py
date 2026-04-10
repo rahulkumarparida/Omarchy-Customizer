@@ -3,14 +3,14 @@ import json
 import random
 import string
 from pathlib import Path
-from app.core.config_map import SETTINGS , BASE_DIR , HOME_DIR , CONFIG_DIR
+from app.core.config_map import SETTINGS , BASE_DIR , HOME_DIR , CONFIG_DIR , FOLDER_PATHS
 from app.core.validator import SelectedBackupFilesRequest
 from app.services.command_services import run_command
 
 backup_store = Path(SETTINGS['backups']['store_path'])
 backup_store.mkdir(parents=True,exist_ok=True)
 selected_backup_items_file = Path(SETTINGS['backups']['selected_items_files'])
-
+omarchy_reload = Path(FOLDER_PATHS['scripts'] / 'reload_omarchy.sh')
 
 items_in_backup = [i.name for i in backup_store.iterdir()]
 
@@ -58,7 +58,10 @@ def create_filename():
 # Backsup the files and folder upon one click
 def backup_files(data: SelectedBackupFilesRequest):
     backup_store.mkdir(parents=True,exist_ok=True)
-    filename = str(create_filename())   
+    filename = data.filename
+    if not filename:
+        filename = str(create_filename())   
+    
     selected_data = selected_files(data , filename)
     print(selected_data)
     files = [i['item_name'] for i in selected_data[f'{filename}'] ]
@@ -75,7 +78,8 @@ def saved_backups():
     list_name = []
     if os.path.exists(backup_store):
         for i in backup_store.iterdir():
-            list_name.append(i.name)
+            if i.suffix != ".jsonc":
+                list_name.append(i.name)
     
         return {'backups':list_name}
     return {'msg':'directory not found'}
@@ -96,8 +100,9 @@ def apply_the_config(filename:str):
             
         res = run_command(f'rsync -av --delete --exclude=".git" {file}/*  {config_path}/')
         # rsync -av --exclude=".git" backup/ ~/.config/
+        # reload = run_command(f'bash  {omarchy_reload}')
         
-        if res.returncode != 0:
+        if res.returncode != 0 :
             return {'error':'error while copying the file'}
 
         return {'mesage':'successfully copied the backed up files.'}
@@ -107,8 +112,7 @@ def apply_the_config(filename:str):
 # Deletes one of the backup files
 def delete_a_backup_file(directory:str):
     if os.path.exists(backup_store) and os.path.exists(Path(backup_store / directory)):
-        result =run_command(f'rm -rf "{backup_store}/{directory}" ')
-        
+        result = run_command(f'rm -rf "{backup_store}/{directory}" ')
         if result.returncode != 0:
             return {'error':'error while removing the directory'}
 

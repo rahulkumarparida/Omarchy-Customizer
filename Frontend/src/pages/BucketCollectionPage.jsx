@@ -1,4 +1,5 @@
-import React, { useState , useEffect } from 'react';
+import  { useState , useEffect } from 'react';
+
 import Sidebar from '../components/ui/Sidebar';
 import bgimg2 from "../assets/bgimg2.png";
 import {  getBuckets,getBucketObj, addBucket , applyBucket ,removeBucket} from '../utils/bucket.utils';
@@ -11,6 +12,7 @@ import { CreateModal } from '../components/ui/CreateModal.jsx';
 const BucketCard = ({id , name, onApply }) => {
 
 const [bucketData, setBucketData] = useState()
+
 useEffect(() => {
   getBucketObj(id).then((result) => {
     setBucketData(JSON.stringify(result.data.data ,  null, 4))
