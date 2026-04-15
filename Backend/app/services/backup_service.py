@@ -32,9 +32,14 @@ def get_dir_and_files_from_config():
 
 # Saves the selected data along with the fielname (for easy access)
 def selected_files(data:SelectedBackupFilesRequest , filename):
-    selected_data = {
-        filename:data.selected_items_list
-    }
+    selected_data = {}
+    if os.path.exists(selected_backup_items_file):
+        with open(selected_backup_items_file,'r') as f:
+            selected_data = json.load(f)
+            
+    print(data.__dict__)
+    selected_data[filename]= data.__dict__
+    
     with open(selected_backup_items_file , 'w') as f:
         json.dump(selected_data, f , indent=True)
     print("writing Done")
@@ -62,9 +67,9 @@ def backup_files(data: SelectedBackupFilesRequest):
     if not filename:
         filename = str(create_filename())   
     
-    selected_data = selected_files(data , filename)
+    selected_data = selected_files(data,filename)
     print(selected_data)
-    files = [i['item_name'] for i in selected_data[f'{filename}'] ]
+    files = [i['item_name'] for i in selected_data[f'{filename}']['selected_items_list'] ]
     backup_file_name = backup_store / filename 
     backup_file_name.mkdir(parents=True,exist_ok=True)
     for i in files:
@@ -98,7 +103,7 @@ def apply_the_config(filename:str):
         if not file:
             return {'msg':'the backup file not found'}
             
-        res = run_command(f'rsync -av --delete --exclude=".git" {file}/*  {config_path}/')
+        res = run_command(f'rsync -av --delete --exclude=".git" {file}/*  {config_path}/  && hyprctl reload && omarchy-theme-bg-next')
         # rsync -av --exclude=".git" backup/ ~/.config/
         # reload = run_command(f'bash  {omarchy_reload}')
         

@@ -51,7 +51,7 @@ const [payload , setPayload ] = useState(null)
 
   useEffect(() => {
 
-    fetchOmarchyCollection().then((result) => {
+    fetchOmarchyCollection().then((result) => {     
       setThemesData(result.data.omarchy_themes)
       setFetchData(result.data)
     }).catch((err) => {
@@ -81,7 +81,7 @@ const [payload , setPayload ] = useState(null)
               Omarchy Themes
             </h1>
             <p className="flex flex-col gap-1.5 text-lg font-semibold text-neutral-300 sm:flex-row sm:items-center sm:gap-3">
-              <span>Themes developed by {themesData.credits_to}</span>
+              <span>Themes developed by {fetchData.credits_to}</span>
               <span className="hidden text-neutral-600 sm:inline">:</span>
               <a
                 href={themesData.follow}

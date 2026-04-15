@@ -33,7 +33,14 @@ const BackupCard = (backup) => {
       */}
       
       <button 
-        onClick={()=>{applyBackup(backup.name)}}
+        onClick={()=>{backup.setChangesDone(true);applyBackup(backup.name).then((result) => {
+          backup.setChangesDone(false);
+          window.location.reload()  
+          return result
+        }).catch((err) => {
+        backup.setChangesDone(false);
+          return err
+        });}}
         className="w-full bg-[#1c1f20] m-2 hover:bg-[#38bdf8] text-gray-200 hover:text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 shadow-inner group flex items-center justify-center space-x-2 border border-transparent hover:border-[#38bdf8]/50"
       >
         <span>Apply</span>
@@ -41,7 +48,14 @@ const BackupCard = (backup) => {
       </button>
 
        <button 
-       onClick={()=>{deleteBackup(backup.name)}}
+       onClick={()=>{backup.setChangesDone(true);deleteBackup(backup.name).then((result) => {
+          backup.setChangesDone(false);
+          window.location.reload()
+          return result
+        }).catch((err) => {
+        backup.setChangesDone(false);
+          return err
+        });}}
         className="w-full bg-[#1c1f20] m-2 hover:bg-[#f83838] text-gray-200 hover:text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 shadow-inner group flex items-center justify-center space-x-2 border border-transparent hover:border-[#f83838]/50"
       >
         <span>Delete</span>
@@ -59,12 +73,11 @@ const BackupPage = () => {
   const [open, setOpen] = useState(false);
   // const [newBackup,setNewBackup] = useState(false)
   const [fetchFilesData,setFetchFilesData] = useState()
+  const [changesDone  , setChangesDone] = useState(false)
 
-
-    
+  
   useEffect(() => {
     getAllBackupFiles().then((result) => {
-      // console.log('respo: ',result);
       setfetchData(result)
   
     }).catch((err) => {
@@ -73,7 +86,7 @@ const BackupPage = () => {
     });  
 
     getAllConfigFiles().then((result) => {
-      console.log('respo: ',result.data);
+  
       setFetchFilesData(result.data)
   
     }).catch((err) => {
@@ -87,7 +100,7 @@ const BackupPage = () => {
 
 
 
-  return fetchData ?(
+  return fetchData && !changesDone ?(
     <div className='mx-auto flex  max-w-[1700px] flex-col lg:flex-row antialiased'>
      <Sidebar/>
       <div 
@@ -120,18 +133,19 @@ const BackupPage = () => {
         </header>
 
         <main>
-          <div className="flex justify-around flex-wrap ">
-            {fetchData && fetchData.backups.map((backup , idx) => (
+          <div className="flex justify-start flex-wrap ">
+            {fetchData.backups && fetchData.backups.map((backup , idx) => (
               <BackupCard 
                 key={idx} 
                 name={backup} 
+                setChangesDone={setChangesDone}
               />
             ))}
           </div>
         </main>
 
 
-        <BackupFilesModal fetchFilesData={fetchFilesData} open={open} setOpen={setOpen} />
+        <BackupFilesModal fetchFilesData={fetchFilesData} open={open} setOpen={setOpen} setChangesDone={setChangesDone} />
 
 
     

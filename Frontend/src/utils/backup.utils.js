@@ -4,7 +4,7 @@ import api from '../api/api.js'
 async function getAllConfigFiles() {
     try {
         let response = await api.get('/api/backup/files')
-        console.log('Response:',response);
+   
 
         return response.data
         
@@ -19,7 +19,7 @@ async function getAllConfigFiles() {
 async function getAllBackupFiles() {
         try {
         let response = await api.get('/api/backup/')
-        console.log('Response:',response);
+       
 
         return response.data
         
@@ -37,13 +37,14 @@ async function createBackupFile(payload) {
 
 try {
     const response = await api.post('/api/backup/',payload)
-    console.log('Response: ', response);
+  console.log(response);
+  
     
     return response.data
 
 
 } catch (error) {
-    console.log('Error: ', error);
+    console.error('Error: ', error);
     
     return "Error: " + error
 }

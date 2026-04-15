@@ -144,7 +144,6 @@ console.log("Process started");
           </div>
         </header>
 
-        {/* --- Bucket Cards Grid --- */}
         <main>
           <div className="flex justify-around flex-wrap ">
             {fetchData && fetchData.buckets.map((bucket) => (

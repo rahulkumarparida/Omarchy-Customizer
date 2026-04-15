@@ -2,10 +2,12 @@ import { useState  } from 'react';
 import { CreateModal } from './CreateModal';
 import { createBackupFile } from '../../utils/backup.utils';
 
-const BackupFilesModal = ({fetchFilesData , open, setOpen}) => {
+
+const BackupFilesModal = ({fetchFilesData , open, setOpen , setChangesDone}) => {
   
 
 const [selectedIds, setSelectedIds] = useState([]);
+const [backupFilename,setBackupFilename] = useState(null);
 
   const handleToggle = (id) => {
     setSelectedIds((prev) =>
@@ -16,13 +18,21 @@ const [selectedIds, setSelectedIds] = useState([]);
   };
 
   const handleAddToBackup = () => {
+    setOpen(false)
+    setChangesDone(true)
     const selectedObjects = fetchFilesData.filter((item) =>
       selectedIds.includes(item.id)
     );
-
-    createBackupFile().then((result) => {
-        
-        
+    const payload = {
+      "selected_items_list":selectedObjects,
+      "filename":backupFilename
+    }
+    console.log("Selected: ",payload);  
+    createBackupFile(payload).then((result) => {
+       
+        setChangesDone(false)
+        window.location.reload()
+        return result
     }).catch((err) => {
         console.log("error: ",err);
         
@@ -62,8 +72,11 @@ const [selectedIds, setSelectedIds] = useState([]);
                         </button>
                       </div>
 
-                </div>      
-
+                </div>   
+          <div className='m-4'>
+            <input type="text" placeholder='Enter the Backup Name' className='p-3' onChange={(e)=>{setBackupFilename(e.target.value)}}  />
+          </div>  
+           
               <div className="w-full p-5 overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4 mb-5 flex-1">
                         {fetchFilesData && fetchFilesData.map((option) => {
                           const isSelected = selectedIds.includes(option.id);
