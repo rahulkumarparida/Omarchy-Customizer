@@ -52,6 +52,8 @@ const ThemeCollection = () => {
       try {
         const res = await api.get("/api/meta/collection");
         setThemeCollection(res.data || []);
+        console.log(res);
+        
       } catch {
         setThemeCollection([]);
       }

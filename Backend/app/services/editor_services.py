@@ -6,6 +6,7 @@ from app.core.config_map import SETTINGS
 from app.core.validator import EditorSaveFileRequest
 
 store_path = Path(SETTINGS['editor']['store_path'])
+
 edit_log_file = Path(SETTINGS['editor']['edited_logs'])
 recently_visited_file = Path(SETTINGS['editor']['recently_visited'])
 
@@ -38,6 +39,7 @@ def create_obj(contents):
 
 
 def recent_history(path):
+    recently_visited_file.parent.mkdir(parents=True, exist_ok=True)
     if not os.path.exists(path):
         return {"error": "Path does not exist"}
     
