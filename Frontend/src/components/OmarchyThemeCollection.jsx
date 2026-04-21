@@ -2,122 +2,97 @@ import { useEffect, useState } from "react";
 import api from "../api/api.js";
 import { useTheme } from "../context/ThemeContext.jsx";
 import LoadingScreen from "./ui/Loadingscreen.jsx";
-import Sidebar from "./ui/Sidebar.jsx";
 import { OmarchyCollectionCard } from "./ui/ThemeCollectionCard.jsx";
-
-import { CreateModal } from './ui/CreateModal.jsx'
-import AddToBucket from './ui/AddToBucket.jsx'
-import { getBuckets } from '../utils/bucket.utils.js'
-
+import { CreateModal } from "./ui/CreateModal.jsx";
+import AddToBucket from "./ui/AddToBucket.jsx";
+import { getBuckets } from "../utils/bucket.utils.js";
+import AppShell from "./ui/AppShell.jsx";
 
 const OmarchyThemeCollection = () => {
-  const { isWorking} = useTheme()
-  const [themesData,setThemesData] = useState(null)
-  const [fetchData,setFetchData] = useState(null)
-
-        const [open, setOpen] = useState(false);
-  const [bucket , setBuckets] = useState()
-const [payload , setPayload ] = useState(null)
-
-
-  async function fetchOmarchyCollection() {
-    try {
-      const response = await api.get("/api/theme/hypr")
-    
-
-    return response
-    } catch (error) {
-      return error
-    }
-  }
-
-
-
-    function handleAddToBuckets(id) {
-      getBuckets().then((result) => {
-        console.log(result.data.buckets)
-        setBuckets(result.data.buckets)
-        setOpen(true)
-        
-      }).catch((err) => {
-        return err
-      });
-      let req = {
-        theme_id:id
-      }
-      setPayload(req)
-  }
-
+  const { isWorking } = useTheme();
+  const [themesData, setThemesData] = useState([]);
+  const [fetchData, setFetchData] = useState({});
+  const [open, setOpen] = useState(false);
+  const [bucket, setBuckets] = useState([]);
+  const [payload, setPayload] = useState(null);
 
   useEffect(() => {
+    const fetchOmarchyCollection = async () => {
+      try {
+        const response = await api.get("/api/theme/hypr");
+        setThemesData(response.data.omarchy_themes || []);
+        setFetchData(response.data || {});
+      } catch {
+        setThemesData([]);
+        setFetchData({});
+      }
+    };
 
-    fetchOmarchyCollection().then((result) => {     
-      setThemesData(result.data.omarchy_themes)
-      setFetchData(result.data)
-    }).catch((err) => {
-      return err
-    });
+    fetchOmarchyCollection();
+  }, []);
 
-  }, [])
-  
+  const handleAddToBuckets = async (id) => {
+    try {
+      const result = await getBuckets();
+      setBuckets(result.data.buckets || []);
+    } catch {
+      setBuckets([]);
+    }
 
+    setPayload({ theme_id: id });
+    setOpen(true);
+  };
 
-  return !isWorking ? themesData &&
-      <div
-      
-      className="min-h-screen bg-black text-white font-sans antialiased"
-    >
-      <div className="mx-auto flex min-h-screen max-w-[1700px] flex-col lg:flex-row">
-        <Sidebar />
-        <main className="flex-1 p-8 sm:p-12 lg:p-20 ">
-          <div
-           
-            className="flex flex-col gap-4 border-b border-white/6 pb-10"
-          >
-            <p className="font-mono text-xs uppercase tracking-[0.35em] text-cyan-300/75">
-              Theme collection
-            </p>
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              Omarchy Themes
-            </h1>
-            <p className="flex flex-col gap-1.5 text-lg font-semibold text-neutral-300 sm:flex-row sm:items-center sm:gap-3">
-              <span>Themes developed by {fetchData.credits_to}</span>
-              <span className="hidden text-neutral-600 sm:inline">:</span>
-              <a
-                href={themesData.follow}
-                target="_blank"
-                className="text-neutral-100 underline decoration-neutral-600 transition-colors duration-300 hover:text-white hover:decoration-white"
-              >
-                Github Link
-              </a>
-            </p>
-          </div>
+  if (isWorking) {
+    return <LoadingScreen />;
+  }
 
-          <div
-            
-            className="mx-auto mt-12 grid w-full max-w-[1200px] grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 xl:grid-cols-3 xl:gap-12"
-          >
-            {fetchData && themesData.map((theme) => (
-              <OmarchyCollectionCard key={theme.id}
-                card={theme} addToBucket={handleAddToBuckets} />
-            ))}
-          </div>
-        </main>
+  return (
+    <>
+      <AppShell
+        title="Omarchy Themes"
+        description={`Themes developed by ${fetchData?.credits_to || "community maintainers"}.`}
+      >
+        <section className="space-y-4" aria-label="Omarchy themes list">
+          {fetchData?.follow ? (
+            <a
+              href={fetchData.follow}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ui-link inline-flex text-sm"
+              aria-label="Open Omarchy author profile"
+            >
+              Open Creator Profile
+            </a>
+          ) : null}
 
-           
-          <CreateModal isOpen={open} onClose={() => setOpen(false)}>
-            <div >
-                    <AddToBucket payload={payload} featureName={"omarchy-theme"} data={bucket} onClose={() => setOpen(false)}   />
+          {themesData.length ? (
+            <div className="ui-card-grid">
+              {themesData.map((theme) => (
+                <OmarchyCollectionCard key={theme.id} card={theme} addToBucket={handleAddToBuckets} />
+              ))}
             </div>
+          ) : (
+            <p className="ui-muted">No Omarchy themes were returned by the API.</p>
+          )}
+        </section>
+      </AppShell>
 
-          </CreateModal> 
+      <CreateModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Add Theme to Bucket"
+        description="Choose one bucket destination."
+      >
+        <AddToBucket
+          payload={payload}
+          featureName="omarchy-theme"
+          data={bucket}
+          onClose={() => setOpen(false)}
+        />
+      </CreateModal>
+    </>
+  );
+};
 
-      </div>
-    </div>
-  :
-  <div>
-    <LoadingScreen />
-  </div>
-}
-
-export default OmarchyThemeCollection
+export default OmarchyThemeCollection;

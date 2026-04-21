@@ -1,141 +1,105 @@
-import { useState  } from 'react';
-import { CreateModal } from './CreateModal';
-import { createBackupFile } from '../../utils/backup.utils';
+import { useState } from "react";
+import { CreateModal } from "./CreateModal.jsx";
+import { createBackupFile } from "../../utils/backup.utils.js";
+import { ActionButton, InputField } from "./primitives.jsx";
+import { announcePolite } from "../../utils/a11y.js";
+import { toast } from "react-toastify";
 
-
-const BackupFilesModal = ({fetchFilesData , open, setOpen , setChangesDone}) => {
-  
-
-const [selectedIds, setSelectedIds] = useState([]);
-const [backupFilename,setBackupFilename] = useState(null);
+const BackupFilesModal = ({ fetchFilesData, open, setOpen, setChangesDone }) => {
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [backupFilename, setBackupFilename] = useState("");
 
   const handleToggle = (id) => {
     setSelectedIds((prev) =>
-      prev.includes(id)
-        ? prev.filter((itemId) => itemId !== id)
-        : [...prev, id]
+      prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id],
     );
   };
 
-  const handleAddToBackup = () => {
-    setOpen(false)
-    setChangesDone(true)
-    const selectedObjects = fetchFilesData.filter((item) =>
-      selectedIds.includes(item.id)
-    );
-    const payload = {
-      "selected_items_list":selectedObjects,
-      "filename":backupFilename
+  
+  const handleAddToBackup = async () => {
+    if (!backupFilename.trim()) {
+      announcePolite("Backup name is required.");
+      return;
     }
-    console.log("Selected: ",payload);  
-    createBackupFile(payload).then((result) => {
-       
-        setChangesDone(false)
-        window.location.reload()
-        return result
-    }).catch((err) => {
-        console.log("error: ",err);
-        
-        return err
-    });
 
+    const selectedObjects = (fetchFilesData.data || []).filter((item) => selectedIds.includes(item.id));
+    const payload = {
+      selected_items_list: selectedObjects,
+      filename: backupFilename.trim(),
+    };
 
-    console.log(selectedObjects);     
-    setOpen(false)
+    setChangesDone(true);
+    setOpen(false);
 
+    try {
+      await createBackupFile(payload);
+      announcePolite("Backup file created.");
+      setSelectedIds([]);
+      setBackupFilename("");
+      toast.success("Backup is saved in the Downloads/ directory.")
+    } catch {
+      announcePolite("Failed to create backup file.");
+      toast.error("Failed to create backup file.")
+    } finally {
+      setChangesDone(false);
+    }
   };
 
-  if (!open) return null;
+  return (
+    <CreateModal
+      isOpen={open}
+      onClose={() => setOpen(false)}
+      title="Create Backup"
+      description="Select files and create a new backup set."
+      contentClassName="max-w-4xl"
+    >
+      <div className="space-y-4">
+        <InputField
+          id="backup-name"
+          label="Backup Name"
+          name="backup_name"
+          autoComplete="off"
+          aria-label="Backup name"
+          value={backupFilename}
+          onChange={(event) => setBackupFilename(event.target.value)}
+          placeholder="daily-config-backup…"
+        />
 
+        <ul className="grid max-h-[45vh] grid-cols-1 gap-2 overflow-y-auto pr-1 sm:grid-cols-2 lg:grid-cols-3" role="list">
+          {fetchFilesData && (fetchFilesData.data || []).map((option) => {
+            const isSelected = selectedIds.includes(option.id);
+             
+              
+            return (
+              <li key={option.id}>
+                <button
+                  type="button"
+                  onClick={() => handleToggle(option.id)}
+                  className={`ui-control ui-focus flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm ${
+                    isSelected ? "border-[var(--accent)] text-[var(--text-0)]" : "text-[var(--text-1)]"
+                  }`}
+                  aria-pressed={isSelected}
+                  aria-label={`Toggle ${option.item_name}`}
+                >
+                  <span className="min-w-0 truncate">{option.item_name}</span>
+                  <span className="ui-pill">{isSelected ? "Selected" : "Add"}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
 
+        <ActionButton
+          onClick={handleAddToBackup}
+          variant="primary"
+          className="w-full justify-center"
+          aria-label="Create backup with selected files"
+        >
+          Create Backup
+        </ActionButton>
+      </div>
+    </CreateModal>
+  );
+};
 
-
-  return <CreateModal isOpen={open} onClose={() => setOpen(false)}>
-
-                    <div className=" flex items-center justify-center backdrop-blur-sm p-2">
-                    
-                  <div className=" w-[100%] max-w-7xl max-h-[80vh] flex flex-col  rounded-2xl shadow-2xl">
-                        <div className="top">
-
-                    <div className='boder'>
-                      <span className=''>
-                        Select all the files you want to backup.
-                      </span>
-                    </div>
-                      
-                      <div className="flex justify-end mb-8">
-                        <button
-                          onClick={() => setOpen(false)}
-                          className="text-gray-400 hover:text-white transition-colors text-sm font-medium flex items-center gap-1"
-                        >
-                          <span className="text-lg leading-none">&times;</span> Close
-                        </button>
-                      </div>
-
-                </div>   
-          <div className='m-4'>
-            <input type="text" placeholder='Enter the Backup Name' className='p-3' onChange={(e)=>{setBackupFilename(e.target.value)}}  />
-          </div>  
-           
-              <div className="w-full p-5 overflow-y-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4 mb-5 flex-1">
-                        {fetchFilesData && fetchFilesData.map((option) => {
-                          const isSelected = selectedIds.includes(option.id);
-
-                          return (
-                            <div
-                              key={option.id}
-                              onClick={() => handleToggle(option.id)}
-                              className={`flex items-center  p-2 rounded-md cursor-pointer transition-all duration-200 border
-                                
-                                ${
-                                  isSelected
-                                    ? "bg-blue-500/20 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.4)]"
-                                    : "bg-[#27272a] border-transparent hover:bg-[#323236]"
-                                }
-                              `}
-                            >
-
-                              <div
-                                className={`w-6 h-6 shrink-0 rounded-full flex items-center justify-center transition-all duration-200 
-                                  ${
-                                    isSelected
-                                      ? "bg-blue-500"
-                                      : "bg-[#09090b] border border-gray-600"
-                                  }
-                                `}
-                              >
-                                {isSelected && (
-                                  <div className="w-[20px] h-[20px] bg-white rounded-full" />
-                                )}
-                              </div>
-
-
-                              <span
-                                className={`text-sm font-medium select-none px-2 transition-colors
-                                  ${
-                                    isSelected ? "text-white" : "text-gray-300"
-                                  }
-                                `}
-                              >
-                                {option.item_name}
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-
-                          <div className="flex justify-end">
-                            <button
-                              onClick={handleAddToBackup}
-                              className="bg-[#27272a] hover:bg-[#3f3f46] text-gray-200 px-8 py-3 rounded-full text-sm font-medium transition-all duration-200 active:scale-95"
-                            >
-                              Add To Backup
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                </CreateModal>
-
-}
-
-export default BackupFilesModal
+export default BackupFilesModal;

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {useState,createContext, useContext } from "react";
 
 
@@ -17,4 +18,3 @@ const [applyingBucket , setApplyingBucket] = useState(false)
 }
 
 export const useBucket = ()=> useContext(BucketContext)
-

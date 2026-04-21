@@ -1,122 +1,100 @@
 import { useEffect, useState } from "react";
-// import exampleThemeImage from "../assets/examp.png"
-
 import api from "../api/api.js";
 import { useTheme } from "../context/ThemeContext.jsx";
 import LoadingScreen from "./ui/Loadingscreen.jsx";
-import Sidebar from "./ui/Sidebar.jsx";
 import { HyprlockCollectionCard } from "./ui/ThemeCollectionCard.jsx";
-
-import { CreateModal } from './ui/CreateModal.jsx'
-import AddToBucket from './ui/AddToBucket.jsx'
-import { getBuckets } from '../utils/bucket.utils.js'
-
+import { CreateModal } from "./ui/CreateModal.jsx";
+import AddToBucket from "./ui/AddToBucket.jsx";
+import { getBuckets } from "../utils/bucket.utils.js";
+import AppShell from "./ui/AppShell.jsx";
 
 const HyprlockCollection = () => {
-  const { isWorking} = useTheme()
-
-  const [themesData,setThemesData] = useState(null)
-  const [hyprlockCardData,setHyprlockCardData] = useState([])
-
-
-      const [open, setOpen] = useState(false);
-  const [bucket , setBuckets] = useState()
-const [payload , setPayload ] = useState(null)
-
-  async function fetchHyprlockCollection() {
-    try {
-    const response =await api.get("/api/theme/hyprlock") 
-    
-      return response
-    } catch (error) {
-      console.error("Error:",error)
-    }
-  }
-
-
-    function handleAddToBuckets(id) {
-      getBuckets().then((result) => {
-        console.log(result.data.buckets)
-        setBuckets(result.data.buckets)
-        setOpen(true)
-        
-      }).catch((err) => {
-        return err
-      });
-      let req = {
-        theme_id:id
-      }
-      setPayload(req)
-  }
+  const { isWorking } = useTheme();
+  const [themesData, setThemesData] = useState(null);
+  const [hyprlockCardData, setHyprlockCardData] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [bucket, setBuckets] = useState([]);
+  const [payload, setPayload] = useState(null);
 
   useEffect(() => {
-    fetchHyprlockCollection().then((response) => {
-      setThemesData(response.data)
-  
-      setHyprlockCardData(response.data.hyprlock_themes)
-    }).catch((err) => {
-      console.error("Error:",err)
-    });
-  }, [])
+    const fetchHyprlockCollection = async () => {
+      try {
+        const response = await api.get("/api/theme/hyprlock");
+        setThemesData(response.data);
+        setHyprlockCardData(response.data.hyprlock_themes || []);
+      } catch {
+        setThemesData({});
+        setHyprlockCardData([]);
+      }
+    };
 
+    fetchHyprlockCollection();
+  }, []);
 
+  const handleAddToBuckets = async (id) => {
+    try {
+      const result = await getBuckets();
+      setBuckets(result.data.buckets || []);
+    } catch {
+      setBuckets([]);
+    }
 
-    return !isWorking ? themesData && (
-    <div
-      
-      className="min-h-screen bg-black text-white font-sans antialiased"
-    >
-      <div className="mx-auto flex min-h-screen max-w-[1700px] flex-col lg:flex-row">
-        <Sidebar />
-        <main className="flex-1 p-8 sm:p-12 lg:p-20 ">
-          <div
-           
-            className="flex flex-col gap-4 border-b border-white/6 pb-10"
-          >
-            <p className="font-mono text-xs uppercase tracking-[0.35em] text-cyan-300/75">
-              Theme collection
-            </p>
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              Hyprlock Themes 
-            </h1>
-            (Work still to be done so user can add there custom images...)
-            <p className="flex flex-col gap-1.5 text-lg font-semibold text-neutral-300 sm:flex-row sm:items-center sm:gap-3">
-              <span>Themes developed by {themesData.credits_to}</span>
-              <span className="hidden text-neutral-600 sm:inline">:</span>
-              <a
-                href={themesData.follow}
-                target="_blank"
-                className="text-neutral-100 underline decoration-neutral-600 transition-colors duration-300 hover:text-white hover:decoration-white"
-              >
-                Github Link
-              </a>
-            </p>
-          </div>
+    setPayload({ theme_id: id });
+    setOpen(true);
+  };
 
-          <div
-            
-            className="mx-auto mt-12 grid w-full max-w-[1200px] grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 xl:grid-cols-3 xl:gap-12"
-          >
-            {themesData && hyprlockCardData.map((theme) => (
-              <HyprlockCollectionCard key={theme.id}
-                data={theme} addToBucket={handleAddToBuckets} />
-            ))}
-          </div>
-        </main>
+  if (isWorking) {
+    return <LoadingScreen />;
+  }
 
-          <CreateModal isOpen={open} onClose={() => setOpen(false)}>
-            <div >
-                    <AddToBucket payload={payload} featureName={"hyprlock"} data={bucket} onClose={() => setOpen(false)}   />
+  return (
+    <>
+      <AppShell
+        title="Hyprlock Themes"
+        description={`Themes developed by ${themesData?.credits_to || "community maintainers"}.`}
+      >
+        <section className="space-y-4" aria-label="Hyprlock themes list">
+          <p className="text-sm ui-muted">Custom user image mapping is still in progress for this category.</p>
+
+          {themesData?.follow ? (
+            <a
+              href={themesData.follow}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ui-link inline-flex text-sm"
+              aria-label="Open Hyprlock author profile"
+            >
+              Open Creator Profile
+            </a>
+          ) : null}
+
+          {hyprlockCardData.length ? (
+            <div className="ui-card-grid">
+              {hyprlockCardData.map((theme) => (
+                <HyprlockCollectionCard key={theme.id} data={theme} addToBucket={handleAddToBuckets} />
+              ))}
             </div>
+          ) : (
+            <p className="ui-muted">No hyprlock themes were returned by the API.</p>
+          )}
+        </section>
+      </AppShell>
 
-          </CreateModal>
+      <CreateModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Add Theme to Bucket"
+        description="Choose one bucket destination."
+      >
+        <AddToBucket
+          payload={payload}
+          featureName="hyprlock"
+          data={bucket}
+          onClose={() => setOpen(false)}
+        />
+      </CreateModal>
+    </>
+  );
+};
 
-      </div>
-    </div>
-  ):
-  <div className="text-3xl text-white ">
-   <LoadingScreen />
-  </div>
-}
-
-export default HyprlockCollection
+export default HyprlockCollection;

@@ -1,41 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom"
+import Dialog from "./Dialog.jsx";
 
-
-const CreateModal = ({isOpen, onClose, children}) =>{
-    if(!isOpen) return null
-
-    const styles = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
-    backdropFilter: "blur(8px)",
-    backgroundColor: "rgba(0,0,0,0.3)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 9990,
-  },
-  modal: {
-    background: "black",
-    padding: "10px",
-    borderRadius: "12px",
-    minWidth: "300px",
-  },
+const CreateModal = ({
+  isOpen,
+  onClose,
+  children,
+  title = "Modal",
+  description,
+  contentClassName,
+}) => {
+  return (
+    <Dialog
+      isOpen={isOpen}
+      onClose={onClose}
+      title={title}
+      description={description}
+      contentClassName={contentClassName}
+    >
+      {children}
+    </Dialog>
+  );
 };
 
-    return ReactDOM.createPortal(
-
-        <div style={styles.overlay} onClick={onClose}>
-            <div style={styles.modal} onClick={(e) => e.stopPropagation()}>
-                {children}
-            </div>
-        </div>,
-        document.body
-    )
-}
-
-export {CreateModal }
+export { CreateModal };

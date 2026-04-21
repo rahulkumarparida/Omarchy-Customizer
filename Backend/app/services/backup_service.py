@@ -3,6 +3,7 @@ import json
 import random
 import string
 from pathlib import Path
+from datetime import datetime
 from app.core.config_map import SETTINGS , BASE_DIR , HOME_DIR , CONFIG_DIR , FOLDER_PATHS
 from app.core.validator import SelectedBackupFilesRequest
 from app.services.command_services import run_command
@@ -41,7 +42,7 @@ def selected_files(data:SelectedBackupFilesRequest , filename):
     selected_data[filename]= data.__dict__
     
     with open(selected_backup_items_file , 'w') as f:
-        json.dump(selected_data, f , indent=True)
+        json.dump(selected_data, f , indent=4)
     print("writing Done")
     return selected_data
 
@@ -59,6 +60,16 @@ def create_filename():
     print(file)
     return file
 
+def backup_move_to_destintion(backup:Path,destination:Path):
+    if not os.path.exists(backup) or not os.path.exists(destination):
+        return {"error":"one of the paths doesn't exist please make sure both are avaliable"}
+    time = str(datetime.now())
+    name = f'Backup-{time}.zip'
+    res = run_command(f"zip '{destination / name}' '{backup}'")
+    
+    if res.returncode != 0:
+        return {'error':'Some error occured while compressing the file'}
+    return {'msg':f'Check the {destination} for '}
 
 # Backsup the files and folder upon one click
 def backup_files(data: SelectedBackupFilesRequest):
@@ -74,9 +85,11 @@ def backup_files(data: SelectedBackupFilesRequest):
     backup_file_name.mkdir(parents=True,exist_ok=True)
     for i in files:
         copy_files(i , backup_file_name)
-    print(files)
+    
     print("done")
-    return {'message':f"successfully created the backup of the current configs in : {filename}"}
+    common_folder_path = HOME_DIR / "Downloads"
+    compressed = backup_move_to_destintion(backup_file_name,common_folder_path)
+    return {'message':f"successfully created the backup of the current configs in : {filename}",'compress':compressed}
 
 #  Will return all the backups dirs avaliable in the .customizer dir
 def saved_backups():
@@ -120,6 +133,20 @@ def delete_a_backup_file(directory:str):
         result = run_command(f'rm -rf "{backup_store}/{directory}" ')
         if result.returncode != 0:
             return {'error':'error while removing the directory'}
+        
+        # selected_backup_items_file 
+        with open(selected_backup_items_file,'r') as f:
+            selecteds_json = json.load(f)
+        
+        if not selecteds_json:
+            return {'msg':'selected file does not exists'}
+        
+        selecteds_json.pop(directory)
+        
+        with open(selected_backup_items_file,'w') as f:
+            json.dump(selecteds_json,f,indent=4)
+        
+        
 
 
         return {'msg':'directory successfully removed'}

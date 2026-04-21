@@ -58,6 +58,8 @@ CUSTOMIZER_LOCALS = CONFIG_DIR / ".customizer"
 CUSTOMIZER_LOCALS.mkdir(parents=True, exist_ok=True)
 USER_ASSET_STORE = CUSTOMIZER_LOCALS / "assets"
 USER_ASSET_STORE.mkdir(parents=True,exist_ok=True)
+USER_EDITED_FILES = CUSTOMIZER_LOCALS / "editors"
+USER_EDITED_FILES.mkdir(parents=True,exist_ok=True)
 
 SETTINGS={
     "waybar_theme":{
@@ -104,6 +106,11 @@ SETTINGS={
     "backups":{
         'store_path': CUSTOMIZER_LOCALS / 'backups',
         'selected_items_files': CUSTOMIZER_LOCALS / 'backups' / 'selected_items.jsonc'
+    },
+    "editor":{
+        'store_path': USER_EDITED_FILES,
+        "edited_logs":USER_EDITED_FILES / "edited_files.json",
+        "recently_visited":USER_EDITED_FILES / 'recent_files.json'
     }
 }
 

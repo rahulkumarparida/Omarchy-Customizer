@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/geist-sans": "^5.2.5",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.2.1",
     "axios": "^1.13.6",

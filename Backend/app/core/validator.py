@@ -45,3 +45,11 @@ class DetailsIdRequest(BaseModel):
 class SelectedBackupFilesRequest(BaseModel):
     filename:Optional[str] = None
     selected_items_list:list
+      
+class EditorGetFileRequest(BaseModel):
+    path:str
+
+class EditorSaveFileRequest(BaseModel):
+    path:str
+    contents:str
+    

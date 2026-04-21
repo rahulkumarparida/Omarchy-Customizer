@@ -4,7 +4,8 @@ import api from '../api/api.js'
 async function getAllConfigFiles() {
     try {
         let response = await api.get('/api/backup/files')
-   
+        // console.log("Backups: ",response);
+        
 
         return response.data
         

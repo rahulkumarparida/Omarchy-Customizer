@@ -11,3 +11,5 @@ __pycache__/
 *.bak
 .vscode/
 temprory*
+.codex
+DESIGN.md

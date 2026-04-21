@@ -1,118 +1,99 @@
 import { useEffect, useState } from "react";
-// import exampleThemeImage from "../assets/examp.png"
-
 import api from "../api/api.js";
 import { useTheme } from "../context/ThemeContext.jsx";
 import LoadingScreen from "./ui/Loadingscreen.jsx";
-import Sidebar from "./ui/Sidebar.jsx";
-import {WaybarCollectionCard} from "./ui/ThemeCollectionCard.jsx"
+import { WaybarCollectionCard } from "./ui/ThemeCollectionCard.jsx";
 import { CreateModal } from "./ui/CreateModal.jsx";
-import { getBuckets  } from "../utils/bucket.utils.js";
+import { getBuckets } from "../utils/bucket.utils.js";
 import AddToBucket from "./ui/AddToBucket.jsx";
-// import { useTheme } from "../context/ThemeContext.jsx";
+import AppShell from "./ui/AppShell.jsx";
 
-  
 const WaybarThemeCollection = () => {
-  const { isWorking} = useTheme();
+  const { isWorking } = useTheme();
   const [open, setOpen] = useState(false);
-  const [bucket , setBuckets] = useState()
-const [payload , setPayload ] = useState(null)
-  const [themesData,setThemesData] = useState(null)
-  const [waybarCardData,setWaybarCardData] = useState([])
-
-  async function fetchWaybarCollection() {
-    try {
-    const response =await api.get("/api/theme/waybar") 
-    
-    
-      return response
-    } catch (error) {
-      console.error("Error:",error)
-    }
-  }
-
-  function handleAddToBuckets(id) {
-      getBuckets().then((result) => {
-        console.log(result.data.buckets)
-        setBuckets(result.data.buckets)
-        setOpen(true)
-        
-      }).catch((err) => {
-        return err
-      });
-      let req = {
-        theme_id:id
-      }
-      setPayload(req)
-  }
+  const [bucket, setBuckets] = useState([]);
+  const [payload, setPayload] = useState(null);
+  const [themesData, setThemesData] = useState(null);
+  const [waybarCardData, setWaybarCardData] = useState([]);
 
   useEffect(() => {
-    fetchWaybarCollection().then((response) => {
-      setThemesData(response.data)
-  
-      setWaybarCardData(response.data.waybar_themes)
-    }).catch((err) => {
-      console.error("Error:",err)
-    });
-  }, [])
-  
+    const fetchWaybarCollection = async () => {
+      try {
+        const response = await api.get("/api/theme/waybar");
+        setThemesData(response.data);
+        setWaybarCardData(response.data.waybar_themes || []);
+      } catch {
+        setThemesData({});
+        setWaybarCardData([]);
+      }
+    };
 
+    fetchWaybarCollection();
+  }, []);
 
+  const handleAddToBuckets = async (id) => {
+    try {
+      const result = await getBuckets();
+      setBuckets(result.data.buckets || []);
+      setPayload({ theme_id: id });
+      setOpen(true);
+    } catch {
+      setBuckets([]);
+      setPayload({ theme_id: id });
+      setOpen(true);
+    }
+  };
 
-  return !isWorking ? themesData && (
-    <div
-      
-      className="min-h-screen bg-black text-white font-sans antialiased"
-    >
-      <div className="mx-auto flex min-h-screen max-w-[1700px] flex-col lg:flex-row">
-        <Sidebar />
-        <main className="flex-1 p-8 sm:p-12 lg:p-20 ">
-          <div
-           
-            className="flex flex-col gap-4 border-b border-white/6 pb-10"
-          >
-            <p className="font-mono text-xs uppercase tracking-[0.35em] text-cyan-300/75">
-              Theme collection
-            </p>
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              Waybar Themes
-            </h1>
-            <p className="flex flex-col gap-1.5 text-lg font-semibold text-neutral-300 sm:flex-row sm:items-center sm:gap-3">
-              <span>Themes developed by {themesData.credits_to}</span>
-              <span className="hidden text-neutral-600 sm:inline">:</span>
-              <a
-                href={themesData.follow}
-                target="_blank"
-                className="text-neutral-100 underline decoration-neutral-600 transition-colors duration-300 hover:text-white hover:decoration-white"
-              >
-                Github Link
-              </a>
-            </p>
-          </div>
+  if (isWorking) {
+    return <LoadingScreen />;
+  }
 
-          <div
-            
-            className="mx-auto mt-12 grid w-full max-w-[1200px] grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-10 xl:grid-cols-3 xl:gap-12"
-          >
-            {themesData && waybarCardData.map((theme) => (
-              <WaybarCollectionCard key={theme.id}
-                data={theme} addToBucket={handleAddToBuckets} />
-            ))}
-          </div>
-          
-          <CreateModal isOpen={open} onClose={() => setOpen(false)}>
-            <div >
-                    <AddToBucket payload={payload} featureName={"waybar"} data={bucket} onClose={() => setOpen(false)}   />
+  return (
+    <>
+      <AppShell
+        title="Waybar Themes"
+        description={`Themes developed by ${themesData?.credits_to || "community maintainers"}.`}
+      >
+        <section className="space-y-4" aria-label="Waybar themes list">
+          {themesData?.follow ? (
+            <a
+              href={themesData.follow}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ui-link inline-flex text-sm"
+              aria-label="Open Waybar author profile"
+            >
+              Open Creator Profile
+            </a>
+          ) : null}
+
+          {waybarCardData.length ? (
+            <div className="ui-card-grid">
+              {waybarCardData.map((theme) => (
+                <WaybarCollectionCard key={theme.id} data={theme} addToBucket={handleAddToBuckets} />
+              ))}
             </div>
+          ) : (
+            <p className="ui-muted">No waybar themes were returned by the API.</p>
+          )}
+        </section>
+      </AppShell>
 
-          </CreateModal>
-        </main>
-      </div>
-    </div>
-  ):
-  <div className="text-3xl text-white ">
-   <LoadingScreen />
-  </div>
+      <CreateModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Add Theme to Bucket"
+        description="Choose one bucket destination."
+      >
+        <AddToBucket
+          payload={payload}
+          featureName="waybar"
+          data={bucket}
+          onClose={() => setOpen(false)}
+        />
+      </CreateModal>
+    </>
+  );
 };
 
 export default WaybarThemeCollection;
