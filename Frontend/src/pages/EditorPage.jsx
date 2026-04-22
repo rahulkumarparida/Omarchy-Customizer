@@ -151,7 +151,7 @@ const onFilesSelect = (newPath) => {
             label="File Content"
             name="file_content"
             aria-label="File content"
-            className="min-h-[420px] resize-y font-mono"
+            className="min-h-[500px] resize-y font-mono"
             value={content}
             onChange={(event) => setContent(event.target.value)}
           />

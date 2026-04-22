@@ -71,7 +71,7 @@ export const OmarchyCollectionCard = ({ card, addToBucket }) => {
   return (
     <ThemeCardFrame
       title={card.title}
-      image={card.theme_image}
+      image={card.img_src}
       imageAlt={`${card.title} preview`}
       metadata={
         <a

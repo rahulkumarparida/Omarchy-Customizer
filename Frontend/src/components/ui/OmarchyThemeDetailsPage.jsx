@@ -63,7 +63,7 @@ const OmarchyThemeDetailsPage = () => {
       >
         <ThemeDetailView
           title={fetchDetail.title}
-          preview={fetchDetail.theme_image}
+          preview={fetchDetail.img_src}
           previewAlt={`${fetchDetail.title} preview`}
           detailLabel="Theme Repository"
           detailValue={fetchDetail.github_repo}
