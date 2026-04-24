@@ -13,3 +13,4 @@ __pycache__/
 temprory*
 .codex
 DESIGN.md
+dist/

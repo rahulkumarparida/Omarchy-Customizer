@@ -225,7 +225,7 @@ Each bucket is one click. Switch between your three favorite setups instantly.
 **How you use it**:
 
 1. Go to **Editor** page
-2. Paste or type a file path: `/home/rahulroxx/.config/omarchy/hyprland.conf`
+2. Paste or type a file path: `/home/user/.config/omarchy/hyprland.conf`
 3. Click "Load"
 4. The file content appears in an editor textarea
 5. Make changes directly in the app

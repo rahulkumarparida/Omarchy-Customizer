@@ -1,6 +1,6 @@
 from fastapi import FastAPI 
 from fastapi.staticfiles import  StaticFiles
-from fastapi.responses import Response
+from fastapi.responses import Response , FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routers import api_routers
 import json
@@ -12,10 +12,10 @@ print(Path("__main__").parent)
 
 app.mount("/store", StaticFiles(directory="app/store"), name="store")
 
-# origins = [
-#     "http://localhost:5173",
-#     "http://127.0.0.1:5173",
-# ]  
+# serve static assets
+app.mount("/assets", StaticFiles(directory="../dist/assets"), name="assets")
+
+
 origins=["*"] 
 
 app.add_middleware(
@@ -28,8 +28,7 @@ app.add_middleware(
 
 app.include_router(router=api_routers)
 
-
+# serve main app
 @app.get("/")
-def read_root():
-    print(Path("__main__").parent)
-    return Response(content=json.dumps({"status": f"up and running at: {URL} and static files at: {ASSETS_LINK}"}), status_code=200)
+def serve_app():
+    return FileResponse("../dist/index.html")
