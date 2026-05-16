@@ -7,7 +7,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/01_blackglass/screenshot-2026-03-11_19-48-43.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/01_blackglass/screenshot-2026-03-11_19-48-52.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/01_blackglass/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/01_blackglass/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 1
         },
         {
@@ -16,7 +16,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/02_minimalGlass/screenshot-2026-03-11_19-50-07.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/02_minimalGlass/screenshot-2026-03-11_19-50-15.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/02_minimalGlass/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/02_minimalGlass/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 2
         },
         {
@@ -25,7 +25,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/03_nordminimal/screenshot-2026-03-11_19-50-47.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/03_nordminimal/screenshot-2026-03-11_19-50-56.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/03_nordminimal/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/03_nordminimal/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 3
         },
         {
@@ -34,7 +34,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/04_cuppatichinominimal/screenshot-2026-03-11_19-51-46.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/04_cuppatichinominimal/screenshot-2026-03-11_19-51-57.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/04_cuppatichinominimal/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/04_cuppatichinominimal/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 4
         },
         {
@@ -43,7 +43,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/05_obsidianmordern_dark/screenshot-2026-03-11_19-52-39.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/05_obsidianmordern_dark/screenshot-2026-03-11_19-52-45.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/05_obsidianmordern_dark/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/05_obsidianmordern_dark/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 5
         },
         {
@@ -52,7 +52,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/06_raycasttheme/screenshot-2026-03-11_19-53-12.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/06_raycasttheme/screenshot-2026-03-11_19-53-18.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/06_raycasttheme/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/06_raycasttheme/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 6
         },
         {
@@ -61,7 +61,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/07_raycasttheme2/screenshot-2026-03-11_19-53-50.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/07_raycasttheme2/screenshot-2026-03-11_19-53-58.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/07_raycasttheme2/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/07_raycasttheme2/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 7
         },
         {
@@ -70,7 +70,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/08_cyberpunk/screenshot-2026-03-11_19-54-42.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/08_cyberpunk/screenshot-2026-03-11_19-54-49.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/08_cyberpunk/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/08_cyberpunk/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 8
         },
         {
@@ -79,7 +79,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/09_bluegravy/screenshot-2026-03-11_19-55-13.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/09_bluegravy/screenshot-2026-03-11_19-55-19.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/09_bluegravy/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/09_bluegravy/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 9
         },
         {
@@ -88,7 +88,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/10_pitchblack/screenshot-2026-03-11_19-56-18.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/10_pitchblack/screenshot-2026-03-11_19-56-24.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/10_pitchblack/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/10_pitchblack/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 10
         },
         {
@@ -97,7 +97,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/11_gruvebox/screenshot-2026-03-11_19-56-55.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/11_gruvebox/screenshot-2026-03-11_19-57-03.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/11_gruvebox/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/11_gruvebox/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 11
         },
         {
@@ -106,7 +106,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/12_oceanicdeapth/screenshot-2026-03-11_19-57-34.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/12_oceanicdeapth/screenshot-2026-03-11_19-57-44.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/12_oceanicdeapth/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/12_oceanicdeapth/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 12
         },
         {
@@ -115,7 +115,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/13_forestcanopy/screenshot-2026-03-11_19-58-10.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/13_forestcanopy/screenshot-2026-03-11_19-58-17.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/13_forestcanopy/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/13_forestcanopy/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 13
         },
         {
@@ -124,7 +124,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/14_sunsethorizon/screenshot-2026-03-11_19-58-44.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/14_sunsethorizon/screenshot-2026-03-11_19-58-53.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/14_sunsethorizon/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/14_sunsethorizon/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 14
         },
         {
@@ -133,7 +133,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/15_sunsetTint/screenshot-2026-03-11_19-59-26.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/15_sunsetTint/screenshot-2026-03-11_19-59-32.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/15_sunsetTint/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/15_sunsetTint/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 15
         },
         {
@@ -142,7 +142,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/16_floatingamber/screenshot-2026-03-11_20-01-36.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/16_floatingamber/screenshot-2026-03-11_20-01-44.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/16_floatingamber/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/16_floatingamber/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 16
         },
         {
@@ -151,7 +151,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/17_goldenamber/screenshot-2026-03-11_20-02-08.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/17_goldenamber/screenshot-2026-03-11_20-02-16.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/17_goldenamber/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/17_goldenamber/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 17
         },
         {
@@ -160,7 +160,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/18_vibrant/screenshot-2026-03-11_20-02-44.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/18_vibrant/screenshot-2026-03-11_20-02-50.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/18_vibrant/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/18_vibrant/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 18
         },
         {
@@ -169,7 +169,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/19_draculablood/screenshot-2026-03-11_20-03-17.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/19_draculablood/screenshot-2026-03-11_20-03-25.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/19_draculablood/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/19_draculablood/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 19
         },
         {
@@ -178,7 +178,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/20_greeninshvibes/screenshot-2026-03-11_20-03-49.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/20_greeninshvibes/screenshot-2026-03-11_20-03-55.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/20_greeninshvibes/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/20_greeninshvibes/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 20
         },
         {
@@ -187,7 +187,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/21_nordic/screenshot-2026-03-11_20-04-38.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/21_nordic/screenshot-2026-03-11_20-04-45.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/21_nordic/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/21_nordic/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 21
         },
         {
@@ -196,7 +196,7 @@
                 "http://0.0.0.0:8000/store/assets/walker_images/22_catppuchino/image-copy.png",
                 "http://0.0.0.0:8000/store/assets/walker_images/22_catppuchino/image.png"
             ],
-            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/22_catppuchino/style.css  ~/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
+            "command": "git clone https://github.com/rahulkumarparida/Walker-themes.git /tmp/walker-repo && cp  /tmp/walker-repo/22_catppuchino/style.css  $HOME/.local/share/omarchy/default/walker/themes/omarchy-default/style.css  && rm -rf  /tmp/walker-repo && omarchy-restart-walker",
             "id": 22
         }
     ]

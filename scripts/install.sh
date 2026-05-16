@@ -2,11 +2,11 @@
 
 echo "🚀 Setting up Omarchy Customizer..."
 
-# # update system
-# sudo pacman -Syu --noconfirm
+# update system
+sudo pacman -Syu --noconfirm
 
-# # install dependencies
-# sudo pacman -S --noconfirm python python-pip nodejs npm git rsync
+# install dependencies
+sudo pacman -S --noconfirm python python-pip nodejs npm git rsync
 
 
 # backend setup

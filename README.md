@@ -46,7 +46,7 @@ Traditionally, you'd manually manage each of these. Omarchy Customizer brings th
 ┌─────────────────────────────────────────────────────────┐
 │  USER BROWSER                                           │
 │  ┌─────────────────────────────────────────────────────┐│
-│  │  React Frontend (localhost:5173)                    ││
+│  │  React Frontend (served by FastAPI)                 ││
 │  │  - Theme browsing UI                                ││
 │  │  - Preset (Bucket) management                       ││
 │  │  - File editor                                      ││
@@ -55,7 +55,7 @@ Traditionally, you'd manually manage each of these. Omarchy Customizer brings th
 └──────────────┬──────────────────────────────────────────┘
                │ HTTP/REST API
 ┌──────────────▼──────────────────────────────────────────┐
-│  BACKEND SERVER (Python FastAPI, localhost:8000)       │
+│  BACKEND SERVER (Python FastAPI, localhost:6969)       │
 │  ┌─────────────────────────────────────────────────────┐│
 │  │  API Routes                                         ││
 │  │  - Theme routes (browse, apply)                     ││
@@ -344,93 +344,66 @@ Before starting, ensure you have:
 - Node.js 18 or higher (npm included)
 - git (for cloning themes)
 - System tools: rsync, bash
+- Note: `scripts/install.sh` currently targets Arch/Omarchy (uses `sudo` + `pacman`)
 ```
 
 ### Step 1: Clone or Navigate to Project
 
 ```bash
-# If you haven't already
-git clone <repository-url>
-cd ConfigAPI
+# Clone the repo
+git clone https://github.com/rahulkumarparida/Omarchy-Customizer.git
+cd Omarchy-Customizer
 ```
 
-### Step 2: Start the Backend
+### Step 2: Install + Run (Recommended)
 
 ```bash
-# Navigate to Backend directory
-cd Backend
+# If scripts are not executable on your system:
+chmod +x omarchy-customizer.sh scripts/install.sh scripts/run.sh
 
-# Create a Python virtual environment
-python3 -m venv venv
-
-# Activate the virtual environment
-source venv/bin/activate
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Start the FastAPI server
-python run.py
+# First run will install dependencies + build the frontend, then start the app
+bash omarchy-customizer.sh
 ```
 
 **Expected output**:
 ```
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://0.0.0.0:6969 (Press CTRL+C to quit)
 ```
 
-The backend is now running on `http://localhost:8000` and serving both:
-- REST API endpoints (`/api/*`)
-- Static files from the store (`/store/*` → theme images and metadata)
+Open your browser to `http://localhost:6969/`.
 
-**Keep this terminal running.** Open a new terminal for the frontend.
+To stop the app, focus the terminal and press `Ctrl+C`.
 
-### Step 3: Start the Frontend
+### Step 3 (Optional): Run Scripts Directly
 
 ```bash
-# In a new terminal, navigate to Frontend directory
-cd Frontend
-
-# Install JavaScript dependencies
-npm install
-
-# Create a .env file (if it doesn't exist)
-# The file should contain:
-echo "VITE_CUSTOMIZER_API_URL=http://127.0.0.1:8000" > .env
-
-# Start the development server
-npm run dev
+./scripts/install.sh   # one-time install (uses sudo + pacman)
+./scripts/run.sh       # start the app (FastAPI serves the built UI from ../dist/)
 ```
 
-**Expected output**:
-```
-VITE v5.0.0  ready in 123 ms
+### Step 4 (Optional): Add a Shortcut Alias
 
-➜  Local:   http://localhost:5173/
-```
-
-Open your browser and go to `http://localhost:5173/`
-
-You should see the Omarchy Customizer homepage.
-
-### Step 4 (Optional): Use the Convenience Script
-
-If you prefer, you can run both backend and frontend with a single script:
+After the first install completes (so `Backend/venv/` exists), you can add a shell alias to start the app with one command:
 
 ```bash
-# From project root
-bash runapplication.sh
+# zsh
+echo 'alias editomarchy="cd /path/to/Omarchy-Customizer && bash omarchy-customizer.sh"' >> ~/.zshrc
+source ~/.zshrc
+
+# bash
+# echo 'alias editomarchy="cd /path/to/Omarchy-Customizer && bash omarchy-customizer.sh"' >> ~/.bashrc
+# source ~/.bashrc
 ```
 
-This script starts both servers in the background (adjust as needed).
+Now you can run `editomarchy` to start the app, and press `Ctrl+C` to stop it.
 
 ### Troubleshooting
 
 | Problem | Solution |
 |---------|----------|
-| Backend won't start (port 8000 in use) | Kill process on port 8000: `lsof -ti:8000 \| xargs kill -9` |
-| Frontend won't connect to backend | Verify `.env` has correct `VITE_CUSTOMIZER_API_URL` |
+| App won't start (port 6969 in use) | Kill process on port 6969: `lsof -ti:6969 \| xargs kill -9` |
 | Themes don't apply (permission denied) | Ensure `~/.config/` and `~/.customizer/` directories are writable |
-| Modules not found errors | Ensure you ran `pip install` (backend) or `npm install` (frontend) |
+| Modules not found errors | Ensure the install step completed successfully (`./scripts/install.sh`) |
 | Hyprland commands not recognized | Ensure Hyprland is installed and in your PATH |
 
 ---
@@ -539,7 +512,9 @@ This script starts both servers in the background (adjust as needed).
 
 **Root**
 - `package.json` — Project metadata
-- `runapplication.sh` — Convenience script to start both servers
+- `omarchy-customizer.sh` — One-command install + run (recommended)
+- `scripts/` — `install.sh` (setup) and `run.sh` (start server)
+- `runapplication.sh` — Legacy convenience script (optional)
 - `SERVICE.md` — High-level service overview
 - `README.md` — Quick start guide
 

@@ -6,6 +6,6 @@
 
 echo "changing theme to $1"
 
-omarchy-theme-install $2
+$HOME/.local/share/omarchy/bin/omarchy-theme-install "$2"
 
 echo "Theme $1 installed and applied successfully"
