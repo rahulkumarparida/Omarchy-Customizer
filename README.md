@@ -1,4 +1,5 @@
 # Omarchy Customizer
+[YouTube Video](https://youtu.be/haIAynKPt7Q?si=VIhI0_L3Wxvwt4vH)
 
 ## A. Opening Story
 
